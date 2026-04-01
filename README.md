@@ -1,20 +1,45 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Software Engineer Portfolio
 
-# Run and deploy your AI Studio app
+Portfolio profesional construido con **Astro** y **Tailwind CSS**, enfocado en alto rendimiento, buena experiencia de usuario y optimización SEO.
 
-This contains everything you need to run your app locally.
+## ¿Qué incluye?
 
-View your app in AI Studio: https://ai.studio/apps/c1483f70-d878-4b00-8349-7373b4a3983f
+- Landing de perfil profesional
+- Secciones de experiencia, proyectos, contacto y redes
+- Diseño moderno con estilos utilitarios de Tailwind
+- Interacciones ligeras en cliente (scroll/reveal/navbar)
 
-## Run Locally
+## Requisitos
 
-**Prerequisites:**  Node.js
+- Node.js 20+
+- npm 10+
 
+## Cómo ejecutarlo en local
 
-1. Install dependencies:
+1. Instala dependencias:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Inicia el entorno de desarrollo:
    `npm run dev`
+3. Abre en el navegador:
+   `http://localhost:3000`
+
+## Scripts disponibles
+
+- `npm run dev`: levanta el servidor de desarrollo
+- `npm run build`: genera el build de producción
+- `npm run preview`: previsualiza el build generado
+- `npm run lint`: ejecuta validaciones con `astro check`
+- `npm run clean`: elimina artefactos (`dist` y `.astro`)
+
+## Estructura base
+
+- `src/layouts/`: layout principal del sitio
+- `src/pages/`: páginas Astro
+- `src/styles/`: estilos globales y utilidades
+
+## Build para producción
+
+```bash
+npm run build
+npm run preview
+```

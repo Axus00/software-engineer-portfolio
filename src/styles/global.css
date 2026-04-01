@@ -1,10 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-headline: "Manrope", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-surface: #10131a;
   --color-surface-container: #1d2026;
@@ -12,13 +11,17 @@
   --color-surface-container-high: #272a31;
   --color-primary-custom: #b6c4ff;
   --color-secondary-custom: #40e56c;
-  --color-outline-custom: #8d90a2;
 }
 
 @layer base {
+  html,
   body {
-    @apply bg-surface text-slate-200 antialiased selection:bg-primary-custom/30 selection:text-primary-custom;
+    @apply bg-surface text-slate-200 antialiased;
     scroll-behavior: smooth;
+  }
+
+  section {
+    scroll-margin-top: 110px;
   }
 }
 
@@ -26,20 +29,19 @@
   .text-gradient {
     @apply bg-linear-to-r from-primary-custom to-secondary-custom bg-clip-text text-transparent;
   }
-  
+
   .glass-nav {
     @apply bg-slate-900/40 backdrop-blur-xl border border-white/10;
   }
-
-  .spine-gradient {
-    background: linear-gradient(to bottom, transparent, var(--color-primary-custom) 20%, var(--color-secondary-custom) 80%, transparent);
-  }
 }
 
-/* Custom animations */
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .logo-carousel-track {
@@ -50,4 +52,19 @@
 
 .logo-carousel-track:hover {
   animation-play-state: paused;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 450ms ease, transform 450ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.08);
 }

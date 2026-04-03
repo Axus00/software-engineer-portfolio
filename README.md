@@ -11,13 +11,14 @@ Este proyecto presenta una marca personal técnica con secciones desacopladas (H
 - Astro 5
 - Tailwind CSS 4
 - TypeScript
+- Cloudflare Workers (deploy)
 
 ## Requisitos
 
 - Node.js 20+
 - npm 10+
 
-## Instalación y ejecución
+## Instalación y ejecución local
 
 1. Instalar dependencias:
    `npm install`
@@ -33,26 +34,37 @@ Este proyecto presenta una marca personal técnica con secciones desacopladas (H
 - `npm run preview`: previsualiza el build
 - `npm run lint`: valida tipos/plantillas con `astro check`
 - `npm run clean`: elimina artefactos (`dist` y `.astro`)
+- `npm run deploy`: build + deploy a Cloudflare Workers
 
 ## Estructura del proyecto
 
 - `src/pages/index.astro`: composición principal de secciones
-- `src/layouts/Layout.astro`: layout base y metadatos
+- `src/layouts/Layout.astro`: layout base y metadatos SEO
 - `src/components/sections/`: secciones visuales (Header, Trust, Experience, Projects, etc.)
 - `src/components/behaviors/`: scripts de comportamiento aislados (scroll/progreso)
-- `src/shared/resources/images/`: imágenes del portfolio
-- `src/shared/resources/logos/technologies/`: logos SVG de tecnologías
 - `src/styles/global.css`: estilos globales y utilidades
+- `public/shared/resources/images/`: imágenes del portfolio
+- `public/shared/resources/logos/technologies/`: logos SVG de tecnologías
+- `public/shared/resources/logos/`: favicon e iconos del sitio
+
+## Deploy en Cloudflare
+
+1. Asegúrate de tener sesión activa en Cloudflare CLI:
+   `npx wrangler login`
+2. Ejecuta deploy:
+   `npm run deploy`
+3. Configuración principal en:
+   `wrangler.jsonc`
 
 ## Convención recomendada para nuevas secciones
 
 1. Crear sección en `src/components/sections/<Nombre>Section.astro`
 2. Importarla en `src/pages/index.astro`
-3. Mantener datos de la sección dentro del componente o moverlos a `src/shared/` si serán reutilizados
+3. Mantener datos dentro del componente o moverlos a `src/shared/` si serán reutilizados
 
-## Build de producción
+## Producción
 
 ```bash
 npm run build
-npm run preview
+npm run deploy
 ```

@@ -5,7 +5,7 @@ import grupoExito from '../../shared/resources/images/grupo-exito-logo.png';
 import arro from '../../shared/resources/images/arro-logo.svg';
 
 const logos = [
-  { src: bblabs.src, alt: 'Blackbird Labs' },
+  { src: bblabs.src, alt: 'Blackbird Labs', boost: true },
   { src: riwi.src, alt: 'Riwi' },
   { src: grupoExito.src, alt: 'Grupo Éxito' },
   { src: arro.src, alt: 'Arro' },
@@ -24,7 +24,7 @@ const logos = [
           <img
             src={logo.src}
             alt={logo.alt}
-            class="h-12 md:h-14 w-auto max-w-35 object-contain"
+            class={`h-12 md:h-14 w-auto max-w-35 object-contain brand-logo-unified ${logo.boost ? 'brand-logo-boost' : ''}` }
             loading="lazy"
             decoding="async"
           />

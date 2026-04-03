@@ -33,6 +33,14 @@
   .glass-nav {
     @apply bg-slate-900/40 backdrop-blur-xl border border-white/10;
   }
+
+  .brand-logo-unified {
+    filter: brightness(0) saturate(100%) invert(84%) sepia(16%) saturate(506%) hue-rotate(191deg) brightness(103%) contrast(103%);
+  }
+
+  .brand-logo-boost {
+    filter: brightness(0) saturate(100%) invert(84%) sepia(16%) saturate(560%) hue-rotate(191deg) brightness(112%) contrast(112%);
+  }
 }
 
 @keyframes scroll {

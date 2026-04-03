@@ -4,6 +4,9 @@ import csharp from '../../shared/resources/logos/technologies/csharp.svg';
 import css from '../../shared/resources/logos/technologies/css.svg';
 import javascript from '../../shared/resources/logos/technologies/javascript.svg';
 import sass from '../../shared/resources/logos/technologies/sass.svg';
+import python from '../../shared/resources/logos/technologies/python.svg';
+import pydantic from '../../shared/resources/logos/technologies/pydantic.svg';
+import langChain from '../../shared/resources/logos/technologies/langchain.svg';
 
 import mercadoVerde from '../../shared/resources/images/mercado-verde.webp';
 import laMisericordia from '../../shared/resources/images/la-misericordia.webp';
@@ -47,6 +50,11 @@ const projects = [
     repository: 'https://github.com/Axus00/azure-agent',
     span: 'Repositorio',
     image: llmAgent,
+    technologies: [
+      {name: 'Python', svg: python, color: 'bg-[#FFDF76] text-black'},
+      {name: 'LangChain', svg: langChain, color: 'bg-white text-black'},
+      {name: 'Pydantic Logfire', svg: pydantic, color: 'bg-white text-black'}
+    ]
   },
 ];
 ---

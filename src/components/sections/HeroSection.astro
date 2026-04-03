@@ -1,0 +1,35 @@
+---
+const heroData = {
+  titleOne: "Construyendo",
+  titleTwo: "Resiliencia Digital",
+  titleThree: "y Maestría Técnica.",
+  description: "Desarrollador Full Stack e IA que construye productos web y agentes LLM escalables, aplicando arquitectura limpia y microservicios para optimizar procesos e impulsar resultados de negocio."
+}
+
+const buttons = {
+  buttonItems: [
+    {"title": "Explora mis proyectos", "href": "#projects", "style": "px-8 py-4 rounded-full bg-blue-600 text-white font-semibold text-lg shadow-lg shadow-blue-600/20 hover:scale-105 active:scale-95 transition-all"},
+    {"title": "Contáctame", "href": "#contact", "style": "px-8 py-4 rounded-full bg-transparent border border-white/10 backdrop-blur-md text-white font-semibold text-lg hover:bg-white/5 hover:scale-105 active:scale-95 transition-all"}
+  ]
+}
+---
+
+<section class="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
+      <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/30 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-600/30 blur-[120px] rounded-full"></div>
+      </div>
+      <div class="relative z-10 max-w-4xl text-center reveal is-visible">
+        <h1 class="font-headline text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+          {heroData.titleOne} <span class="text-gradient">{heroData.titleTwo}</span> {heroData.titleThree}
+        </h1>
+        <p class="font-sans text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          {heroData.description}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          {buttons.buttonItems.map((button) => (
+            <a href={button.href} class={button.style} >{button.title}</a>
+          ))}
+        </div>
+      </div>
+</section>

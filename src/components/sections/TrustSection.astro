@@ -1,0 +1,35 @@
+---
+import bblabs from '../../shared/resources/images/bblabs-logo.svg';
+import riwi from '../../shared/resources/images/riwi-logo.webp';
+import grupoExito from '../../shared/resources/images/grupo-exito-logo.png';
+import arro from '../../shared/resources/images/arro-logo.svg';
+
+const logos = [
+  { src: bblabs.src, alt: 'Blackbird Labs' },
+  { src: riwi.src, alt: 'Riwi' },
+  { src: grupoExito.src, alt: 'Grupo Éxito' },
+  { src: arro.src, alt: 'Arro' },
+];
+---
+
+<section class="py-24 px-8 bg-surface-container-low/30 border-y border-white/5">
+  <div class="max-w-7xl mx-auto text-center">
+    <h2 class="font-sans text-xs uppercase tracking-[0.2em] text-slate-500 mb-16">
+      Empresas con las que he trabajado
+    </h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      {logos.map((logo) => (
+        <article class="bg-none p-6 md:p-8 flex items-center justify-center min-h-30">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            class="h-12 md:h-14 w-auto max-w-35 object-contain"
+            loading="lazy"
+            decoding="async"
+          />
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

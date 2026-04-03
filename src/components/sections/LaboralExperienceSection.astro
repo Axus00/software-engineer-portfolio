@@ -1,0 +1,107 @@
+---
+import bblabs from '../../shared/resources/images/bblabs-logo.svg';
+import riwi from '../../shared/resources/images/riwi-logo.webp';
+import grupoExito from '../../shared/resources/images/grupo-exito-logo.png';
+import arro from '../../shared/resources/images/arro-logo.svg';
+
+const companyLogos = {
+  bblabs: { name: 'BlackBird Labs', svg: bblabs, background: 'bg-black' },
+  riwi: { name: 'Riwi', svg: riwi, background: 'bg-[#FFF]' },
+};
+
+const staffingLogos = {
+  exito: { name: 'Grupo Éxito', svg: grupoExito, background: 'bg-[#f4e8d3]' },
+  arro: { name: 'Arro - NG', svg: arro, background: 'bg-[#FFF]' },
+};
+
+const experiences = [
+  {
+    role: 'Desarrollador Fullstack',
+    company: 'Blackbird Labs',
+    companyLogo: companyLogos.bblabs,
+    period: '2024 - Actualidad',
+    description:
+      'Participación y liderazgo en proyectos Full Stack dentro de Blackbird Labs, contribuyendo en soluciones de IA, rebranding de productos, diseño de APIs y desarrollo frontend para mejorar experiencia, escalabilidad y resultados de negocio.',
+    tag: 'ACTUALMENTE',
+    subItems: [
+      {
+        label: 'STAFFING ÉXITO - Actualidad',
+        content: 'Software Solutions - Soporte de Infraestructura',
+        subLogo: staffingLogos.exito,
+      },
+      {
+        label: 'STAFFING ARRO - NG',
+        content: 'Software Solutions - Rebranding y Soporte Post Desarrollo',
+        subLogo: staffingLogos.arro,
+      },
+    ],
+  },
+  {
+    role: 'Desarrollador Backend',
+    company: 'Riwi',
+    companyLogo: companyLogos.riwi,
+    period: '2023 - 2024',
+    description:
+      'Responsable y encargado de la construcción de RiwiTalent tanto en el Backend como en el Frontend, realizando separación de servicios con arquitectura Hexagonal y posteriormente Clean Architecture, gestionando de manera adecuada las peticiones desde el Frontend.'
+  }
+];
+---
+
+<section id="experience" class="py-32 px-8">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-headline text-3xl font-bold mb-16 text-white">Trayectoria Profesional</h2>
+    <div class="relative space-y-16 pb-8">
+      <div class="absolute left-6 top-2 bottom-0 w-px bg-white/5"></div>
+      <div id="experience-progress" class="absolute left-6 top-2 bottom-0 w-0.5 -ml-[0.5px] bg-linear-to-b from-secondary-custom to-secondary-custom origin-top shadow-[0_0_14px_rgba(64,229,108,0.6)] z-0"></div>
+
+      {experiences.map((exp) => (
+        <article class="relative pl-16 group reveal">
+          <div class={`absolute left-0 top-1 w-12 h-12 ${exp.companyLogo.background} rounded-full border border-white/5 flex items-center justify-center z-10 group-hover:border-primary-custom/50 transition-colors`}>
+            <img src={exp.companyLogo.svg.src} alt={exp.companyLogo.name} class="w-8 h-8 object-contain" />
+          </div>
+
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+            <h3 class="font-headline text-xl font-bold text-white">{exp.role}</h3>
+            <span class="font-sans text-sm text-slate-500">{exp.period}</span>
+          </div>
+
+          <div class="flex items-center gap-3 mb-4">
+            <span class="font-medium text-primary-custom">{exp.company}</span>
+            {exp.tag && (
+              <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] uppercase tracking-wider font-bold rounded-full border border-emerald-500/20">
+                {exp.tag}
+              </span>
+            )}
+          </div>
+
+          <p class="text-slate-400 leading-relaxed max-w-3xl">{exp.description}</p>
+
+          {(exp.subItems?.length ?? 0) > 0 && (
+            <div class="mt-6 ml-4 relative">
+              <div class="absolute left-0 top-0 bottom-0 w-px border-l border-dashed border-white/10"></div>
+
+              {(exp.subItems ?? []).map((sub) => (
+                <div class="relative pl-8 pb-4">
+                  <div class="absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-slate-700 border border-surface"></div>
+
+                  <div class="flex items-start gap-3">
+                    {sub.subLogo && (
+                      <div class={`mt-0.5 w-8 h-8 ${sub.subLogo.background} rounded-full border border-white/10 flex items-center justify-center shrink-0`}>
+                        <img src={sub.subLogo.svg.src} alt={sub.subLogo.name} class="w-5 h-5 object-contain" />
+                      </div>
+                    )}
+
+                    <div class="flex flex-col">
+                      <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{sub.label}</span>
+                      <span class="text-sm text-slate-300">{sub.content}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

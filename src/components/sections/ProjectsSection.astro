@@ -1,0 +1,95 @@
+---
+import bootstrap from '../../shared/resources/logos/technologies/bootstrap.svg';
+import csharp from '../../shared/resources/logos/technologies/csharp.svg';
+import css from '../../shared/resources/logos/technologies/css.svg';
+import javascript from '../../shared/resources/logos/technologies/javascript.svg';
+import sass from '../../shared/resources/logos/technologies/sass.svg';
+
+const technologies = [
+  { name: 'Sass', svg: sass, color: 'bg-black text-white' },
+  { name: 'Css', svg: css, color: 'bg-[#1572B6] text-white' },
+  { name: 'Bootstrap', svg: bootstrap, color: 'bg-[#563D7C] text-[#73bcf6]' },
+  { name: 'JavaScript', svg: javascript, color: 'bg-[#F7DF1E] text-black' },
+  { name: 'CSharp', svg: csharp, color: 'bg-[#68217A] text-white' },
+];
+
+const projects = [
+  {
+    title: 'Mercado Verde',
+    description:
+      'Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.',
+    repository: 'https://github.com/Axus00/MercadoVerde',
+    span: 'Repositorio',
+    image: 'src/shared/resources/images/mercado-verde.webp',
+    technologies,
+  },
+  {
+    title: 'La Misericordia',
+    description:
+      'Aplicación enfocada en la gestión operativa y organizacional, orientada a optimizar procesos internos y facilitar la administración de la información.',
+    repository: 'https://github.com/Axus00/LaMisericordia',
+    span: 'Repositorio',
+    image: 'src/shared/resources/images/la-misericordia.webp',
+    technologies: [
+      { name: 'C#', svg: csharp, color: 'bg-[#68217A] text-white' },
+      { name: 'Css', svg: css, color: 'bg-[#1572B6] text-white' },
+      { name: 'JavaScript', svg: javascript, color: 'bg-[#F7DF1E] text-black' },
+    ],
+  },
+  {
+    title: 'LLM Agent',
+    description:
+      'Asistente inteligente construido con LangGraph y LangChain para automatizar tareas DevOps y Scrum.',
+    repository: 'https://github.com/Axus00/azure-agent',
+    span: 'Repositorio',
+    image: 'src/shared/resources/images/llm-agent-langchain.webp'
+  },
+];
+---
+
+<section id="projects" class="py-32 px-8 bg-surface-container-low/20">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-end mb-16">
+      <div>
+        <h2 class="font-headline text-4xl font-extrabold mb-4">Proyectos</h2>
+        <p class="text-slate-500">Implementaciones de alto nivel para resolver problemas complejos.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {projects.map((project) => (
+        <article class="project-card group relative bg-surface-container-low rounded-xl overflow-hidden shadow-xl shadow-black/20 border border-white/5 reveal">
+          <div class="h-64 overflow-hidden">
+            <img src={project.image} alt={project.title} class="project-image w-full h-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
+          </div>
+          <div class="p-8">
+            <h3 class="font-headline text-2xl font-bold text-white mb-4">{project.title}</h3>
+            <p class="text-slate-400 mb-8 leading-relaxed">{project.description}</p>
+
+            <div class="mb-8">
+              <ul class="flex flex-row flex-wrap gap-x-2 gap-y-2 mb-4">
+                {(project.technologies ?? []).map((tag) => (
+                  <li>
+                    <span class={`flex gap-x-2 rounded-full text-xs py-1 px-2 ${tag.color}`}>
+                      <img src={tag.svg.src} alt={tag.name} class="size-4" loading="lazy" />
+                      {tag.name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="flex justify-between items-center border-t border-white/5 pt-6">
+              <button class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" hidden>
+                Demo en vivo
+              </button>
+              <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-white transition-colors">
+                {project.span}
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

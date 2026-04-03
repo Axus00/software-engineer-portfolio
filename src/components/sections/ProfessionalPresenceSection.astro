@@ -1,0 +1,39 @@
+---
+const cardItems = [
+  {
+    title: "Trabajo Open Source",
+    description: "Explorando nuevas fronteras de ingeniería a través del conocimiento compartido y el código.",
+    cta: "Explorar mi código",
+    href: "https://github.com/Axus00",
+    border: "hover:border-primary-custom/40",
+    glow: "from-primary-custom/5 to-transparent"
+  },
+  {
+    title: "Red Profesional",
+    description: "Construyendo alianzas estratégicas y liderazgo técnico a nivel global.",
+    cta: "Conectemos",
+    href: "#contact",
+    border: "hover:border-secondary-custom/40",
+    glow: "from-secondary-custom/5 to-transparent"
+  }
+];
+---
+
+<section id="stack" class="py-32 px-8">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    {cardItems.map((card) => (
+      <article class={`group relative flex flex-col items-center justify-center p-12 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 ${card.border} transition-all duration-500 overflow-hidden text-center shadow-2xl reveal`}>
+        <div class={`absolute inset-0 bg-linear-to-br ${card.glow} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+        <div class="relative z-10">
+          <h2 class="font-headline text-4xl font-extrabold mb-6 text-white">{card.title}</h2>
+          <p class="text-xl text-slate-400 mb-10 max-w-sm mx-auto">{card.description}</p>
+          <a href={card.href} target={card.href.startsWith('http') ? "_blank" : undefined} rel={card.href.startsWith('http') ? "noopener noreferrer" : undefined}>
+            <button class="px-10 py-5 bg-white text-surface font-bold text-lg rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl">
+              {card.cta}
+            </button>
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,23 +1,10 @@
 ---
-import bootstrap from '../../shared/resources/logos/technologies/bootstrap.svg';
-import csharp from '../../shared/resources/logos/technologies/csharp.svg';
-import css from '../../shared/resources/logos/technologies/css.svg';
-import javascript from '../../shared/resources/logos/technologies/javascript.svg';
-import sass from '../../shared/resources/logos/technologies/sass.svg';
-import python from '../../shared/resources/logos/technologies/python.svg';
-import pydantic from '../../shared/resources/logos/technologies/pydantic.svg';
-import langChain from '../../shared/resources/logos/technologies/langchain.svg';
-
-import mercadoVerde from '../../shared/resources/images/mercado-verde.webp';
-import laMisericordia from '../../shared/resources/images/la-misericordia.webp';
-import llmAgent from '../../shared/resources/images/llm-agent-langchain.webp';
-
 const technologies = [
-  { name: 'Sass', svg: sass, color: 'bg-black text-white' },
-  { name: 'Css', svg: css, color: 'bg-[#1572B6] text-white' },
-  { name: 'Bootstrap', svg: bootstrap, color: 'bg-[#563D7C] text-[#73bcf6]' },
-  { name: 'JavaScript', svg: javascript, color: 'bg-[#F7DF1E] text-black' },
-  { name: 'CSharp', svg: csharp, color: 'bg-[#68217A] text-white' },
+  { name: 'Sass', svg: '/shared/resources/logos/technologies/sass.svg', color: 'bg-black text-white' },
+  { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
+  { name: 'Bootstrap', svg: '/shared/resources/logos/technologies/bootstrap.svg', color: 'bg-[#563D7C] text-[#73bcf6]' },
+  { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
+  { name: 'CSharp', svg: '/shared/resources/logos/technologies/csharp.svg', color: 'bg-[#68217A] text-white' },
 ];
 
 const projects = [
@@ -27,7 +14,7 @@ const projects = [
       'Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.',
     repository: 'https://github.com/Axus00/MercadoVerde',
     span: 'Repositorio',
-    image: mercadoVerde,
+    image: '/shared/resources/images/mercado-verde.webp',
     technologies,
   },
   {
@@ -36,11 +23,11 @@ const projects = [
       'Aplicación enfocada en la gestión operativa y organizacional, orientada a optimizar procesos internos y facilitar la administración de la información.',
     repository: 'https://github.com/Axus00/LaMisericordia',
     span: 'Repositorio',
-    image: laMisericordia,
+    image: '/shared/resources/images/la-misericordia.webp',
     technologies: [
-      { name: 'C#', svg: csharp, color: 'bg-[#68217A] text-white' },
-      { name: 'Css', svg: css, color: 'bg-[#1572B6] text-white' },
-      { name: 'JavaScript', svg: javascript, color: 'bg-[#F7DF1E] text-black' },
+      { name: 'C#', svg: '/shared/resources/logos/technologies/csharp.svg', color: 'bg-[#68217A] text-white' },
+      { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
+      { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
     ],
   },
   {
@@ -49,12 +36,12 @@ const projects = [
       'Asistente inteligente construido con LangGraph y LangChain para automatizar tareas DevOps y Scrum.',
     repository: 'https://github.com/Axus00/azure-agent',
     span: 'Repositorio',
-    image: llmAgent,
+    image: '/shared/resources/images/llm-agent-langchain.webp',
     technologies: [
-      {name: 'Python', svg: python, color: 'bg-[#FFDF76] text-black'},
-      {name: 'LangChain', svg: langChain, color: 'bg-white text-black'},
-      {name: 'Pydantic Logfire', svg: pydantic, color: 'bg-white text-black'}
-    ]
+      { name: 'Python', svg: '/shared/resources/logos/technologies/python.svg', color: 'bg-[#FFDF76] text-black' },
+      { name: 'LangChain', svg: '/shared/resources/logos/technologies/langchain.svg', color: 'bg-white text-black' },
+      { name: 'Pydantic Logfire', svg: '/shared/resources/logos/technologies/pydantic.svg', color: 'bg-white text-black' },
+    ],
   },
 ];
 ---
@@ -72,7 +59,7 @@ const projects = [
       {projects.map((project) => (
         <article class="project-card group relative bg-surface-container-low rounded-xl overflow-hidden shadow-xl shadow-black/20 border border-white/5 reveal">
           <div class="h-64 overflow-hidden">
-            <img src={project.image.src} alt={project.title} class="project-image w-full h-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
+            <img src={project.image} alt={project.title} class="project-image w-full h-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
           </div>
           <div class="p-8">
             <h3 class="font-headline text-2xl font-bold text-white mb-4">{project.title}</h3>
@@ -83,7 +70,7 @@ const projects = [
                 {(project.technologies ?? []).map((tag) => (
                   <li>
                     <span class={`flex gap-x-2 rounded-full text-xs py-1 px-2 ${tag.color}`}>
-                      <img src={tag.svg.src} alt={tag.name} class="size-4" loading="lazy" />
+                      <img src={tag.svg} alt={tag.name} class="size-4" loading="lazy" />
                       {tag.name}
                     </span>
                   </li>

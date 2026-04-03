@@ -5,6 +5,10 @@ import css from '../../shared/resources/logos/technologies/css.svg';
 import javascript from '../../shared/resources/logos/technologies/javascript.svg';
 import sass from '../../shared/resources/logos/technologies/sass.svg';
 
+import mercadoVerde from '../../shared/resources/images/mercado-verde.webp';
+import laMisericordia from '../../shared/resources/images/la-misericordia.webp';
+import llmAgent from '../../shared/resources/images/llm-agent-langchain.webp';
+
 const technologies = [
   { name: 'Sass', svg: sass, color: 'bg-black text-white' },
   { name: 'Css', svg: css, color: 'bg-[#1572B6] text-white' },
@@ -20,7 +24,7 @@ const projects = [
       'Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.',
     repository: 'https://github.com/Axus00/MercadoVerde',
     span: 'Repositorio',
-    image: 'src/shared/resources/images/mercado-verde.webp',
+    image: mercadoVerde,
     technologies,
   },
   {
@@ -29,7 +33,7 @@ const projects = [
       'Aplicación enfocada en la gestión operativa y organizacional, orientada a optimizar procesos internos y facilitar la administración de la información.',
     repository: 'https://github.com/Axus00/LaMisericordia',
     span: 'Repositorio',
-    image: 'src/shared/resources/images/la-misericordia.webp',
+    image: laMisericordia,
     technologies: [
       { name: 'C#', svg: csharp, color: 'bg-[#68217A] text-white' },
       { name: 'Css', svg: css, color: 'bg-[#1572B6] text-white' },
@@ -42,7 +46,7 @@ const projects = [
       'Asistente inteligente construido con LangGraph y LangChain para automatizar tareas DevOps y Scrum.',
     repository: 'https://github.com/Axus00/azure-agent',
     span: 'Repositorio',
-    image: 'src/shared/resources/images/llm-agent-langchain.webp'
+    image: llmAgent,
   },
 ];
 ---
@@ -60,7 +64,7 @@ const projects = [
       {projects.map((project) => (
         <article class="project-card group relative bg-surface-container-low rounded-xl overflow-hidden shadow-xl shadow-black/20 border border-white/5 reveal">
           <div class="h-64 overflow-hidden">
-            <img src={project.image} alt={project.title} class="project-image w-full h-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
+            <img src={project.image.src} alt={project.title} class="project-image w-full h-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
           </div>
           <div class="p-8">
             <h3 class="font-headline text-2xl font-bold text-white mb-4">{project.title}</h3>

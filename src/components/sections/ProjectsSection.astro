@@ -1,4 +1,7 @@
 ---
+const publicRepo = "Público";
+const privateRepo = "Privado";
+
 const technologies = [
   { name: "Sass", svg: "/shared/resources/logos/technologies/sass.svg", color: "bg-black text-white" },
   { name: "Css", svg: "/shared/resources/logos/technologies/css.svg", color: "bg-[#1572B6] text-white" },
@@ -16,6 +19,7 @@ const projects = [
     span: "Repositorio",
     image: "/shared/resources/images/mercado-verde.webp",
     technologies,
+    isPublic: true
   },
   {
     title: "La Misericordia",
@@ -29,6 +33,7 @@ const projects = [
       { name: "Css", svg: "/shared/resources/logos/technologies/css.svg", color: "bg-[#1572B6] text-white" },
       { name: "JavaScript", svg: "/shared/resources/logos/technologies/javascript.svg", color: "bg-[#F7DF1E] text-black" },
     ],
+    isPublic: true
   },
   {
     title: "Gift App",
@@ -40,6 +45,7 @@ const projects = [
       { name: "TypeScript", svg: "/shared/resources/logos/technologies/typescript.svg", color: "bg-[#3178C6] text-white" },
       { name: "Vite", svg: "/shared/resources/logos/technologies/vite.svg", color: "bg-[#370A7F] text-white" },
     ],
+    isPublic: true
   },
   {
     title: "LLM Agent",
@@ -51,6 +57,7 @@ const projects = [
       { name: "LangChain", svg: "/shared/resources/logos/technologies/langchain.svg", color: "bg-white text-black" },
       { name: "Pydantic Logfire", svg: "/shared/resources/logos/technologies/pydantic.svg", color: "bg-white text-black" },
     ],
+    isPublic: false
   },
 ];
 ---
@@ -70,7 +77,10 @@ const projects = [
           </div>
 
           <div class="p-8">
-            <h3 class="mb-4 font-headline text-2xl font-bold text-white">{project.title}</h3>
+            <div class="flex justify-between">
+              <h3 class="mb-4 font-headline text-2xl font-bold text-white">{project.title}</h3>
+              <span class="px-3 py-1 h-8 rounded-full border border-emerald-500/20 font-light text-emerald-500 bg-emerald-500/10 text-sm tracking-wider">{project.isPublic ? publicRepo : privateRepo}</span>
+            </div>
             <p class="mb-8 leading-relaxed text-slate-400">{project.description}</p>
 
             <div class="mb-8">

@@ -1,46 +1,55 @@
 ---
 const technologies = [
-  { name: 'Sass', svg: '/shared/resources/logos/technologies/sass.svg', color: 'bg-black text-white' },
-  { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
-  { name: 'Bootstrap', svg: '/shared/resources/logos/technologies/bootstrap.svg', color: 'bg-[#563D7C] text-[#73bcf6]' },
-  { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
-  { name: 'CSharp', svg: '/shared/resources/logos/technologies/csharp.svg', color: 'bg-[#68217A] text-white' },
+  { name: "Sass", svg: "/shared/resources/logos/technologies/sass.svg", color: "bg-black text-white" },
+  { name: "Css", svg: "/shared/resources/logos/technologies/css.svg", color: "bg-[#1572B6] text-white" },
+  { name: "Bootstrap", svg: "/shared/resources/logos/technologies/bootstrap.svg", color: "bg-[#563D7C] text-[#73bcf6]" },
+  { name: "JavaScript", svg: "/shared/resources/logos/technologies/javascript.svg", color: "bg-[#F7DF1E] text-black" },
+  { name: "CSharp", svg: "/shared/resources/logos/technologies/csharp.svg", color: "bg-[#68217A] text-white" },
 ];
 
 const projects = [
   {
-    title: 'Mercado Verde',
+    title: "Mercado Verde",
     description:
-      'Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.',
-    repository: 'https://github.com/Axus00/MercadoVerde',
-    span: 'Repositorio',
-    image: '/shared/resources/images/mercado-verde.webp',
+      "Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.",
+    repository: "https://github.com/Axus00/MercadoVerde",
+    span: "Repositorio",
+    image: "/shared/resources/images/mercado-verde.webp",
     technologies,
   },
   {
-    title: 'La Misericordia',
+    title: "La Misericordia",
     description:
-      'Aplicación enfocada en la gestión operativa y organizacional, orientada a optimizar procesos internos y facilitar la administración de la información.',
-    repository: 'https://github.com/Axus00/LaMisericordia',
-    span: 'Repositorio',
-    image: '/shared/resources/images/la-misericordia.webp',
+      "Aplicación enfocada en la gestión operativa y organizacional, orientada a optimizar procesos internos y facilitar la administración de la información.",
+    repository: "https://github.com/Axus00/LaMisericordia",
+    span: "Repositorio",
+    image: "/shared/resources/images/la-misericordia.webp",
     technologies: [
-      { name: 'C#', svg: '/shared/resources/logos/technologies/csharp.svg', color: 'bg-[#68217A] text-white' },
-      { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
-      { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
+      { name: "C#", svg: "/shared/resources/logos/technologies/csharp.svg", color: "bg-[#68217A] text-white" },
+      { name: "Css", svg: "/shared/resources/logos/technologies/css.svg", color: "bg-[#1572B6] text-white" },
+      { name: "JavaScript", svg: "/shared/resources/logos/technologies/javascript.svg", color: "bg-[#F7DF1E] text-black" },
     ],
   },
   {
-    title: 'LLM Agent',
-    description:
-      'Asistente inteligente construido con LangGraph y LangChain para automatizar tareas DevOps y Scrum.',
-    repository: 'https://github.com/Axus00/azure-agent',
-    span: 'Repositorio',
-    image: '/shared/resources/images/llm-agent-langchain.webp',
+    title: "Gift App",
+    description: "Aplicación para buscar cualquier Gift que desees.",
+    repository: "https://github.com/Axus00/gift-app",
+    span: "Repositorio",
+    image: "/shared/resources/images/gift-app.png",
     technologies: [
-      { name: 'Python', svg: '/shared/resources/logos/technologies/python.svg', color: 'bg-[#FFDF76] text-black' },
-      { name: 'LangChain', svg: '/shared/resources/logos/technologies/langchain.svg', color: 'bg-white text-black' },
-      { name: 'Pydantic Logfire', svg: '/shared/resources/logos/technologies/pydantic.svg', color: 'bg-white text-black' },
+      { name: "TypeScript", svg: "/shared/resources/logos/technologies/typescript.svg", color: "bg-[#3178C6] text-white" },
+      { name: "Vite", svg: "/shared/resources/logos/technologies/vite.svg", color: "bg-[#370A7F] text-white" },
+    ],
+  },
+  {
+    title: "LLM Agent",
+    description:
+      "Asistente inteligente construido con LangGraph y LangChain para automatizar tareas DevOps y Scrum.",
+    image: "/shared/resources/images/llm-agent-langchain.webp",
+    technologies: [
+      { name: "Python", svg: "/shared/resources/logos/technologies/python.svg", color: "bg-[#FFDF76] text-black" },
+      { name: "LangChain", svg: "/shared/resources/logos/technologies/langchain.svg", color: "bg-white text-black" },
+      { name: "Pydantic Logfire", svg: "/shared/resources/logos/technologies/pydantic.svg", color: "bg-white text-black" },
     ],
   },
 ];
@@ -48,28 +57,27 @@ const projects = [
 
 <section id="projects" class="py-32 px-8 bg-surface-container-low/20">
   <div class="max-w-7xl mx-auto">
-    <div class="flex justify-between items-end mb-16">
-      <div>
-        <h2 class="font-headline text-4xl font-extrabold mb-4">Proyectos</h2>
-        <p class="text-slate-500">Implementaciones de alto nivel para resolver problemas complejos.</p>
-      </div>
+    <div class="mb-16">
+      <h2 class="font-headline text-4xl font-extrabold mb-4">Proyectos</h2>
+      <p class="text-slate-500">Implementaciones de alto nivel para resolver problemas complejos.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div id="projects-carousel" class="projects-carousel grid grid-cols-1 gap-6 md:grid-cols-2 lg:flex lg:overflow-x-auto lg:scroll-smooth lg:snap-x lg:snap-mandatory lg:pb-2">
       {projects.map((project) => (
-        <article class="project-card group relative bg-surface-container-low rounded-xl overflow-hidden shadow-xl shadow-black/20 border border-white/5 reveal">
+        <article class="project-card group relative w-full overflow-hidden rounded-xl border border-white/5 bg-surface-container-low shadow-xl shadow-black/20 reveal lg:w-[48%] lg:shrink-0 lg:snap-start">
           <div class="h-64 overflow-hidden">
-            <img src={project.image} alt={project.title} class="project-image w-full h-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
+            <img src={project.image} alt={project.title} class="project-image h-full w-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
           </div>
+
           <div class="p-8">
-            <h3 class="font-headline text-2xl font-bold text-white mb-4">{project.title}</h3>
-            <p class="text-slate-400 mb-8 leading-relaxed">{project.description}</p>
+            <h3 class="mb-4 font-headline text-2xl font-bold text-white">{project.title}</h3>
+            <p class="mb-8 leading-relaxed text-slate-400">{project.description}</p>
 
             <div class="mb-8">
-              <ul class="flex flex-row flex-wrap gap-x-2 gap-y-2 mb-4">
+              <ul class="mb-4 flex flex-row flex-wrap gap-x-2 gap-y-2">
                 {(project.technologies ?? []).map((tag) => (
                   <li>
-                    <span class={`flex gap-x-2 rounded-full text-xs py-1 px-2 ${tag.color}`}>
+                    <span class={"flex gap-x-2 rounded-full px-2 py-1 text-xs " + tag.color}>
                       <img src={tag.svg} alt={tag.name} class="size-4" loading="lazy" />
                       {tag.name}
                     </span>
@@ -78,14 +86,16 @@ const projects = [
               </ul>
             </div>
 
-            <div class="flex justify-between items-center border-t border-white/5 pt-6">
-              <button class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" hidden>
+            {project.repository && (
+              <div class="flex items-center justify-between border-t border-white/5 pt-6">
+                <button class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" hidden>
                 Demo en vivo
-              </button>
-              <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-white transition-colors">
-                {project.span}
-              </a>
-            </div>
+                </button>
+                <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-white">
+                  {project.span}
+                </a>
+              </div>
+            )}
           </div>
         </article>
       ))}

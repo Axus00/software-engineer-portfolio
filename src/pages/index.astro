@@ -1,15 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import HeaderSection from '../components/sections/HeaderSection.astro';
-import FooterSection from '../components/sections/FooterSection.astro';
-import ContactSection from '../components/sections/ContactSection.astro';
-import ProfessionalPresenceSection from '../components/sections/ProfessionalPresenceSection.astro';
-import ProjectsSection from '../components/sections/ProjectsSection.astro';
-import LaboralExperienceSection from '../components/sections/LaboralExperienceSection.astro';
-import TrustSection from '../components/sections/TrustSection.astro';
-import HeroSection from '../components/sections/HeroSection.astro';
 import AsideSection from '../components/sections/AsideSection.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import FooterSection from '../components/sections/FooterSection.astro';
+import HeaderSection from '../components/sections/HeaderSection.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import LaboralExperienceSection from '../components/sections/LaboralExperienceSection.astro';
+import Layout from '../layouts/Layout.astro';
+import ProfessionalPresenceSection from '../components/sections/ProfessionalPresenceSection.astro';
+import ProjectsCarouselBehavior from '../components/behaviors/ProjectsCarouselBehavior.astro';
+import ProjectsSection from '../components/sections/ProjectsSection.astro';
 import ScrollBehavior from '../components/behaviors/ScrollBehavior.astro';
+import TrustSection from '../components/sections/TrustSection.astro';
 ---
 
 <Layout>
@@ -25,4 +26,5 @@ import ScrollBehavior from '../components/behaviors/ScrollBehavior.astro';
   </main>
   <FooterSection />
   <ScrollBehavior />
+  <ProjectsCarouselBehavior />
 </Layout>

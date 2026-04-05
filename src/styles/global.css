@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
+:root{
+  --w: min(900px, 92vw);
+  --h: 420px;
+  --gap: 16px;
+  --radius: 18px;
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-headline: "Manrope", sans-serif;
@@ -75,4 +82,48 @@
 
 .project-card:hover .project-image {
   transform: scale(1.08);
+}
+
+
+/*Carousel Styles*/
+.carousel-container {
+  width: var(--w);
+  position: relative;
+}
+
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border-radius: var(--radius);
+}
+
+.carousel::-webkit-scrollbar { display: none; }
+
+.slide {
+  scroll-snap-align: start;
+  height: var(--h);
+  border-radius: var(--radius);
+  background: var(--card);
+  display: grid;
+  place-items: center;
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.projects-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+}
+
+.projects-carousel::-webkit-scrollbar {
+  display: none;
 }

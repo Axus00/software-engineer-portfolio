@@ -1,0 +1,73 @@
+<script lang="ts" type="module">
+  const carousel = document.getElementById("projects-carousel");
+
+  if (carousel) {
+    let index = 0;
+    let timer;
+    let inView = false;
+
+    const cards = Array.from(carousel.children);
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    const delay = 2000;
+
+    const isDesktop = () => desktopQuery.matches;
+
+    const scrollToIndex = (i) => {
+      if (!isDesktop() || cards.length === 0) return;
+
+      index = (i + cards.length) % cards.length;
+      const card = cards[index];
+      const left = card.offsetLeft - carousel.offsetLeft;
+
+      carousel.scrollTo({ left, behavior: "smooth" });
+    };
+
+    const stopAuto = () => {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = undefined;
+      }
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      if (!isDesktop() || !inView || cards.length < 2) return;
+
+      timer = window.setInterval(() => scrollToIndex(index + 1), delay);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        if (!inView) {
+          stopAuto();
+          return;
+        }
+        startAuto();
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(carousel);
+
+    const onViewportChange = () => {
+      if (!isDesktop()) {
+        stopAuto();
+      }
+      startAuto();
+    };
+
+    if (typeof desktopQuery.addEventListener === "function") {
+      desktopQuery.addEventListener("change", onViewportChange);
+    } else {
+      desktopQuery.addListener(onViewportChange);
+    }
+
+    carousel.addEventListener("mouseenter", stopAuto);
+    carousel.addEventListener("mouseleave", startAuto);
+    carousel.addEventListener("touchstart", stopAuto, { passive: true });
+    carousel.addEventListener("touchend", startAuto);
+
+    startAuto();
+  }
+</script>

@@ -121,8 +121,15 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+  touch-action: auto;
 }
 
 .projects-carousel::-webkit-scrollbar {
   display: none;
+}
+
+@media (min-width: 1024px) {
+  .projects-carousel {
+    touch-action: pan-x;
+  }
 }

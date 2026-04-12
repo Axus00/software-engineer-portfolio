@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const companyLogos = {
   bblabs: { name: 'BlackBird Labs', svg: '/shared/resources/images/bblabs-logo.svg', background: 'bg-black' },
@@ -12,40 +16,38 @@ const staffingLogos = {
 
 const experiences = [
   {
-    role: 'Desarrollador Fullstack',
+    role: t('experience.items.0.role'),
     company: 'Blackbird Labs',
     companyLogo: companyLogos.bblabs,
-    period: '2024 - Actualidad',
-    description:
-      'Participación y liderazgo en proyectos Full Stack dentro de Blackbird Labs, contribuyendo en soluciones de IA, rebranding de productos, diseño de APIs y desarrollo frontend para mejorar experiencia, escalabilidad y resultados de negocio.',
-    tag: 'ACTUALMENTE',
+    period: t('experience.items.0.period'),
+    description: t('experience.items.0.description'),
+    tag: t('experience.currentTag'),
     subItems: [
       {
-        label: 'STAFFING ÉXITO - Actualidad',
-        content: 'Software Solutions - Soporte de Infraestructura',
+        label: t('experience.items.0.subItems.0.label'),
+        content: t('experience.items.0.subItems.0.content'),
         subLogo: staffingLogos.exito,
       },
       {
-        label: 'STAFFING ARRO - NG',
-        content: 'Software Solutions - Rebranding y Soporte Post Desarrollo',
+        label: t('experience.items.0.subItems.1.label'),
+        content: t('experience.items.0.subItems.1.content'),
         subLogo: staffingLogos.arro,
       },
     ],
   },
   {
-    role: 'Desarrollador Backend',
+    role: t('experience.items.1.role'),
     company: 'Riwi',
     companyLogo: companyLogos.riwi,
-    period: '2023 - 2024',
-    description:
-      'Responsable y encargado de la construcción de RiwiTalent tanto en el Backend como en el Frontend, realizando separación de servicios con arquitectura Hexagonal y posteriormente Clean Architecture, gestionando de manera adecuada las peticiones desde el Frontend.'
-  }
+    period: t('experience.items.1.period'),
+    description: t('experience.items.1.description'),
+  },
 ];
 ---
 
 <section id="experience" class="py-12 px-8">
   <div class="max-w-5xl mx-auto">
-    <h2 class="font-headline text-3xl font-bold mb-16 text-white">Trayectoria Profesional</h2>
+    <h2 class="font-headline text-3xl font-bold mb-16 text-white">{t('experience.heading')}</h2>
     <div class="relative space-y-16 pb-8">
       <div class="absolute left-6 top-2 bottom-0 w-px bg-white/5"></div>
       <div id="experience-progress" class="absolute left-6 top-2 bottom-0 w-0.5 -ml-[0.5px] bg-linear-to-b from-secondary-custom to-secondary-custom origin-top shadow-[0_0_14px_rgba(64,229,108,0.6)] z-0"></div>

@@ -1,4 +1,9 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const logos = [
   { src: '/shared/resources/images/bblabs-logo.svg', alt: 'Blackbird Labs', boost: true },
   { src: '/shared/resources/images/riwi-logo.webp', alt: 'Riwi' },
@@ -10,7 +15,7 @@ const logos = [
 <section class="py-24 px-8 bg-surface-container-low/30 border-y border-white/5">
   <div class="max-w-7xl mx-auto text-center">
     <h2 class="font-sans text-xs uppercase tracking-[0.2em] text-[#B6C4FF] mb-16">
-      Empresas con las que he trabajado
+      {t('trust.heading')}
     </h2>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">

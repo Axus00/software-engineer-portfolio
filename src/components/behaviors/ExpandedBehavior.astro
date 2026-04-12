@@ -1,4 +1,12 @@
-<script is:inline>
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const closeLabel = t("messages.items.action");
+---
+
+<script is:inline define:vars={{ closeLabel }}>
     const dots = document.querySelectorAll(".dots");
 
     dots.forEach(dot => {
@@ -22,7 +30,7 @@
             if(!expanded) {
                 textEl.textContent = full;
                 btn.classList.add("text-xs");
-                btn.textContent = "Cerrar";
+                btn.textContent = closeLabel;
                 p.dataset.expanded = "true";
             } else {
                 textEl.textContent = short;

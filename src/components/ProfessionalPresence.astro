@@ -1,21 +1,26 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const cardItems = [
   {
-    title: "Trabajo Open Source",
-    description: "Explorando nuevas fronteras de ingeniería a través del conocimiento compartido y el código.",
-    cta: "Explorar mi código",
-    href: "https://github.com/Axus00",
-    border: "hover:border-primary-custom/40",
-    glow: "from-primary-custom/5 to-transparent"
+    title: t('presence.openSource.title'),
+    description: t('presence.openSource.description'),
+    cta: t('presence.openSource.cta'),
+    href: 'https://github.com/Axus00',
+    border: 'hover:border-primary-custom/40',
+    glow: 'from-primary-custom/5 to-transparent',
   },
   {
-    title: "Red Profesional",
-    description: "Construyendo alianzas estratégicas y liderazgo técnico a nivel global.",
-    cta: "Conectemos",
-    href: "#contact",
-    border: "hover:border-secondary-custom/40",
-    glow: "from-secondary-custom/5 to-transparent"
-  }
+    title: t('presence.network.title'),
+    description: t('presence.network.description'),
+    cta: t('presence.network.cta'),
+    href: '#contact',
+    border: 'hover:border-secondary-custom/40',
+    glow: 'from-secondary-custom/5 to-transparent',
+  },
 ];
 ---
 
@@ -27,7 +32,7 @@ const cardItems = [
         <div class="relative z-10">
           <h2 class="font-headline text-4xl font-extrabold mb-6 text-white">{card.title}</h2>
           <p class="text-xl text-slate-400 mb-10 max-w-sm mx-auto">{card.description}</p>
-          <a href={card.href} target={card.href.startsWith('http') ? "_blank" : undefined} rel={card.href.startsWith('http') ? "noopener noreferrer" : undefined}>
+          <a href={card.href} target={card.href.startsWith('http') ? '_blank' : undefined} rel={card.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
             <button class="px-10 py-5 bg-white text-surface font-bold text-lg rounded-full hover:scale-105 active:scale-95 transition-all shadow-xl">
               {card.cta}
             </button>

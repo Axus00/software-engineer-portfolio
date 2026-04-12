@@ -1,0 +1,20 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const MAIL_TO = 'fer.gomez.dev@gmail.com';
+---
+
+<section id="contact" class="py-32 px-8">
+  <div class="max-w-4xl mx-auto rounded-4xl bg-linear-to-br from-primary-custom/10 to-secondary-custom/10 p-12 text-center border border-white/5 reveal">
+    <h2 class="font-headline text-4xl md:text-5xl font-extrabold mb-8 text-white">{t('contact.heading')}</h2>
+    <p class="text-xl text-slate-400 mb-10">{t('contact.description')}</p>
+    <a href={`mailto:${MAIL_TO}`} target="_blank" rel="noopener noreferrer">
+      <button class="px-10 py-5 bg-white text-surface font-bold text-lg rounded-full hover:scale-105 active:scale-95 transition-all">
+        {t('contact.cta')}
+      </button>
+    </a>
+  </div>
+</section>

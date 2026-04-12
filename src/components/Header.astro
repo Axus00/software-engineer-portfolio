@@ -1,0 +1,84 @@
+---
+import usaFlag from '../../public/shared/resources/flags/usa-flag.png';
+import spainFlag from '../../public/shared/resources/flags/spain-flag.png';
+import { LANGUAGE_STORAGE_KEY, type Language } from '../i18n/ui';
+import { getBasePath, getLangFromUrl, useTranslatedPath, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+const currentBasePath = getBasePath(Astro.url.pathname);
+
+const flagLanguages: Array<{ srcFlag: string; altFlag: string; code: Language; href: string }> = [
+  { srcFlag: spainFlag.src, altFlag: 'Español', code: 'es', href: translatePath(currentBasePath, 'es') },
+  { srcFlag: usaFlag.src, altFlag: 'English', code: 'en', href: translatePath(currentBasePath, 'en') },
+];
+
+const initialIndex = Math.max(
+  flagLanguages.findIndex((flag) => flag.code === lang),
+  0,
+);
+
+const initialFlag = flagLanguages[initialIndex];
+---
+
+<nav id="main-nav" class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl z-50 rounded-full transition-all duration-300 bg-transparent py-4 px-2">
+  <div class="flex justify-between items-center w-full">
+    <div class="text-lg font-bold text-slate-100 font-headline tracking-tight">{t('site.name')}</div>
+    <div class="md:flex items-center gap-8 font-headline tracking-tight font-medium text-sm">
+      <button id="flag-toggle" type="button" aria-label={t('nav.toggleLanguage')} class="cursor-pointer">
+        <img
+          id="flag-image"
+          class="rounded-full w-6 h-6 object-cover border border-amber-100"
+          src={initialFlag.srcFlag}
+          alt={initialFlag.altFlag}
+          data-index={initialIndex}
+        />
+      </button>
+      <a href="#experience" class="text-slate-400 hover:text-primary-custom transition-colors hidden md:flex">{t('nav.experience')}</a>
+      <a href="#projects" class="text-slate-400 hover:text-primary-custom transition-colors hidden md:flex">{t('nav.projects')}</a>
+      <a href="#stack" class="text-slate-400 hover:text-primary-custom transition-colors hidden md:flex">{t('nav.connect')}</a>
+      <a href="#contact" class="text-slate-400 hover:text-primary-custom transition-colors hidden md:flex">{t('nav.contact')}</a>
+    </div>
+    <button aria-label="Cambiar tema" class="text-slate-400 hover:text-primary-custom transition-transform active:scale-90" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9"/></svg>
+    </button>
+  </div>
+</nav>
+
+<script is:inline define:vars={{ flagLanguages, initialIndex, languageStorageKey: LANGUAGE_STORAGE_KEY }}>
+  let i = initialIndex;
+  const btn = document.getElementById('flag-toggle');
+  const img = document.getElementById('flag-image');
+
+  btn?.addEventListener('click', () => {
+    i = (i + 1) % flagLanguages.length;
+    const next = flagLanguages[i];
+
+    if (img instanceof HTMLImageElement) {
+      img.src = next.srcFlag;
+      img.alt = next.altFlag;
+      img.dataset.index = String(i);
+    }
+
+    localStorage.setItem(languageStorageKey, next.code);
+    window.location.assign(next.href);
+  });
+
+  const storedLang = localStorage.getItem(languageStorageKey);
+  if (storedLang) {
+    const storedIndex = flagLanguages.findIndex((flag) => flag.code === storedLang);
+
+    if (storedIndex >= 0 && img instanceof HTMLImageElement) {
+      const storedFlag = flagLanguages[storedIndex];
+      i = storedIndex;
+      img.src = storedFlag.srcFlag;
+      img.alt = storedFlag.altFlag;
+      img.dataset.index = String(i);
+    }
+  }
+
+  if (!storedLang) {
+    localStorage.setItem(languageStorageKey, flagLanguages[initialIndex]?.code ?? 'es');
+  }
+</script>

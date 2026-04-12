@@ -1,33 +1,33 @@
 ---
-import AsideSection from '../components/sections/AsideSection.astro';
-import ContactSection from '../components/sections/ContactSection.astro';
-import FooterSection from '../components/sections/FooterSection.astro';
-import HeaderSection from '../components/sections/HeaderSection.astro';
-import HeroSection from '../components/sections/HeroSection.astro';
-import LaboralExperienceSection from '../components/sections/LaboralExperienceSection.astro';
+import Aside from '../components/Aside.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import LaboralExperience from '../components/LaboralExperience.astro';
 import Layout from '../layouts/Layout.astro';
-import ProfessionalPresenceSection from '../components/sections/ProfessionalPresenceSection.astro';
+import ProfessionalPresence from '../components/ProfessionalPresence.astro';
 import ProjectsCarouselBehavior from '../components/behaviors/ProjectsCarouselBehavior.astro';
-import ProjectsSection from '../components/sections/ProjectsSection.astro';
+import Projects from '../components/Projects.astro';
 import ScrollBehavior from '../components/behaviors/ScrollBehavior.astro';
-import TrustSection from '../components/sections/TrustSection.astro';
-import MessagesSection from '../components/sections/MessagesSection.astro';
+import Trust from '../components/Trust.astro';
+import Messages from '../components/Messages.astro';
 import ExpandedBehavior from '../components/behaviors/ExpandedBehavior.astro';
 ---
 
 <Layout>
-  <AsideSection />
-  <HeaderSection />
+  <Aside />
+  <Header />
   <main class="min-h-screen font-sans selection:bg-primary-custom/30 selection:text-primary-custom">
-    <HeroSection />
-    <TrustSection />
-    <MessagesSection />
-    <LaboralExperienceSection />
-    <ProjectsSection />
-    <ProfessionalPresenceSection />
-    <ContactSection />
+    <Hero />
+    <Trust />
+    <Messages />
+    <LaboralExperience />
+    <Projects />
+    <ProfessionalPresence />
+    <Contact />
   </main>
-  <FooterSection />
+  <Footer />
   <ScrollBehavior />
   <ProjectsCarouselBehavior />
   <ExpandedBehavior />

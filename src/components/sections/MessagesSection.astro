@@ -1,0 +1,122 @@
+---
+import men from "../../.././public/shared/resources/profile-photos/photo-dummy-men.jpg";
+import anthony from "../../.././public/shared/resources/profile-photos/anthony-photo.jpg";
+import david from "../../.././public/shared/resources/profile-photos/david-medina-photo.jpg";
+import ken from "../../.././public/shared/resources/profile-photos/ken-photo.png";
+import christian from "../../.././public/shared/resources/profile-photos/christian-photo.png";
+
+const messageBox = {
+  messages: [
+    { 
+        message: "Tuve la oportunidad de trabajar con Fernando en diferentes proyectos exitosos donde fue quien lideró e hizo parte crucial en todo el ciclo de vida , aportando en especial medida como Backend. Es un profesional apasionado y dedicado, con humildad por aprender y vocación por enseñar.", 
+        userName: "Kevin Daza Ramírez", 
+        position: "Software Developer",
+        photo: men,
+        year: 2026
+    },
+    { 
+        message: "Un profesional integral.", 
+        userName: "Christian Pabon villanueva",
+        position: "Front Developer", 
+        photo: christian,
+        year: 2026
+    },
+    { 
+        message: "Fernando destaca por su atención al detalle y su comunicación asertiva. Totalmente recomendado.", 
+        userName: "Ken Castro",
+        position: "Product Manager",
+        photo: ken,
+        year: 2026
+    },
+    { 
+        message: "Conozco a Fernando desde hace más de 3 años. Estudiamos juntos desarrollo de software y hemos tenido la oportunidad de trabajar a la par, por lo que puedo afirmar que es una persona íntegra, con excelentes capacidades de trabajo y una gran disposición para superar cualquier obstáculo. Ha demostrado un alto rendimiento en cada proyecto en el que participa, impulsado por sus constantes ganas de aprender y de compartir sus experiencias con los demás", 
+        userName: "Anthony Muñoz",
+        position: "Software Developer, Arro y DevOps Blackbird",
+        photo: anthony,
+        year: 2026
+    },
+    { 
+        message: "Pocos profesionales logran esa combinación de técnica sólida y una calidad humana genuina. Fernando ha evolucionado para convertirse en un desarrollador de primer nivel, destacando no solo en IA y Full Stack, sino en la integridad con la que asume cada reto. Es un profesional responsable, que aporta soluciones elegantes y que siempre contribuye a un ambiente de trabajo sano y colaborativo. Un talento excepcional con una visión técnica impecable.", 
+        userName: "David Medina",
+        position: "Qa Lead",
+        photo: david,
+        year: "2026" 
+    }
+  ],
+};
+
+const columns = [0, 1, 2].map((i) => messageBox.messages.filter((_, idx) => idx % 3 === i));
+const characterlimit = 100;
+---
+
+<section class="px-4 md:px-10 py-24 bg-surface w-full">
+  <!-- Mobile: carrusel -->
+  <div class="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+    {messageBox.messages.map((box) => (
+      <article class="relative overflow-hidden rounded-3xl p-5 bg-surface/45 backdrop-blur-xl border border-white/15 snap-center shrink-0 min-w-[85%]">
+        <div class="relative flex items-start gap-4">
+          <img src={box.photo.src} alt={box.userName} class="w-14 h-14 rounded-full object-cover border border-white/20" />
+          <div class="flex-1">
+            <div class="flex justify-between items-center">
+              <span class="text-white font-bold">{box.userName}</span>
+              <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] uppercase tracking-wider font-bold rounded-full border border-emerald-500/20">{box.year}</span>
+            </div>
+            <p 
+                class="mt-3 max-w-md font-normal message" 
+                data-full={box.message} 
+                data-short={box.message.slice(0, characterlimit)}
+                data-expanded="false"
+            >
+                <span class="message-text">
+                    {box.message.length > characterlimit ? box.message.slice(0, characterlimit) : box.message}
+                </span>
+
+                {box.message.length > characterlimit && (
+                    <button type="button" class="dots ml-1 text-white/60 font-semibold bg-surface/45 border border-white/15 rounded-full px-2 tracking-wider">...</button>
+                )}  
+            </p>
+            <span class=" text-[#9f9f9f] text-sm font-light">{box.position}</span>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Desktop: columnas que se mueven -->
+  <div class="hidden md:grid md:grid-cols-3 gap-8 h-170 overflow-hidden">
+    {columns.map((col, i) => (
+      <div class="overflow-hidden marquee-col">
+        <div class:list={["marquee-track", i === 1 ? "marquee-down" : "marquee-up"]}>
+          {[...col, ...col].map((box) => (
+            <article class="mb-4 relative overflow-hidden rounded-3xl p-5 bg-surface/45 backdrop-blur-xl border border-white/15">
+              <div class="relative flex items-start gap-4">
+                <img src={box.photo.src} alt={box.userName} class="w-14 h-14 rounded-full object-cover border border-white/20" />
+                <div class="flex-1">
+                  <div class="flex justify-between items-center">
+                    <span class="text-white font-bold">{box.userName}</span>
+                    <span class="px-3 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] uppercase tracking-wider font-bold rounded-full border border-emerald-500/20">{box.year}</span>
+                  </div>
+                  <p 
+                        class="mt-3 max-w-md font-normal message" 
+                        data-full={box.message} 
+                        data-short={box.message.slice(0, characterlimit)}
+                        data-expanded="false"
+                    >
+                    <span class="message-text">
+                        {box.message.length > characterlimit ? box.message.slice(0, characterlimit) : box.message}
+                    </span>
+
+                    {box.message.length > characterlimit && (
+                        <button type="button" class="dots ml-1 text-white/60 font-semibold bg-surface/45 border border-white/15 rounded-full px-2 tracking-wider">...</button>
+                    )}  
+                  </p>
+                  <span class=" text-[#9f9f9f] text-sm font-light">{box.position}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

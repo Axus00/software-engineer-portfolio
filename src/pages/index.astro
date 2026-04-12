@@ -11,6 +11,8 @@ import ProjectsCarouselBehavior from '../components/behaviors/ProjectsCarouselBe
 import ProjectsSection from '../components/sections/ProjectsSection.astro';
 import ScrollBehavior from '../components/behaviors/ScrollBehavior.astro';
 import TrustSection from '../components/sections/TrustSection.astro';
+import MessagesSection from '../components/sections/MessagesSection.astro';
+import ExpandedBehavior from '../components/behaviors/ExpandedBehavior.astro';
 ---
 
 <Layout>
@@ -19,6 +21,7 @@ import TrustSection from '../components/sections/TrustSection.astro';
   <main class="min-h-screen font-sans selection:bg-primary-custom/30 selection:text-primary-custom">
     <HeroSection />
     <TrustSection />
+    <MessagesSection />
     <LaboralExperienceSection />
     <ProjectsSection />
     <ProfessionalPresenceSection />
@@ -27,4 +30,5 @@ import TrustSection from '../components/sections/TrustSection.astro';
   <FooterSection />
   <ScrollBehavior />
   <ProjectsCarouselBehavior />
+  <ExpandedBehavior />
 </Layout>

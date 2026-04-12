@@ -25,6 +25,7 @@
   body {
     @apply bg-surface text-slate-200 antialiased;
     scroll-behavior: smooth;
+    font-family: 'poppins', sans-serif;
   }
 
   section {
@@ -133,3 +134,43 @@
     touch-action: pan-x;
   }
 }
+/*Carousel Styles*/
+
+/*Message Section*/
+  .marquee-track {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
+  }
+
+  .marquee-up {
+    animation: marqueeUp 28s linear infinite;
+  }
+
+  .marquee-down {
+    animation: marqueeDown 32s linear infinite;
+  }
+
+  @keyframes marqueeUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+
+  @keyframes marqueeDown {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
+
+  .marquee-col:hover .marquee-track,
+  .marquee-col:focus-within .marquee-track {
+    animation-play-state: paused;
+}
+
+.dots:hover {
+    background-color: #292929;
+    transition: ease-in-out 0.5s;
+    color: #FFF;
+    cursor: pointer;
+}
+
+/*Message Section*/

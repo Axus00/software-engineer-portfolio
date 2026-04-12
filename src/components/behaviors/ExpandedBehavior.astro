@@ -1,0 +1,34 @@
+<script is:inline>
+    const dots = document.querySelectorAll(".dots");
+
+    dots.forEach(dot => {
+        dot.addEventListener("click", (e) => {
+            if(!(e.target instanceof Element)) return;
+
+            const btn = e.target.closest(".dots");
+            if(!btn) return;
+
+            const p = e.target.closest(".message");
+            if(!p) return;
+
+            const textEl = p.querySelector(".message-text");
+            if(!textEl) return;
+
+            const full = p.dataset.full || "";
+            const short = p.dataset.short || "";
+
+            const expanded = p.dataset.expanded === "true";
+
+            if(!expanded) {
+                textEl.textContent = full;
+                btn.classList.add("text-xs");
+                btn.textContent = "Cerrar";
+                p.dataset.expanded = "true";
+            } else {
+                textEl.textContent = short;
+                btn.textContent = "...";
+                p.dataset.expanded = "false";
+            }
+        });
+    });
+</script>

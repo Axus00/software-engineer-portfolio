@@ -1,4 +1,4 @@
-<script lang="ts" type="module">
+<script is:inline type="module">
   const carousel = document.getElementById("projects-carousel");
 
   if (carousel) {
@@ -60,7 +60,7 @@
     if (typeof desktopQuery.addEventListener === "function") {
       desktopQuery.addEventListener("change", onViewportChange);
     } else {
-      desktopQuery.addListener(onViewportChange);
+      desktopQuery.addEventListener(onViewportChange);
     }
 
     carousel.addEventListener("mouseenter", stopAuto);

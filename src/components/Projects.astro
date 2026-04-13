@@ -20,10 +20,11 @@ const projects = [
     title: 'Mercado Verde',
     description: t('projects.items.0.description'),
     repository: 'https://github.com/Axus00/MercadoVerde',
+    demoUrl: 'https://mercado-verde.netlify.app/',
     span: t('projects.repository'),
     image: '/shared/resources/images/mercado-verde.webp',
     technologies,
-    isPublic: true,
+    isPublic: true
   },
   {
     title: 'La Misericordia',
@@ -36,19 +37,20 @@ const projects = [
       { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
       { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
     ],
-    isPublic: true,
+    isPublic: true
   },
   {
     title: 'Gift App',
     description: t('projects.items.2.description'),
     repository: 'https://github.com/Axus00/gift-app',
+    demoUrl: 'https://search-gift.netlify.app/',
     span: t('projects.repository'),
     image: '/shared/resources/images/gift-app.png',
     technologies: [
       { name: 'TypeScript', svg: '/shared/resources/logos/technologies/typescript.svg', color: 'bg-[#3178C6] text-white' },
       { name: 'Vite', svg: '/shared/resources/logos/technologies/vite.svg', color: 'bg-[#370A7F] text-white' },
     ],
-    isPublic: true,
+    isPublic: true
   },
   {
     title: 'LLM Agent',
@@ -59,7 +61,7 @@ const projects = [
       { name: 'LangChain', svg: '/shared/resources/logos/technologies/langchain.svg', color: 'bg-white text-black' },
       { name: 'Pydantic Logfire', svg: '/shared/resources/logos/technologies/pydantic.svg', color: 'bg-white text-black' },
     ],
-    isPublic: false,
+    isPublic: false
   },
 ];
 ---
@@ -100,9 +102,11 @@ const projects = [
 
             {project.repository && (
               <div class="flex items-center justify-between border-t border-white/5 pt-6">
-                <button class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" hidden>
-                  Demo en vivo
-                </button>
+                {project.demoUrl ? (
+                  <a class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                    Demo en vivo
+                  </a>
+                ) : null}
                 <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-white">
                   {project.span}
                 </a>

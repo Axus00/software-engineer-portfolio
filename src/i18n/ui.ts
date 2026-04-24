@@ -42,6 +42,9 @@ export const ui = {
     'messages.items.4.message':
       'Pocos profesionales logran esa combinación de técnica sólida y una calidad humana genuina. Fernando ha evolucionado para convertirse en un desarrollador de primer nivel, destacando no solo en IA y Full Stack, sino en la integridad con la que asume cada reto. Es un profesional responsable, que aporta soluciones elegantes y que siempre contribuye a un ambiente de trabajo sano y colaborativo. Un talento excepcional con una visión técnica impecable.',
     'messages.items.4.position': 'QA Lead',
+    'messages.items.5.message':
+      'He tenido el gusto de trabajar con Fernando y puedo decir que es un desarrollador excepcional. Su capacidad de aprender tecnologías nuevas con rapidez, combinada con su solidez técnica y adaptabilidad, lo hacen un profesional muy valioso para cualquier equipo.',
+    'messages.items.5.position': 'Software Engineer - Team Leader',
 
     'messages.items.action':
       'cerrar',
@@ -64,6 +67,7 @@ export const ui = {
     'projects.heading': 'Proyectos',
     'projects.description': 'Implementaciones de alto nivel para resolver problemas complejos.',
     'projects.repository': 'Repositorio',
+    'projects.demo': 'Demo en vivo',
     'projects.visibility.public': 'Público',
     'projects.visibility.private': 'Privado',
     'projects.items.0.description':
@@ -122,6 +126,9 @@ export const ui = {
     'messages.items.4.message':
       'Few professionals achieve that combination of solid technical skill and genuine human quality. Fernando has evolved into a top-level developer, standing out not only in AI and Full Stack, but also in the integrity with which he takes on each challenge. He is a responsible professional who provides elegant solutions and always contributes to a healthy, collaborative work environment. An exceptional talent with impeccable technical vision.',
     'messages.items.4.position': 'QA Lead',
+    'messages.items.5.message':
+      'I have had the pleasure of working with Fernando, and I can say that he is an exceptional developer. His ability to quickly learn new technologies, combined with his technical expertise and adaptability, make him a highly valuable asset to any team.',
+    'messages.items.5.position': 'Software Engineer - Team Leader',
 
     'messages.items.action':
       'close',
@@ -144,6 +151,7 @@ export const ui = {
     'projects.heading': 'Projects',
     'projects.description': 'High-level implementations to solve complex problems.',
     'projects.repository': 'Repository',
+    'projects.demo': 'Live Demo',
     'projects.visibility.public': 'Public',
     'projects.visibility.private': 'Private',
     'projects.items.0.description':

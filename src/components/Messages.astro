@@ -4,6 +4,7 @@ import anthony from "../../public/shared/resources/profile-photos/anthony-photo.
 import david from "../../public/shared/resources/profile-photos/david-medina-photo.jpg";
 import ken from "../../public/shared/resources/profile-photos/ken-photo.png";
 import christian from "../../public/shared/resources/profile-photos/christian-photo.png";
+import camilo from "../../public/shared/resources/profile-photos/camilo-gonzalez-photo.jpg"
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -44,6 +45,13 @@ const messageBox = {
         userName: "David Medina",
         position: t('messages.items.4.position'),
         photo: david,
+        year: "2026" 
+    },
+    { 
+        message: t('messages.items.5.message'), 
+        userName: "Camilo Gonzalez",
+        position: t('messages.items.5.position'),
+        photo: camilo,
         year: "2026" 
     }
   ],

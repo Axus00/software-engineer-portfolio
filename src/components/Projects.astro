@@ -20,6 +20,7 @@ const projects = [
     title: 'Mercado Verde',
     description: t('projects.items.0.description'),
     repository: 'https://github.com/Axus00/MercadoVerde',
+    demo: t('projects.demo'),
     demoUrl: 'https://mercado-verde.netlify.app/',
     span: t('projects.repository'),
     image: '/shared/resources/images/mercado-verde.webp',
@@ -30,6 +31,7 @@ const projects = [
     title: 'La Misericordia',
     description: t('projects.items.1.description'),
     repository: 'https://github.com/Axus00/LaMisericordia',
+    demo: t('projects.demo'),
     span: t('projects.repository'),
     image: '/shared/resources/images/la-misericordia.webp',
     technologies: [
@@ -43,6 +45,7 @@ const projects = [
     title: 'Gift App',
     description: t('projects.items.2.description'),
     repository: 'https://github.com/Axus00/gift-app',
+    demo: t('projects.demo'),
     demoUrl: 'https://search-gift.netlify.app/',
     span: t('projects.repository'),
     image: '/shared/resources/images/gift-app.png',
@@ -55,6 +58,7 @@ const projects = [
   {
     title: 'LLM Agent',
     description: t('projects.items.3.description'),
+    demo: t('projects.demo'),
     image: '/shared/resources/images/llm-agent-langchain.webp',
     technologies: [
       { name: 'Python', svg: '/shared/resources/logos/technologies/python.svg', color: 'bg-[#FFDF76] text-black' },
@@ -104,7 +108,7 @@ const projects = [
               <div class="flex items-center justify-between border-t border-white/5 pt-6">
                 {project.demoUrl ? (
                   <a class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                    Demo en vivo
+                    {project.demo}
                   </a>
                 ) : null}
                 <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-white">

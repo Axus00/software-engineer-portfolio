@@ -25,7 +25,8 @@ const projects = [
     span: t('projects.repository'),
     image: '/shared/resources/images/mercado-verde.webp',
     technologies,
-    isPublic: true
+    isPublic: true,
+    isReady: true
   },
   {
     title: 'La Misericordia',
@@ -39,7 +40,8 @@ const projects = [
       { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
       { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
     ],
-    isPublic: true
+    isPublic: true,
+    isReady: true
   },
   {
     title: 'Gift App',
@@ -53,7 +55,8 @@ const projects = [
       { name: 'TypeScript', svg: '/shared/resources/logos/technologies/typescript.svg', color: 'bg-[#3178C6] text-white' },
       { name: 'Vite', svg: '/shared/resources/logos/technologies/vite.svg', color: 'bg-[#370A7F] text-white' },
     ],
-    isPublic: true
+    isPublic: true,
+    isReady: true
   },
   {
     title: 'LLM Agent',
@@ -65,7 +68,22 @@ const projects = [
       { name: 'LangChain', svg: '/shared/resources/logos/technologies/langchain.svg', color: 'bg-white text-black' },
       { name: 'Pydantic Logfire', svg: '/shared/resources/logos/technologies/pydantic.svg', color: 'bg-white text-black' },
     ],
-    isPublic: false
+    isPublic: false,
+    isReady: true
+  },
+  {
+    title: 'UrlShortener',
+    description: t('projects.items.4.description'),
+    demo: t('projects.demo'),
+    image: '/shared/resources/images/url-shortener.png',
+    technologies: [
+      { name: 'React', svg: '/shared/resources/logos/technologies/react.svg', color: 'bg-[#58C4DC] text-white' },
+      { name: 'TypeScript', svg: '/shared/resources/logos/technologies/typescript.svg', color: 'bg-[#7FA2C9] text-white' },
+      { name: 'Tailwind', svg: '/shared/resources/logos/technologies/tailwind.svg', color: 'bg-[#1E293B] text-white' },
+      { name: 'Convex', svg: '/shared/resources/logos/technologies/convex.png', color: 'bg-[#000000] text-white' },
+    ],
+    isPublic: false,
+    isReady: false
   },
 ];
 ---
@@ -79,7 +97,17 @@ const projects = [
 
     <div id="projects-carousel" class="projects-carousel grid grid-cols-1 gap-6 md:grid-cols-2 lg:flex lg:overflow-x-auto lg:scroll-smooth lg:snap-x lg:snap-mandatory lg:pb-2">
       {projects.map((project) => (
-        <article class="project-card group relative w-full overflow-hidden rounded-xl border border-white/5 bg-surface-container-low shadow-xl shadow-black/20 reveal lg:w-[48%] lg:shrink-0 lg:snap-start">
+        <article class="project-card group relative w-full overflow-hidden rounded-xl border border-white/5 bg-surface-container-low shadow-xl shadow-black/20 reveal lg:w-[48%] lg:shrink-0 lg:snap-start relative">
+          {/* configuración para capa dependiendo del valor de isReady */}
+
+          {!project.isReady && (
+              <div class="absolute inset-0 z-10 flex items-center justify-center bg-black/60">
+                <span class="rounded-full bg-black/70 px-6 py-3 text-xl font-bold text-white uppercase">
+                    {t('projects.comingSoon')}
+                </span>
+              </div>
+          )}
+
           <div class="h-64 overflow-hidden">
             <img src={project.image} alt={project.title} class="project-image h-full w-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
           </div>

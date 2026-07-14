@@ -70,6 +70,7 @@ export const ui = {
     'projects.demo': 'Demo en vivo',
     'projects.visibility.public': 'Público',
     'projects.visibility.private': 'Privado',
+    'projects.comingSoon': 'Proximamente',
     'projects.items.0.description':
       'Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.',
     'projects.items.1.description':
@@ -77,6 +78,8 @@ export const ui = {
     'projects.items.2.description': 'Aplicación para buscar cualquier Gift que desees.',
     'projects.items.3.description':
       'Asistente inteligente construido con LangGraph y LangChain para automatizar tareas DevOps y Scrum.',
+    'projects.items.4.description':
+      'Web especializada en acortar links y brindar estadísticas de uso, con un enfoque en la privacidad y seguridad de los usuarios.',
 
     'presence.openSource.title': 'Trabajo Open Source',
     'presence.openSource.description':
@@ -154,6 +157,7 @@ export const ui = {
     'projects.demo': 'Live Demo',
     'projects.visibility.public': 'Public',
     'projects.visibility.private': 'Private',
+    'projects.comingSoon': 'Coming Soon',
     'projects.items.0.description':
       'Built with tools such as JavaScript, HTML, CSS, and Sass. It is an e-commerce site focused on increasing farmers\' income while offering fresh products directly to users.',
     'projects.items.1.description':
@@ -161,6 +165,8 @@ export const ui = {
     'projects.items.2.description': 'Application to search for any GIF you want.',
     'projects.items.3.description':
       'Intelligent assistant built with LangGraph and LangChain to automate DevOps and Scrum tasks.',
+    'projects.items.4.description':
+      'A website specializing in shortening links and providing usage statistics, with a focus on user privacy and security.',
 
     'presence.openSource.title': 'Open Source Work',
     'presence.openSource.description':

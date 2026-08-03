@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 :root{
-  --w: min(900px, 92vw);
-  --h: 420px;
+  --w: 420px;
+  --h: 620px;
   --gap: 16px;
   --radius: 18px;
 }
@@ -18,6 +18,7 @@
   --color-surface-container-high: #272a31;
   --color-primary-custom: #b6c4ff;
   --color-secondary-custom: #40e56c;
+  --color-chat-primary: #0B1020
 }
 
 @layer base {
@@ -174,3 +175,14 @@
 }
 
 /*Message Section*/
+
+/*Conatiner chat*/
+.container-chat {
+  display: block;
+  width: var(--w);
+  height: var(--h);
+  background: var(--color-chat-primary);
+  border-radius: var(--radius);
+}
+
+/*Container chat*/

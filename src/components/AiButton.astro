@@ -1,0 +1,67 @@
+---
+const badges = [
+  {
+    text: "badge ejemplo",
+    backgroundColor: "bg-neutral-900"
+  },
+  {
+    text: "badge ejemplo",
+    backgroundColor: "bg-neutral-900"
+  },
+  {
+    text: "badge ejemplo",
+    backgroundColor: "bg-neutral-900"
+  },
+  {
+    text: "badge ejemplo",
+    backgroundColor: "bg-neutral-900"
+  },
+]
+---
+<button
+  id="open-chat"
+  type="button"
+  aria-label="Open AI assistant"
+  class="fixed bottom-6 right-6 z-60 rounded-full bg-transparent shadow-2xl glass-nav px-4 py-3 text-surface transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white/70 cursor-pointer"
+>
+  <img src="/public/shared/resources/logos/ai-star.svg" alt="AI" class="w-8 h-8" />
+</button>
+
+<div class="container-chat fixed bottom-32 right-3.5 px-4 py-3 z-10 opacity-0 scale-95 pointer-events-none transition-all duration-300 ease-in-out flex flex-col gap-4">
+  <div class="w-full rounded-[28px] h-50 border border-white/15 bg-neutral-950 text-white overflow-hidden shadow-xl">
+    <div class="grid grid-rows-2 grid-flow-col gap-2 px-3">
+      {
+        badges.slice(0, 5).map((badge) => (
+          <span class={`px-2 py-1 rounded-lg text-sm text-white text-center cursor-pointer mt-4 ${badge.backgroundColor}`}>{badge.text}</span>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="flex flex-1 flex-col min-h-96">
+    <div class="flex flex-col gap-4 mt-2">
+      <div class="flex flex-row gap-4 mt-4">
+        <img src="/shared/resources/profile-photos/photo-dummy-men.jpg" alt="user-photo" class="rounded-full w-10 h-10 object-cover"/>
+        <div class="flex px-4 justify-start items-center rounded-[10px] bg-neutral-950 text-sm w-full">
+          Chat de ejemplo.
+        </div>
+      </div>
+
+      <div class="flex flex-row gap-4 mt-4">
+        <div class="flex px-4 justify-start items-center rounded-[10px] bg-neutral-950 text-sm w-full">
+          Chat de ejemplo.
+        </div>
+        <img src="/shared/resources/profile-photos/photo-dummy-men.jpg" alt="user-photo" class="rounded-full w-10 h-10 object-cover"/>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3 bg-[#111827] border border-whhite/10 rounded-2xl px-4 py-3 mt-auto">
+      <input type="text" placeholder="Escribe un mensaje..." class="bg-transparent outline-none text-white placeholder:text-slate-400 w-full"/>
+
+      <button class="text-cyan-300 hover:text-cyan-200 transition-colores cursor-pointer">
+        <img src="/shared/resources/logos/send-message.png" alt="button-send" class="cursor-pointer w-5 h-5 object-cover"/>
+      </button>
+    </div>
+  </div>
+  
+</div>

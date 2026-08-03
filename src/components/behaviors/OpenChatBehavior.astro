@@ -1,0 +1,15 @@
+---
+
+---
+
+<script is:inline>
+    const button = document.querySelector("#open-chat");
+    const containerChat = document.querySelector(".container-chat");
+
+    button.addEventListener("click", () => {
+        containerChat.classList.toggle("opacity-0");
+        containerChat.classList.toggle("scale-95");
+        containerChat.classList.toggle("pointer-events-none");
+    });
+
+</script>

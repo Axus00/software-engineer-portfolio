@@ -1,0 +1,24 @@
+---
+import FolderIcon from "../../../public/shared/resources/logos/folder-icon.svg";
+
+const categories = [
+    {"name": "Nifi", "icon": FolderIcon},
+]
+---
+
+<div class="flex flex-col justify-center items-center w-[30%] h-fit border border-r-amber-100">
+    <span class="uppercase gap-4 font-(--font-sans) text-sm text-gray-400 mb-7">Explorador</span>
+    <div class="flex flex-col w-fit justify-between items-center gap-4">
+        <p class="uppercase gap-4 font-(--font-sans) text-sm text-gray-400">Categorías</p>
+        {
+        categories.map((cat) => (
+            <div class="flex items-center gap-4">
+                <FolderIcon />
+                <p class="uppercase font-(--font-sans) text-sm text-gray-400">
+                    {cat.name}
+                </p>
+            </div>
+        ))
+        }
+    </div>
+</div>

@@ -17,6 +17,7 @@ export const ui = {
     'nav.projects': 'Proyectos',
     'nav.connect': 'Conectar',
     'nav.contact': 'Contacto',
+    'nav.blog': 'Blog',
 
     'hero.title.one': 'Construyendo',
     'hero.title.highlight': 'Resiliencia Digital',

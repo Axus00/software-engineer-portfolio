@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Blog from "../components/blog/Blog.astro";
+import Aside from "../components/Aside.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ScrollBehavior from '../components/behaviors/ScrollBehavior.astro';
+---
+
+<Layout>
+    <Aside />
+    <Header />
+    <main class="min-h-screen font-sans selection:bg-primary-custom/30 selection:text-primary-custom">
+        <Blog />
+    </main>
+    <Footer />
+    <ScrollBehavior />
+</Layout>

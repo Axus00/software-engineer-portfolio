@@ -1,0 +1,32 @@
+---
+import { blogPosts } from '../../data/blog';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-CO' : 'en-US', {
+  day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC',
+});
+---
+
+<section id="articles" aria-labelledby="articles-title">
+  <h2 id="articles-title" class="sr-only">{t('blog.articles')}</h2>
+  <div class="divide-y divide-white/10 border-y border-white/10">
+    {blogPosts.map((post) => (
+      <article id={post.id} class="group scroll-mt-36 py-8 first:pt-7 md:py-9">
+        <h3 class="font-headline text-xl font-bold leading-snug tracking-tight text-slate-100 transition-colors group-hover:text-primary-custom md:text-2xl">{t(post.titleKey)}</h3>
+        <div class="mt-2 flex flex-wrap items-center gap-x-2 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-slate-500 md:text-xs">
+          <time datetime={post.publishedAt}>{dateFormatter.format(new Date(`${post.publishedAt}T00:00:00Z`))}</time>
+          <span aria-hidden="true">·</span>
+          <span>{t(post.categoryKey)}</span>
+        </div>
+        <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-400 md:text-base md:leading-7">{t(post.descriptionKey)}</p>
+        {post.featured && (
+          <a href={`#${post.id}`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-200 transition-colors hover:text-secondary-custom">
+            {t('blog.readMore')} <span aria-hidden="true">→</span>
+          </a>
+        )}
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,24 +1,38 @@
 ---
-import FolderIcon from "../../../public/shared/resources/logos/folder-icon.svg";
+import FolderIcon from '../../../public/shared/resources/logos/folder-icon.svg';
+import { blogCategories, blogPosts } from '../../data/blog';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-const categories = [
-    {"name": "Nifi", "icon": FolderIcon},
-]
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<div class="flex flex-col justify-center items-center w-[30%] h-fit border border-r-amber-100">
-    <span class="uppercase gap-4 font-(--font-sans) text-sm text-gray-400 mb-7">Explorador</span>
-    <div class="flex flex-col w-fit justify-between items-center gap-4">
-        <p class="uppercase gap-4 font-(--font-sans) text-sm text-gray-400">Categorías</p>
-        {
-        categories.map((cat) => (
-            <div class="flex items-center gap-4">
-                <FolderIcon />
-                <p class="uppercase font-(--font-sans) text-sm text-gray-400">
-                    {cat.name}
-                </p>
-            </div>
-        ))
-        }
-    </div>
-</div>
+<aside aria-label={t('blog.explorer')} class="min-w-0 self-start lg:sticky lg:top-32">
+  <p class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-500">{t('blog.explorer')}</p>
+  <nav aria-label={t('blog.categories')} class="mt-6">
+    <p class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-500">{t('blog.categories')}</p>
+    <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-2 lg:flex-col lg:gap-2.5">
+      {blogCategories.map((category) => (
+        <li>
+          <a href="#articles" class="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-slate-100">
+            <img src={FolderIcon.src} width="15" height="15" alt="" class="h-4 w-4 opacity-60" />
+            <span>{t(category)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <nav aria-label={t('blog.recentPosts')} class="mt-8 hidden lg:block">
+    <p class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-slate-500">{t('blog.recentPosts')}</p>
+    <ul class="mt-3 space-y-2.5">
+      {blogPosts.map((post) => (
+        <li>
+          <a href={`#${post.id}`} class="flex items-start gap-2 text-xs leading-5 text-slate-500 transition-colors hover:text-slate-200">
+            <span aria-hidden="true" class="mt-0.5 font-mono text-slate-600">□</span>
+            <span class="line-clamp-1">{t(post.titleKey)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</aside>

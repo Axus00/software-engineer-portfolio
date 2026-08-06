@@ -1,12 +1,22 @@
 ---
-import BlogAside from "./BlogAside.astro";
-import BlogMenu from "./BlogMenu.astro";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import BlogAside from './BlogAside.astro';
+import BlogMenu from './BlogMenu.astro';
+import BlogPostList from './BlogPostList.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<div class="flex justify-center items-center">
-    <BlogAside />
-    <div class="relative flex flex-col justify-center px-6 py-16 overflow-hidden w-[50%]">
-        <h1 class="font-headline text-3xl md:text-5xl font-extrabold tracking-tight mb-6 mt-6 leading-tight">Blog</h1>
-    </div>
-    <BlogMenu />
-</div>  
+<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-6 pb-12 pt-32 sm:px-8 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-10 lg:pt-36 xl:grid-cols-[190px_minmax(0,720px)_180px] xl:gap-12">
+  <BlogAside />
+  <div class="min-w-0 lg:border-l lg:border-white/10 lg:pl-10 xl:pl-12">
+    <header id="introduction" class="scroll-mt-36 pb-8 md:pb-10">
+      <p class="font-mono text-xs uppercase tracking-[0.14em] text-secondary-custom">{t('blog.eyebrow')}</p>
+      <h1 class="mt-3 font-headline text-4xl font-extrabold tracking-tight text-slate-100 md:text-5xl">{t('blog.title')}</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-slate-400 md:text-lg md:leading-8">{t('blog.description')}</p>
+    </header>
+    <BlogPostList />
+  </div>
+  <BlogMenu />
+</div>

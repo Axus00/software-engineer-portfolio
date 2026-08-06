@@ -19,6 +19,40 @@ export const ui = {
     'nav.contact': 'Contacto',
     'nav.blog': 'Blog',
 
+    'blog.eyebrow': 'Ideas en construcción',
+    'blog.title': 'Blog',
+    'blog.description':
+      'Notas sobre ingeniería de software, IA aplicada y arquitectura de productos web resilientes, nacidas de construir soluciones Full Stack y agentes LLM para retos reales.',
+    'blog.explorer': 'Explorador',
+    'blog.categories': 'Categorías',
+    'blog.recentPosts': 'Publicaciones recientes',
+    'blog.onThisPage': 'En esta página',
+    'blog.introduction': 'Introducción',
+    'blog.articles': 'Artículos recientes',
+    'blog.readMore': 'Leer más',
+    'blog.categories.ai': 'IA aplicada',
+    'blog.categories.architecture': 'Arquitectura',
+    'blog.categories.nifi': 'Nifi',
+    'blog.categories.career': 'Carrera',
+    'blog.posts.0.title': 'Agentes LLM que sobreviven a producción',
+    'blog.posts.0.description':
+      'Patrones para diseñar agentes observables, controlables y capaces de recuperarse cuando una herramienta o un modelo falla.',
+    'blog.posts.1.title': 'Arquitectura limpia sin ceremonias innecesarias',
+    'blog.posts.1.description':
+      'Cómo separar reglas de negocio, infraestructura y entrega sin convertir una API pequeña en un laberinto de abstracciones.',
+    'blog.posts.2.title': 'Nifi con criterio y buenas prácticas',
+    'blog.posts.2.description':
+      'Señales prácticas para decidir cuándo separar un servicio y cuándo un monolito modular sigue siendo la mejor herramienta.',
+    'blog.posts.3.title': 'Interfaces resilientes para sistemas reales',
+    'blog.posts.3.description':
+      'Diseño frontend que contempla latencia, errores parciales y estados vacíos desde el primer componente.',
+    'blog.posts.4.title': 'Automatización DevOps asistida por IA',
+    'blog.posts.4.description':
+      'Un enfoque seguro para delegar diagnóstico y tareas repetitivas sin perder trazabilidad ni control operativo.',
+    'blog.posts.5.title': 'El ingeniero T-Shaped en la era de la IA',
+    'blog.posts.5.description':
+      'Por qué la especialización profunda y el contexto transversal siguen siendo una combinación decisiva para construir mejor software.',
+
     'hero.title.one': 'Construyendo',
     'hero.title.highlight': 'Resiliencia Digital',
     'hero.title.three': 'y Maestría Técnica.',
@@ -105,6 +139,41 @@ export const ui = {
     'nav.projects': 'Projects',
     'nav.connect': 'Connect',
     'nav.contact': 'Contact',
+    'nav.blog': 'Blog',
+
+    'blog.eyebrow': 'Ideas in progress',
+    'blog.title': 'Blog',
+    'blog.description':
+      'Notes on software engineering, applied AI, and resilient web product architecture, shaped by building Full Stack solutions and LLM agents for real-world challenges.',
+    'blog.explorer': 'Explorer',
+    'blog.categories': 'Categories',
+    'blog.recentPosts': 'Recent posts',
+    'blog.onThisPage': 'On this page',
+    'blog.introduction': 'Introduction',
+    'blog.articles': 'Recent articles',
+    'blog.readMore': 'Read more',
+    'blog.categories.ai': 'Applied AI',
+    'blog.categories.architecture': 'Architecture',
+    'blog.categories.nifi': 'Nifi',
+    'blog.categories.career': 'Career',
+    'blog.posts.0.title': 'LLM Agents That Survive Production',
+    'blog.posts.0.description':
+      'Patterns for designing observable, controllable agents that recover gracefully when a tool or model fails.',
+    'blog.posts.1.title': 'Clean Architecture Without Needless Ceremony',
+    'blog.posts.1.description':
+      'How to separate business rules, infrastructure, and delivery without turning a small API into a maze of abstractions.',
+    'blog.posts.2.title': 'Nifi With Judgment And Good Practices',
+    'blog.posts.2.description':
+      'Practical signals for deciding when to split a service and when a modular monolith is still the better tool.',
+    'blog.posts.3.title': 'Resilient Interfaces for Real Systems',
+    'blog.posts.3.description':
+      'Frontend design that accounts for latency, partial failures, and empty states from the very first component.',
+    'blog.posts.4.title': 'AI-Assisted DevOps Automation',
+    'blog.posts.4.description':
+      'A safe approach to delegating diagnosis and repetitive work without losing traceability or operational control.',
+    'blog.posts.5.title': 'The T-Shaped Engineer in the AI Era',
+    'blog.posts.5.description':
+      'Why deep specialization and broad context remain a decisive combination for building better software.',
 
     'hero.title.one': 'Building',
     'hero.title.highlight': 'Digital Resilience',

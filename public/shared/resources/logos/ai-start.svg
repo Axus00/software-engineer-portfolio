@@ -1,0 +1,19 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="40"
+  height="40"
+  viewBox="0 0 24 24"
+  fill="none"
+  id="icon"
+  class="mt-1.5 opacity-0"
+>
+  <path
+    fill="#38BDF8"
+    d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"
+  />
+  <path
+    fill="#0EA5E9"
+    d="M18 14l.9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17l2.1-.9L18 14z"
+    opacity=".85"
+  />
+</svg>

@@ -1,0 +1,18 @@
+<script is:inline>
+  const icon = document.querySelector("#icon");
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        icon.classList.add("icon-animate");
+        icon.classList.remove("opacity-0");
+        observer.unobserve(icon);
+      }
+    },
+    {
+      threshold: 0.4,
+    }
+  );
+
+  observer.observe(icon);
+</script>

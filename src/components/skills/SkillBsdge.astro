@@ -1,14 +1,20 @@
 ---
 import AiStar from '../../../public/shared/resources/logos/ai-start.svg';
 import GitHubIcon from '../../../public/shared/resources/logos/github.astro'
+import { skillBadge } from '../../../src/data/skill';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const badgeSkill = {
-  title: "Axus00-Skills",
-  description: "Paquete de skills para mejorar la proudctividad en el desarrollo, y tener un mayor control dentro del flujo de trabajo",
-  repoUrl: "https://github.com/Axus00/skills"
+  title: t(skillBadge[0].title),
+  description: t(skillBadge[0].description),
+  repoUrl: "https://github.com/Axus00/skills",
+  skillButton: t(skillBadge[0].button)
 } as const
 
-const { title, description, repoUrl } = badgeSkill;
+const { title, description, repoUrl, skillButton } = badgeSkill;
 ---
 
 <div class="flex w-full items-center justify-center px-4 md:px-0">
@@ -28,7 +34,7 @@ const { title, description, repoUrl } = badgeSkill;
                 class="group flex w-full items-center justify-center gap-4 rounded-lg border border-[#323439] bg-white/90 px-4 py-2 font-var(--font-sans) text-sm font-bold text-black transition-all duration-300 ease-in-out hover:bg-[#0e1116] hover:text-white/90 md:w-fit"
             >
                 <GitHubIcon className="text-black transition-colors group-hover:text-white/90" />
-                Descargar repositorio
+                {skillButton}
             </a>
         </div>
     </div>

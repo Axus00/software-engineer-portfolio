@@ -1,0 +1,17 @@
+---
+const badgeSkill = {
+  title: "Axus00-Skills",
+  description: "Paquete de skills para mejorar la proudctividad en el desarrollo, y tener un mayor control dentro del flujo de trabajo",
+  repoUrl: "https://github.com/Axus00/skills"
+} as const
+
+const { title, description, repoUrl } = badgeSkill;
+---
+
+<div class="flex w-full justify-center items-center">
+    <div class="rounded-full w-[90%] border border-gray-300 p-4 bg-transparent glass-nav justify-center text-center">
+        <img src="" alt="Skills icon" />
+        <p class="font-semibold text-md font-var(--font-headline)">{title}</p>
+        <span class="text-sm text-gray-400 font-var(--font-sans)">{description}</span>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+---
+import AiStar from '../../../public/shared/resources/logos/ai-start.svg';
+import GitHubIcon from '../../../public/shared/resources/logos/github.astro'
+
+const badgeSkill = {
+  title: "Axus00-Skills",
+  description: "Paquete de skills para mejorar la proudctividad en el desarrollo, y tener un mayor control dentro del flujo de trabajo",
+  repoUrl: "https://github.com/Axus00/skills"
+} as const
+
+const { title, description, repoUrl } = badgeSkill;
+---
+
+<div class="flex w-full items-center justify-center px-4 md:px-0">
+    <div class="flex w-full max-w-xl flex-col gap-4 rounded-3xl border border-white/20 bg-white/25 p-5 shadow-xl shadow-black/5 backdrop-blur-2xl backdrop-saturate-150 dark:border-white/15 dark:bg-black/20 md:w-auto md:max-w-none md:p-8">
+        <div class="flex items-center gap-4 md:items-start">
+            <AiStar />
+            <div class="flex flex-col">
+                <p class="font-semibold text-md font-var(--font-headline)">{title}</p>
+                <span class="hidden font-var(--font-sans) text-sm text-gray-400 md:block">{description}</span>
+            </div>
+        </div>
+        <div class="flex w-full items-center justify-center">
+            <a
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex w-full items-center justify-center gap-4 rounded-lg border border-[#323439] bg-white/90 px-4 py-2 font-var(--font-sans) text-sm font-bold text-black transition-all duration-300 ease-in-out hover:bg-[#0e1116] hover:text-white/90 md:w-fit"
+            >
+                <GitHubIcon className="text-black transition-colors group-hover:text-white/90" />
+                Descargar repositorio
+            </a>
+        </div>
+    </div>
+</div>

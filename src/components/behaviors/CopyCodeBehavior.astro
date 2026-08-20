@@ -1,0 +1,36 @@
+<script>
+  const initializeCopyButtons = () => {
+    document.querySelectorAll<HTMLButtonElement>('[data-terminal-copy]').forEach((button) => {
+      if (button.dataset.initialized === 'true') return;
+      button.dataset.initialized = 'true';
+
+      button.addEventListener('click', async () => {
+        const terminal = button.closest('.terminal');
+        const command = terminal?.querySelector<HTMLElement>('[data-command]')?.textContent ?? '';
+        const label = button.dataset.copyLabel ?? 'Copy';
+        const copiedLabel = button.dataset.copiedLabel ?? 'Copied';
+        const text = button.querySelector<HTMLElement>('[data-copy-text]');
+        const status = terminal?.querySelector<HTMLElement>('[data-copy-status]');
+
+        try {
+          await navigator.clipboard.writeText(command);
+          if (text) text.textContent = copiedLabel;
+          if (status) status.textContent = copiedLabel;
+          button.classList.add('is-copied');
+
+          window.setTimeout(() => {
+            if (text) text.textContent = label;
+            if (status) status.textContent = '';
+            button.classList.remove('is-copied');
+          }, 1800);
+        } catch {
+          if (status) status.textContent = label;
+        }
+      });
+    });
+  };
+
+  initializeCopyButtons();
+  document.addEventListener('astro:page-load', initializeCopyButtons);
+</script>
+

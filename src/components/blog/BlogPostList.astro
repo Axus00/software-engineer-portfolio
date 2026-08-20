@@ -7,6 +7,7 @@ const t = useTranslations(lang);
 const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-CO' : 'en-US', {
   day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC',
 });
+const localizedHref = (href: string) => lang === 'es' ? href : `/en${href}`;
 ---
 
 <section id="articles" aria-labelledby="articles-title">
@@ -21,8 +22,8 @@ const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-CO' : 'en-US',
           <span>{t(post.categoryKey)}</span>
         </div>
         <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-400 md:text-base md:leading-7">{t(post.descriptionKey)}</p>
-        {post.featured && (
-          <a href={`#${post.id}`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-200 transition-colors hover:text-secondary-custom">
+        {post.href && (
+          <a href={localizedHref(post.href)} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-slate-200 transition-colors hover:text-secondary-custom focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary-custom">
             {t('blog.readMore')} <span aria-hidden="true">→</span>
           </a>
         )}

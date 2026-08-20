@@ -52,6 +52,104 @@ export const ui = {
     "blog.posts.5.title": "El ingeniero T-Shaped en la era de la IA",
     "blog.posts.5.description":
       "Por qué la especialización profunda y el contexto transversal siguen siendo una combinación decisiva para construir mejor software.",
+    "blog.posts.6.title": "Apache NiFi: de cero a un flujo resiliente con Kafka",
+    "blog.posts.6.description":
+      "Una guía práctica para modelar FlowFiles, operar procesadores, integrar Kafka y llevar un dataflow observable a producción.",
+
+    "nifi.backToBlog": "Volver al blog",
+    "nifi.readTime": "min de lectura",
+    "nifi.title": "Apache NiFi, de cero a un",
+    "nifi.titleHighlight": "flujo resiliente con Kafka",
+    "nifi.lead":
+      "Una guía de campo para entender el modelo mental de NiFi, levantar una instancia segura, construir un dataflow trazable y conectarlo con Kafka sin perder control operativo.",
+    "nifi.published": "Publicado el 20 ago 2026",
+    "nifi.updated": "Guía práctica · NiFi 2 / Kafka 4",
+    "nifi.flowDiagram": "Flujo de datos desde HTTP, a través de NiFi, hasta Kafka",
+    "nifi.onThisPage": "En esta guía",
+    "nifi.nav.model": "Modelo mental",
+    "nifi.nav.start": "Primer arranque",
+    "nifi.nav.flow": "Diseñar el flujo",
+    "nifi.nav.production": "Producción",
+    "nifi.copy": "Copiar",
+    "nifi.copied": "Copiado",
+    "nifi.stack": "Stack de la guía",
+    "nifi.terminal.service": "servicio · nifi",
+    "nifi.terminal.security": "seguridad · credenciales",
+    "nifi.terminal.topic": "kafka · topic",
+
+    "nifi.model.title": "Primero, el modelo mental correcto",
+    "nifi.model.p1":
+      "NiFi no es una colección de scripts conectados: es un motor de flujo. Cada pieza de datos viaja como un FlowFile, con contenido y atributos, mientras los procesadores la reciben, transforman, enrutan o entregan.",
+    "nifi.model.p2":
+      "Las conexiones funcionan como colas explícitas. Esa separación permite ver presión, errores y rendimiento en el lienzo, y desacopla la velocidad de quien produce de la velocidad de quien consume.",
+    "nifi.model.flowfile": "Contenido más metadatos que acompañan a una unidad de datos durante todo su recorrido.",
+    "nifi.model.processor": "Unidad de trabajo que ingiere, transforma, enruta o publica uno o varios FlowFiles.",
+    "nifi.model.connection": "Cola entre procesadores con prioridades, límites y back pressure configurables.",
+    "nifi.model.calloutTitle": "Diseña para observar, no solo para mover",
+    "nifi.model.callout":
+      "Un flujo sano hace visibles sus colas, relaciones de error y puntos de reintento. Si solo modelas el camino feliz, la operación terminará ocurriendo fuera de NiFi.",
+
+    "nifi.start.title": "Levanta NiFi y asegura el acceso",
+    "nifi.start.p1":
+      "Después de extraer la distribución, usa el script del sistema operativo para iniciar NiFi. Esperar la inicialización evita interpretar un arranque todavía incompleto como una falla.",
+    "nifi.start.p2":
+      "La instalación genera credenciales iniciales en el log. Para un entorno local controlado, puedes reemplazarlas explícitamente antes de abrir https://localhost:8443/nifi.",
+    "nifi.start.securityTitle": "Local no significa sin seguridad",
+    "nifi.start.security":
+      "Mantén HTTPS, usa una contraseña fuerte y nunca reutilices las credenciales del ejemplo. En producción, configura certificados confiables, autenticación y autorización antes de exponer la interfaz.",
+
+    "nifi.flow.title": "Construye un flujo que explique su intención",
+    "nifi.flow.p1":
+      "Para un ingreso HTTP que termina en Kafka, mantén cada responsabilidad visible. Este recorrido mínimo separa recepción, validación, normalización y entrega.",
+    "nifi.flow.step1Title": "Ingiere",
+    "nifi.flow.step1": "Usa ListenHTTP o InvokeHTTP según NiFi reciba una solicitud o consulte una fuente externa.",
+    "nifi.flow.step2Title": "Valida",
+    "nifi.flow.step2": "Verifica esquema, tamaño y campos obligatorios; enruta lo inválido a una relación dedicada.",
+    "nifi.flow.step3Title": "Normaliza",
+    "nifi.flow.step3": "Trabaja con Record Readers y Writers para transformar JSON, CSV o Avro sin lógica accidental.",
+    "nifi.flow.step4Title": "Entrega",
+    "nifi.flow.step4": "Publica con PublishKafka y conserva una ruta de failure observable, limitada y recuperable.",
+    "nifi.flow.expression":
+      "Expression Language opera sobre atributos del FlowFile. Úsalo para decisiones pequeñas y legibles; para datos estructurados, prefiere RecordPath y procesadores orientados a records.",
+
+    "nifi.kafka.title": "Kafka como columna de eventos, NiFi como orquestador",
+    "nifi.kafka.p1":
+      "Kafka almacena eventos en topics y desacopla productores de consumidores. NiFi aporta el borde visual: ingesta, transformación, enrutamiento, control de presión y trazabilidad antes o después del broker.",
+    "nifi.kafka.p2":
+      "Para una prueba local, inicia el broker oficial y crea un topic. Después configura Kafka3ConnectionService y referencia ese servicio desde PublishKafka o ConsumeKafka.",
+    "nifi.kafka.property": "Propiedad",
+    "nifi.kafka.value": "Valor de ejemplo",
+    "nifi.kafka.deliveryTitle": "Define la semántica de entrega",
+    "nifi.kafka.delivery":
+      "Alinea acks, commits de offsets, reintentos y rutas de failure con el nivel de duplicación o pérdida tolerable. Exactly-once no aparece por conectar dos cajas: exige una estrategia completa.",
+
+    "nifi.production.title": "Antes de llamarlo producción",
+    "nifi.production.p1":
+      "La confiabilidad de un dataflow depende menos de cuántos procesadores tiene y más de qué ocurre cuando una dependencia se ralentiza, un registro no valida o un nodo se reinicia.",
+    "nifi.production.backpressureTitle": "Back pressure consciente",
+    "nifi.production.backpressure": "Fija umbrales por objetos y tamaño para que una cola proteja al sistema sin ocultar saturación.",
+    "nifi.production.provenanceTitle": "Provenance útil",
+    "nifi.production.provenance": "Conserva la trazabilidad el tiempo necesario para diagnosticar, auditar y reconstruir el recorrido de un FlowFile.",
+    "nifi.production.parametersTitle": "Configuración por contexto",
+    "nifi.production.parameters": "Extrae endpoints y valores operativos a Parameter Contexts; marca secretos como sensibles.",
+    "nifi.production.failureTitle": "Fallos con destino",
+    "nifi.production.failure": "Enruta, limita y alerta los errores. No auto-termines relaciones que puedan representar pérdida de datos.",
+    "nifi.conclusion.title": "El mejor lienzo es el que se puede operar",
+    "nifi.conclusion.p1":
+      "Empieza con pocos procesadores, nombres que expliquen intención y relaciones de error visibles. Agrega Kafka cuando necesites desacoplamiento y retención de eventos, no para esconder un flujo que todavía no entiendes.",
+
+    "nifi.sources.eyebrow": "Fuentes de verdad",
+    "nifi.sources.title": "Profundiza en la documentación oficial",
+    "nifi.sources.description":
+      "Estas referencias llevan directamente a Apache NiFi y Apache Kafka. Las versiones evolucionan; valida allí propiedades, requisitos y comportamiento antes de operar un entorno real.",
+    "nifi.sources.gettingStarted": "NiFi · Primeros pasos",
+    "nifi.sources.userGuide": "NiFi · Guía de usuario",
+    "nifi.sources.expressionLanguage": "Expression Language",
+    "nifi.sources.recordPath": "RecordPath",
+    "nifi.sources.publishKafka": "PublishKafka",
+    "nifi.sources.consumeKafka": "ConsumeKafka",
+    "nifi.sources.kafkaQuickstart": "Kafka · Quickstart",
+    "nifi.sources.newTab": "abre en una pestaña nueva",
 
     "hero.title.one": "Construyendo",
     "hero.title.highlight": "Resiliencia Digital",
@@ -182,6 +280,104 @@ export const ui = {
     "blog.posts.5.title": "The T-Shaped Engineer in the AI Era",
     "blog.posts.5.description":
       "Why deep specialization and broad context remain a decisive combination for building better software.",
+    "blog.posts.6.title": "Apache NiFi: from zero to a resilient Kafka flow",
+    "blog.posts.6.description":
+      "A practical guide to modeling FlowFiles, operating processors, integrating Kafka, and taking an observable dataflow to production.",
+
+    "nifi.backToBlog": "Back to the blog",
+    "nifi.readTime": "min read",
+    "nifi.title": "Apache NiFi, from zero to a",
+    "nifi.titleHighlight": "resilient Kafka flow",
+    "nifi.lead":
+      "A field guide to understanding NiFi's mental model, starting a secure instance, building a traceable dataflow, and connecting it to Kafka without losing operational control.",
+    "nifi.published": "Published Aug 20, 2026",
+    "nifi.updated": "Practical guide · NiFi 2 / Kafka 4",
+    "nifi.flowDiagram": "Data flow from HTTP, through NiFi, to Kafka",
+    "nifi.onThisPage": "In this guide",
+    "nifi.nav.model": "Mental model",
+    "nifi.nav.start": "First start",
+    "nifi.nav.flow": "Design the flow",
+    "nifi.nav.production": "Production",
+    "nifi.copy": "Copy",
+    "nifi.copied": "Copied",
+    "nifi.stack": "Guide stack",
+    "nifi.terminal.service": "service · nifi",
+    "nifi.terminal.security": "security · credentials",
+    "nifi.terminal.topic": "kafka · topic",
+
+    "nifi.model.title": "Start with the right mental model",
+    "nifi.model.p1":
+      "NiFi is not a collection of connected scripts: it is a flow engine. Each piece of data travels as a FlowFile, with content and attributes, while processors receive, transform, route, or deliver it.",
+    "nifi.model.p2":
+      "Connections behave as explicit queues. This separation makes pressure, errors, and performance visible on the canvas, while decoupling producer speed from consumer speed.",
+    "nifi.model.flowfile": "Content plus metadata that follow one unit of data throughout its journey.",
+    "nifi.model.processor": "A unit of work that ingests, transforms, routes, or publishes one or more FlowFiles.",
+    "nifi.model.connection": "A queue between processors with configurable priorities, limits, and back pressure.",
+    "nifi.model.calloutTitle": "Design to observe, not just to move",
+    "nifi.model.callout":
+      "A healthy flow exposes its queues, error relationships, and retry points. If you only model the happy path, operations will eventually happen outside NiFi.",
+
+    "nifi.start.title": "Start NiFi and secure access",
+    "nifi.start.p1":
+      "After extracting the distribution, use the operating system script to start NiFi. Waiting for initialization keeps an incomplete startup from looking like a failure.",
+    "nifi.start.p2":
+      "The installation generates initial credentials in the log. In a controlled local environment, you can replace them explicitly before opening https://localhost:8443/nifi.",
+    "nifi.start.securityTitle": "Local does not mean unsecured",
+    "nifi.start.security":
+      "Keep HTTPS, use a strong password, and never reuse the example credentials. In production, configure trusted certificates, authentication, and authorization before exposing the interface.",
+
+    "nifi.flow.title": "Build a flow that explains its intent",
+    "nifi.flow.p1":
+      "For HTTP input that ends in Kafka, keep each responsibility visible. This minimal journey separates reception, validation, normalization, and delivery.",
+    "nifi.flow.step1Title": "Ingest",
+    "nifi.flow.step1": "Use ListenHTTP or InvokeHTTP depending on whether NiFi receives a request or queries an external source.",
+    "nifi.flow.step2Title": "Validate",
+    "nifi.flow.step2": "Check schema, size, and required fields; route invalid data to a dedicated relationship.",
+    "nifi.flow.step3Title": "Normalize",
+    "nifi.flow.step3": "Use Record Readers and Writers to transform JSON, CSV, or Avro without accidental logic.",
+    "nifi.flow.step4Title": "Deliver",
+    "nifi.flow.step4": "Publish with PublishKafka and preserve an observable, bounded, recoverable failure path.",
+    "nifi.flow.expression":
+      "Expression Language works on FlowFile attributes. Use it for small, readable decisions; for structured data, prefer RecordPath and record-oriented processors.",
+
+    "nifi.kafka.title": "Kafka as the event backbone, NiFi as the orchestrator",
+    "nifi.kafka.p1":
+      "Kafka stores events in topics and decouples producers from consumers. NiFi provides the visual edge: ingestion, transformation, routing, pressure control, and traceability before or after the broker.",
+    "nifi.kafka.p2":
+      "For a local test, start the official broker and create a topic. Then configure Kafka3ConnectionService and reference it from PublishKafka or ConsumeKafka.",
+    "nifi.kafka.property": "Property",
+    "nifi.kafka.value": "Example value",
+    "nifi.kafka.deliveryTitle": "Define delivery semantics",
+    "nifi.kafka.delivery":
+      "Align acknowledgements, offset commits, retries, and failure routes with the acceptable level of duplication or loss. Exactly-once does not emerge from connecting two boxes: it requires an end-to-end strategy.",
+
+    "nifi.production.title": "Before you call it production",
+    "nifi.production.p1":
+      "Dataflow reliability depends less on processor count and more on what happens when a dependency slows down, a record fails validation, or a node restarts.",
+    "nifi.production.backpressureTitle": "Deliberate back pressure",
+    "nifi.production.backpressure": "Set object and size thresholds so a queue protects the system without hiding saturation.",
+    "nifi.production.provenanceTitle": "Useful provenance",
+    "nifi.production.provenance": "Retain traceability long enough to diagnose, audit, and reconstruct a FlowFile's journey.",
+    "nifi.production.parametersTitle": "Context-based configuration",
+    "nifi.production.parameters": "Move endpoints and operational values into Parameter Contexts; mark secrets as sensitive.",
+    "nifi.production.failureTitle": "Failures with a destination",
+    "nifi.production.failure": "Route, bound, and alert on errors. Do not auto-terminate relationships that can represent data loss.",
+    "nifi.conclusion.title": "The best canvas is one you can operate",
+    "nifi.conclusion.p1":
+      "Start with few processors, names that explain intent, and visible error relationships. Add Kafka when you need decoupling and event retention—not to hide a flow you do not yet understand.",
+
+    "nifi.sources.eyebrow": "Sources of truth",
+    "nifi.sources.title": "Go deeper with the official documentation",
+    "nifi.sources.description":
+      "These references go directly to Apache NiFi and Apache Kafka. Versions evolve; validate properties, requirements, and behavior there before operating a real environment.",
+    "nifi.sources.gettingStarted": "NiFi · Getting started",
+    "nifi.sources.userGuide": "NiFi · User guide",
+    "nifi.sources.expressionLanguage": "Expression Language",
+    "nifi.sources.recordPath": "RecordPath",
+    "nifi.sources.publishKafka": "PublishKafka",
+    "nifi.sources.consumeKafka": "ConsumeKafka",
+    "nifi.sources.kafkaQuickstart": "Kafka · Quickstart",
+    "nifi.sources.newTab": "opens in a new tab",
 
     "hero.title.one": "Building",
     "hero.title.highlight": "Digital Resilience",

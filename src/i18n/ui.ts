@@ -151,6 +151,8 @@ export const ui = {
     "nifi.sources.kafkaQuickstart": "Kafka · Quickstart",
     "nifi.sources.newTab": "abre en una pestaña nueva",
 
+    "hero.blog.call.action": "Explorar el blog",
+
     "hero.title.one": "Construyendo",
     "hero.title.highlight": "Resiliencia Digital",
     "hero.title.three": "y Maestría Técnica.",
@@ -378,6 +380,8 @@ export const ui = {
     "nifi.sources.consumeKafka": "ConsumeKafka",
     "nifi.sources.kafkaQuickstart": "Kafka · Quickstart",
     "nifi.sources.newTab": "opens in a new tab",
+
+    "hero.blog.call.action": "Explore the blog",
 
     "hero.title.one": "Building",
     "hero.title.highlight": "Digital Resilience",

@@ -30,28 +30,7 @@ export const ui = {
     "blog.introduction": "Introducción",
     "blog.articles": "Artículos recientes",
     "blog.readMore": "Leer más",
-    "blog.categories.ai": "IA aplicada",
-    "blog.categories.architecture": "Arquitectura",
     "blog.categories.nifi": "Nifi",
-    "blog.categories.career": "Carrera",
-    "blog.posts.0.title": "Agentes LLM que sobreviven a producción",
-    "blog.posts.0.description":
-      "Patrones para diseñar agentes observables, controlables y capaces de recuperarse cuando una herramienta o un modelo falla.",
-    "blog.posts.1.title": "Arquitectura limpia sin ceremonias innecesarias",
-    "blog.posts.1.description":
-      "Cómo separar reglas de negocio, infraestructura y entrega sin convertir una API pequeña en un laberinto de abstracciones.",
-    "blog.posts.2.title": "Nifi con criterio y buenas prácticas",
-    "blog.posts.2.description":
-      "Señales prácticas para decidir cuándo separar un servicio y cuándo un monolito modular sigue siendo la mejor herramienta.",
-    "blog.posts.3.title": "Interfaces resilientes para sistemas reales",
-    "blog.posts.3.description":
-      "Diseño frontend que contempla latencia, errores parciales y estados vacíos desde el primer componente.",
-    "blog.posts.4.title": "Automatización DevOps asistida por IA",
-    "blog.posts.4.description":
-      "Un enfoque seguro para delegar diagnóstico y tareas repetitivas sin perder trazabilidad ni control operativo.",
-    "blog.posts.5.title": "El ingeniero T-Shaped en la era de la IA",
-    "blog.posts.5.description":
-      "Por qué la especialización profunda y el contexto transversal siguen siendo una combinación decisiva para construir mejor software.",
     "blog.posts.6.title": "Apache NiFi: de cero a un flujo resiliente con Kafka",
     "blog.posts.6.description":
       "Una guía práctica para modelar FlowFiles, operar procesadores, integrar Kafka y llevar un dataflow observable a producción.",
@@ -260,28 +239,7 @@ export const ui = {
     "blog.introduction": "Introduction",
     "blog.articles": "Recent articles",
     "blog.readMore": "Read more",
-    "blog.categories.ai": "Applied AI",
-    "blog.categories.architecture": "Architecture",
     "blog.categories.nifi": "Nifi",
-    "blog.categories.career": "Career",
-    "blog.posts.0.title": "LLM Agents That Survive Production",
-    "blog.posts.0.description":
-      "Patterns for designing observable, controllable agents that recover gracefully when a tool or model fails.",
-    "blog.posts.1.title": "Clean Architecture Without Needless Ceremony",
-    "blog.posts.1.description":
-      "How to separate business rules, infrastructure, and delivery without turning a small API into a maze of abstractions.",
-    "blog.posts.2.title": "Nifi With Judgment And Good Practices",
-    "blog.posts.2.description":
-      "Practical signals for deciding when to split a service and when a modular monolith is still the better tool.",
-    "blog.posts.3.title": "Resilient Interfaces for Real Systems",
-    "blog.posts.3.description":
-      "Frontend design that accounts for latency, partial failures, and empty states from the very first component.",
-    "blog.posts.4.title": "AI-Assisted DevOps Automation",
-    "blog.posts.4.description":
-      "A safe approach to delegating diagnosis and repetitive work without losing traceability or operational control.",
-    "blog.posts.5.title": "The T-Shaped Engineer in the AI Era",
-    "blog.posts.5.description":
-      "Why deep specialization and broad context remain a decisive combination for building better software.",
     "blog.posts.6.title": "Apache NiFi: from zero to a resilient Kafka flow",
     "blog.posts.6.description":
       "A practical guide to modeling FlowFiles, operating processors, integrating Kafka, and taking an observable dataflow to production.",

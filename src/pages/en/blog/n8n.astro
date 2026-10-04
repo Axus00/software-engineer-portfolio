@@ -1,0 +1,16 @@
+---
+import ScrollBehavior from '../../../components/behaviors/ScrollBehavior.astro';
+import N8nArticle from '../../../components/blog/N8nArticle.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="n8n: your first workflow with traceability | Fer.Dev" description="What n8n is, where to apply it, and a hands-on tutorial with Manual Trigger, Edit Fields, and Switch to verify the traceability of an execution.">
+  <Header />
+  <main class="min-h-screen font-sans selection:bg-primary-custom/30 selection:text-primary-custom">
+    <N8nArticle />
+  </main>
+  <Footer />
+  <ScrollBehavior />
+</Layout>

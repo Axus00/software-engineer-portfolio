@@ -7,6 +7,8 @@ const t = useTranslations(lang);
 
 const publicRepo = t('projects.visibility.public');
 const privateRepo = t('projects.visibility.private');
+const earlyProject = t('projects.early.project');
+const recentProject = t('projects.recent.project');
 
 const technologies = [
   { name: 'Sass', svg: '/shared/resources/logos/technologies/sass.svg', color: 'bg-black text-white' },
@@ -22,12 +24,13 @@ const projects = [
     description: t('projects.items.0.description'),
     repository: 'https://github.com/Axus00/MercadoVerde',
     demo: t('projects.demo'),
-    //demoUrl: 'https://mercado-verde.netlify.app/',
+    demoUrl: 'https://mercado-verde.netlify.app/',
     span: t('projects.repository'),
     image: '/shared/resources/images/mercado-verde.webp',
     technologies,
     isPublic: true,
-    isReady: true
+    isReady: true,
+    isEarlyProject: true
   },
   {
     title: 'La Misericordia',
@@ -42,7 +45,8 @@ const projects = [
       { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
     ],
     isPublic: true,
-    isReady: true
+    isReady: true,
+    isEarlyProject: true
   },
   {
     title: 'Gift App',
@@ -57,7 +61,8 @@ const projects = [
       { name: 'Vite', svg: '/shared/resources/logos/technologies/vite.svg', color: 'bg-[#370A7F] text-white' },
     ],
     isPublic: true,
-    isReady: true
+    isReady: true,
+    isEarlyProject: false
   },
   {
     title: 'LLM Agent',
@@ -70,7 +75,8 @@ const projects = [
       { name: 'Pydantic Logfire', svg: '/shared/resources/logos/technologies/pydantic.svg', color: 'bg-white text-black' },
     ],
     isPublic: false,
-    isReady: true
+    isReady: true,
+    isEarlyProject: false
   },
   {
     title: 'UrlShortener',
@@ -84,7 +90,8 @@ const projects = [
       { name: 'Convex', svg: '/shared/resources/logos/technologies/convex.png', color: 'bg-[#000000] text-white' },
     ],
     isPublic: false,
-    isReady: false
+    isReady: false,
+    isEarlyProject: false
   },
 ];
 ---
@@ -117,7 +124,10 @@ const projects = [
           <div class="p-8">
             <div class="flex justify-between">
               <h3 class="mb-4 font-headline text-2xl font-bold text-white">{project.title}</h3>
-              <span class="px-3 py-1 h-8 rounded-full border border-emerald-500/20 font-light text-emerald-500 bg-emerald-500/10 text-sm tracking-wider">{project.isPublic ? publicRepo : privateRepo}</span>
+              <div class="flex items-center gap-1.5">
+                <span class="px-3 py-1 h-8 rounded-full border border-emerald-500/20 font-light text-emerald-500 bg-emerald-500/10 text-sm tracking-wider">{project.isPublic ? publicRepo : privateRepo}</span>
+                <span class="px-3 py-1 h-8 rounded-full border border-[#4C3F78] font-light text-[#C4B5FD] bg-[#2B2545] text-sm tracking-wider">{project.isEarlyProject ? earlyProject : recentProject}</span>
+              </div>
             </div>
             <p class="mb-8 leading-relaxed text-slate-400">{project.description}</p>
 

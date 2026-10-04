@@ -191,6 +191,8 @@ export const ui = {
     "projects.demo": "Demo en vivo",
     "projects.visibility.public": "Público",
     "projects.visibility.private": "Privado",
+    "projects.early.project": "Inicial",
+    "projects.recent.project": "Reciente",
     "projects.comingSoon": "Proximamente",
     "projects.items.0.description":
       "Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.",
@@ -401,6 +403,8 @@ export const ui = {
     "projects.demo": "Live Demo",
     "projects.visibility.public": "Public",
     "projects.visibility.private": "Private",
+    "projects.early.project": "Early",
+    "projects.recent.project": "Latest",
     "projects.comingSoon": "Coming Soon",
     "projects.items.0.description":
       "Built with tools such as JavaScript, HTML, CSS, and Sass. It is an e-commerce site focused on increasing farmers' income while offering fresh products directly to users.",

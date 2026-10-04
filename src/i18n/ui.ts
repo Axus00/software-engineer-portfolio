@@ -31,6 +31,10 @@ export const ui = {
     "blog.articles": "Artículos recientes",
     "blog.readMore": "Leer más",
     "blog.categories.nifi": "Nifi",
+    "blog.categories.n8n": "n8n",
+    "blog.posts.7.title": "n8n: tu primer flujo con trazabilidad de punta a punta",
+    "blog.posts.7.description":
+      "Qué es n8n, para qué aplicarlo y un tutorial corto: Manual Trigger, datos JSON, Edit Fields y un Switch por edad para seguir cada ejecución nodo por nodo.",
     "blog.posts.6.title": "Apache NiFi: de cero a un flujo resiliente con Kafka",
     "blog.posts.6.description":
       "Una guía práctica para modelar FlowFiles, operar procesadores, integrar Kafka y llevar un dataflow observable a producción.",
@@ -129,6 +133,130 @@ export const ui = {
     "nifi.sources.consumeKafka": "ConsumeKafka",
     "nifi.sources.kafkaQuickstart": "Kafka · Quickstart",
     "nifi.sources.newTab": "abre en una pestaña nueva",
+
+    "n8n.backToBlog": "Volver al blog",
+    "n8n.readTime": "min de lectura",
+    "n8n.title": "n8n: tu primer flujo con",
+    "n8n.titleHighlight": "trazabilidad de punta a punta",
+    "n8n.lead":
+      "Una introducción práctica a n8n: qué es, dónde aporta valor y un ejercicio corto para construir un flujo con decisión condicional y leer, nodo por nodo, qué ocurrió en cada ejecución.",
+    "n8n.published": "Publicado el 4 oct 2026",
+    "n8n.updated": "Tutorial práctico · n8n self-hosted",
+    "n8n.flowDiagram": "Flujo de n8n: disparador manual, datos JSON, Edit Fields y un Switch con dos salidas según la edad",
+    "n8n.onThisPage": "En esta guía",
+    "n8n.nav.what": "Qué es n8n",
+    "n8n.nav.useCases": "Casos de uso",
+    "n8n.nav.start": "Primer arranque",
+    "n8n.nav.tutorial": "Tutorial",
+    "n8n.nav.traceability": "Trazabilidad",
+    "n8n.copy": "Copiar",
+    "n8n.copied": "Copiado",
+    "n8n.stack": "Stack de la guía",
+    "n8n.terminal.npx": "node · npx",
+    "n8n.terminal.docker": "docker · n8n",
+    "n8n.terminal.json": "edit fields · modo json",
+
+    "n8n.what.title": "Automatización visual, con código cuando lo necesitas",
+    "n8n.what.p1":
+      "n8n es una plataforma de automatización de flujos de trabajo. Conectas nodos en un lienzo para mover y transformar datos entre APIs, bases de datos y servicios, y puedes alojarla en tu propia infraestructura o usar su versión cloud.",
+    "n8n.what.p2":
+      "Su diferencia frente a otras herramientas low-code es que no te encierra: cuando un nodo no alcanza, escribes una expresión o un bloque de JavaScript o Python y sigues en el mismo flujo. Cada ejecución queda registrada con la entrada y la salida de cada nodo.",
+    "n8n.what.nodeTitle": "Nodo",
+    "n8n.what.executionTitle": "Ejecución",
+    "n8n.what.trigger": "El nodo que inicia el flujo: un clic manual, un webhook, un cron o un evento de otra aplicación.",
+    "n8n.what.node": "Unidad de trabajo que recibe items, aplica una operación y entrega items al siguiente nodo.",
+    "n8n.what.execution": "El registro de una corrida completa: qué datos entraron y salieron de cada nodo, y por qué rama.",
+    "n8n.what.calloutTitle": "Los datos viajan como items",
+    "n8n.what.callout":
+      "Entre nodos se mueve una lista de items, y cada item expone su contenido en la propiedad json. Por eso las expresiones se escriben como $json.campo: leen el item que el nodo está procesando.",
+
+    "n8n.useCases.title": "Para qué vale la pena aplicarlo",
+    "n8n.useCases.p1":
+      "n8n encaja cuando el problema es de orquestación: varias herramientas que deben hablar entre sí, con reglas claras y la necesidad de saber qué pasó en cada corrida.",
+    "n8n.useCases.integrationTitle": "Integración entre sistemas",
+    "n8n.useCases.integration": "Sincroniza CRM, hojas de cálculo, bases de datos y APIs internas sin escribir un servicio por cada conexión.",
+    "n8n.useCases.opsTitle": "Automatización operativa",
+    "n8n.useCases.ops": "Notificaciones, aprobaciones, reportes programados y tareas repetitivas que hoy dependen de una persona.",
+    "n8n.useCases.aiTitle": "Agentes y flujos con IA",
+    "n8n.useCases.ai": "Encadena modelos LLM, herramientas y memoria para clasificar, resumir o responder con contexto del negocio.",
+    "n8n.useCases.dataTitle": "Pipelines de datos ligeros",
+    "n8n.useCases.data": "Extrae, valida y enruta registros con reglas condicionales antes de entregarlos a su destino.",
+
+    "n8n.start.title": "Levanta n8n en local",
+    "n8n.start.p1":
+      "Si ya tienes Node.js instalado, la forma más rápida de probarlo es con npx. El editor queda disponible en http://localhost:5678.",
+    "n8n.start.p2":
+      "Si prefieres aislar el entorno, usa la imagen oficial de Docker con un volumen para conservar tus flujos y credenciales entre reinicios.",
+    "n8n.start.noteTitle": "Tus flujos viven en el volumen",
+    "n8n.start.note":
+      "n8n guarda flujos, credenciales cifradas y el historial de ejecuciones en su directorio de datos. Si omites el volumen, todo se pierde al eliminar el contenedor.",
+
+    "n8n.tutorial.title": "Un flujo pequeño con una decisión",
+    "n8n.tutorial.p1":
+      "El ejercicio valida la edad de un usuario y toma un camino distinto según el resultado. Son pocos nodos a propósito: lo importante es poder seguir el dato de principio a fin.",
+    "n8n.tutorial.step1Title": "Manual Trigger",
+    "n8n.tutorial.step1": "Crea un flujo nuevo y agrega el disparador manual. Te permite ejecutar el flujo desde el editor con un clic, sin depender de eventos externos.",
+    "n8n.tutorial.step2Title": "Datos en JSON",
+    "n8n.tutorial.step2": "Agrega un nodo Edit Fields (Set), cambia Mode a JSON y pega la estructura del usuario. Este nodo simula el dato que llegaría desde un formulario o una API.",
+    "n8n.tutorial.step3Title": "Edit Fields para capturar los valores",
+    "n8n.tutorial.step3": "Agrega un segundo Edit Fields en modo Manual Mapping y mapea cada campo con una expresión. Aquí fijas el contrato de datos que usará el resto del flujo.",
+    "n8n.tutorial.step4Title": "Switch por edad",
+    "n8n.tutorial.step4": "Agrega un nodo Switch en modo Rules con dos reglas sobre la edad y renombra cada salida para que el lienzo explique la decisión.",
+    "n8n.tutorial.step5Title": "Un mensaje por rama",
+    "n8n.tutorial.step5": "Conecta un Edit Fields a cada salida del Switch y define en ambos un campo de texto con el mensaje correspondiente.",
+    "n8n.tutorial.fieldsLabel": "Edit Fields · Manual Mapping",
+    "n8n.tutorial.fieldsNote":
+      "Arrastra cada campo desde el panel de entrada o escribe la expresión. Activa el tipo Number para la edad: el Switch comparará números, no texto.",
+    "n8n.tutorial.property": "Propiedad",
+    "n8n.tutorial.value": "Valor",
+    "n8n.tutorial.rule1": "Regla 1",
+    "n8n.tutorial.rule2": "Regla 2",
+    "n8n.tutorial.rule1Value": "Number · is greater than or equal to · 18 → salida \"true\"",
+    "n8n.tutorial.rule2Value": "Number · is less than · 18 → salida \"false\"",
+    "n8n.tutorial.switchNote":
+      "En Colombia la mayoría de edad se alcanza al cumplir 18, por eso la regla usa mayor o igual. Ajusta el umbral a la norma de tu país.",
+    "n8n.tutorial.branchTrue": "Salida true · mayor de edad",
+    "n8n.tutorial.branchFalse": "Salida false · menor de edad",
+    "n8n.tutorial.messageTrue": "tiene la edad suficiente para consumir alcohol.",
+    "n8n.tutorial.messageFalse": "aún no tiene la edad permitida para consumir alcohol.",
+    "n8n.fields.firstName": "nombre",
+    "n8n.fields.lastName": "apellido",
+    "n8n.fields.email": "correo",
+    "n8n.fields.age": "edad",
+    "n8n.fields.message": "mensaje",
+    "n8n.sample.firstName": "Laura",
+    "n8n.sample.lastName": "Martínez",
+
+    "n8n.trace.title": "Lee la ejecución como una traza",
+    "n8n.trace.p1":
+      "Ejecuta el flujo con Execute workflow. Lo valioso no es que termine en verde, sino que puedes reconstruir el recorrido exacto del dato sin agregar un solo log.",
+    "n8n.trace.canvasTitle": "El lienzo muestra el camino",
+    "n8n.trace.canvas": "Cada conexión indica cuántos items pasaron. Con 21 años, solo la salida true del Switch muestra 1 item; la rama false queda sin ejecutar.",
+    "n8n.trace.ioTitle": "Entrada y salida por nodo",
+    "n8n.trace.io": "Abre cualquier nodo para comparar Input y Output. Así confirmas que la edad llegó como número y qué regla coincidió.",
+    "n8n.trace.executionsTitle": "Historial en Executions",
+    "n8n.trace.executions": "La pestaña Executions conserva cada corrida con estado, fecha y duración, y permite abrirla para inspeccionar sus datos después.",
+    "n8n.trace.experimentTitle": "Cambia el dato y repite",
+    "n8n.trace.experiment": "Edita la edad a 16 en el nodo JSON y ejecuta de nuevo. Ahora el item sale por false y tienes dos ejecuciones para comparar.",
+    "n8n.trace.calloutTitle": "Verifica que las ejecuciones manuales se guarden",
+    "n8n.trace.callout":
+      "En Settings del flujo, la opción Save manual executions controla si las corridas lanzadas desde el editor aparecen en el historial. Si no ves tu ejecución, revisa ese ajuste.",
+    "n8n.conclusion.title": "La trazabilidad es parte del diseño",
+    "n8n.conclusion.p1":
+      "Nombra los nodos y las salidas por su intención, valida tipos antes de decidir y mantén cada rama visible. Un flujo que explica por qué tomó un camino es un flujo que se puede operar cuando el dato real no se parezca al del ejemplo.",
+
+    "n8n.sources.eyebrow": "Fuentes de verdad",
+    "n8n.sources.title": "Profundiza en la documentación oficial",
+    "n8n.sources.description":
+      "Estas referencias llevan directamente a la documentación de n8n. Los nombres de nodos y opciones cambian entre versiones; valida allí antes de llevar un flujo a un entorno real.",
+    "n8n.sources.docs": "n8n · Documentación",
+    "n8n.sources.manualTrigger": "Nodo · Manual Trigger",
+    "n8n.sources.editFields": "Nodo · Edit Fields (Set)",
+    "n8n.sources.switch": "Nodo · Switch",
+    "n8n.sources.expressions": "n8n · Expresiones",
+    "n8n.sources.executions": "n8n · Ejecuciones",
+    "n8n.sources.docker": "n8n · Instalación con Docker",
+    "n8n.sources.newTab": "abre en una pestaña nueva",
 
     "hero.blog.call.action": "Explorar el blog",
 
@@ -242,6 +370,10 @@ export const ui = {
     "blog.articles": "Recent articles",
     "blog.readMore": "Read more",
     "blog.categories.nifi": "Nifi",
+    "blog.categories.n8n": "n8n",
+    "blog.posts.7.title": "n8n: your first workflow with end-to-end traceability",
+    "blog.posts.7.description":
+      "What n8n is, where to apply it, and a short tutorial: Manual Trigger, JSON data, Edit Fields, and a Switch on age to follow every execution node by node.",
     "blog.posts.6.title": "Apache NiFi: from zero to a resilient Kafka flow",
     "blog.posts.6.description":
       "A practical guide to modeling FlowFiles, operating processors, integrating Kafka, and taking an observable dataflow to production.",
@@ -340,6 +472,130 @@ export const ui = {
     "nifi.sources.consumeKafka": "ConsumeKafka",
     "nifi.sources.kafkaQuickstart": "Kafka · Quickstart",
     "nifi.sources.newTab": "opens in a new tab",
+
+    "n8n.backToBlog": "Back to the blog",
+    "n8n.readTime": "min read",
+    "n8n.title": "n8n: your first workflow with",
+    "n8n.titleHighlight": "end-to-end traceability",
+    "n8n.lead":
+      "A practical introduction to n8n: what it is, where it adds value, and a short exercise to build a workflow with a conditional decision and read, node by node, what happened in each execution.",
+    "n8n.published": "Published Oct 4, 2026",
+    "n8n.updated": "Hands-on tutorial · self-hosted n8n",
+    "n8n.flowDiagram": "n8n workflow: manual trigger, JSON data, Edit Fields, and a Switch with two outputs based on age",
+    "n8n.onThisPage": "In this guide",
+    "n8n.nav.what": "What n8n is",
+    "n8n.nav.useCases": "Use cases",
+    "n8n.nav.start": "First run",
+    "n8n.nav.tutorial": "Tutorial",
+    "n8n.nav.traceability": "Traceability",
+    "n8n.copy": "Copy",
+    "n8n.copied": "Copied",
+    "n8n.stack": "Guide stack",
+    "n8n.terminal.npx": "node · npx",
+    "n8n.terminal.docker": "docker · n8n",
+    "n8n.terminal.json": "edit fields · json mode",
+
+    "n8n.what.title": "Visual automation, with code when you need it",
+    "n8n.what.p1":
+      "n8n is a workflow automation platform. You connect nodes on a canvas to move and transform data across APIs, databases, and services, and you can host it on your own infrastructure or use its cloud version.",
+    "n8n.what.p2":
+      "What sets it apart from other low-code tools is that it does not box you in: when a node is not enough, you write an expression or a JavaScript or Python block and stay in the same workflow. Every execution is recorded with the input and output of each node.",
+    "n8n.what.nodeTitle": "Node",
+    "n8n.what.executionTitle": "Execution",
+    "n8n.what.trigger": "The node that starts the workflow: a manual click, a webhook, a cron schedule, or an event from another app.",
+    "n8n.what.node": "A unit of work that receives items, applies an operation, and hands items to the next node.",
+    "n8n.what.execution": "The record of a full run: which data entered and left each node, and through which branch.",
+    "n8n.what.calloutTitle": "Data travels as items",
+    "n8n.what.callout":
+      "A list of items moves between nodes, and each item exposes its content in the json property. That is why expressions are written as $json.field: they read the item the node is processing.",
+
+    "n8n.useCases.title": "Where it is worth applying",
+    "n8n.useCases.p1":
+      "n8n fits when the problem is orchestration: several tools that must talk to each other, with clear rules and the need to know what happened in every run.",
+    "n8n.useCases.integrationTitle": "System integration",
+    "n8n.useCases.integration": "Sync CRMs, spreadsheets, databases, and internal APIs without writing a service for every connection.",
+    "n8n.useCases.opsTitle": "Operational automation",
+    "n8n.useCases.ops": "Notifications, approvals, scheduled reports, and repetitive tasks that depend on a person today.",
+    "n8n.useCases.aiTitle": "AI agents and workflows",
+    "n8n.useCases.ai": "Chain LLMs, tools, and memory to classify, summarize, or answer with business context.",
+    "n8n.useCases.dataTitle": "Lightweight data pipelines",
+    "n8n.useCases.data": "Extract, validate, and route records with conditional rules before delivering them to their destination.",
+
+    "n8n.start.title": "Run n8n locally",
+    "n8n.start.p1":
+      "If you already have Node.js installed, the fastest way to try it is npx. The editor becomes available at http://localhost:5678.",
+    "n8n.start.p2":
+      "If you would rather isolate the environment, use the official Docker image with a volume to keep your workflows and credentials across restarts.",
+    "n8n.start.noteTitle": "Your workflows live in the volume",
+    "n8n.start.note":
+      "n8n stores workflows, encrypted credentials, and execution history in its data directory. Skip the volume and everything is lost when the container is removed.",
+
+    "n8n.tutorial.title": "A small workflow with one decision",
+    "n8n.tutorial.p1":
+      "The exercise validates a user's age and takes a different path depending on the result. It has few nodes on purpose: what matters is being able to follow the data from start to finish.",
+    "n8n.tutorial.step1Title": "Manual Trigger",
+    "n8n.tutorial.step1": "Create a new workflow and add the manual trigger. It lets you run the workflow from the editor with one click, with no dependency on external events.",
+    "n8n.tutorial.step2Title": "JSON data",
+    "n8n.tutorial.step2": "Add an Edit Fields (Set) node, switch Mode to JSON, and paste the user structure. This node simulates the data that would arrive from a form or an API.",
+    "n8n.tutorial.step3Title": "Edit Fields to capture the values",
+    "n8n.tutorial.step3": "Add a second Edit Fields node in Manual Mapping mode and map each field with an expression. This is where you pin the data contract the rest of the workflow relies on.",
+    "n8n.tutorial.step4Title": "Switch on age",
+    "n8n.tutorial.step4": "Add a Switch node in Rules mode with two rules on the age and rename each output so the canvas explains the decision.",
+    "n8n.tutorial.step5Title": "One message per branch",
+    "n8n.tutorial.step5": "Connect an Edit Fields node to each Switch output and define a text field with the matching message in both.",
+    "n8n.tutorial.fieldsLabel": "Edit Fields · Manual Mapping",
+    "n8n.tutorial.fieldsNote":
+      "Drag each field from the input panel or type the expression. Set the Number type for the age: the Switch will compare numbers, not text.",
+    "n8n.tutorial.property": "Property",
+    "n8n.tutorial.value": "Value",
+    "n8n.tutorial.rule1": "Rule 1",
+    "n8n.tutorial.rule2": "Rule 2",
+    "n8n.tutorial.rule1Value": "Number · is greater than or equal to · 18 → output \"true\"",
+    "n8n.tutorial.rule2Value": "Number · is less than · 18 → output \"false\"",
+    "n8n.tutorial.switchNote":
+      "This example uses 18 as the legal age, so the rule is greater than or equal. Adjust the threshold to the law in your country.",
+    "n8n.tutorial.branchTrue": "Output true · of legal age",
+    "n8n.tutorial.branchFalse": "Output false · underage",
+    "n8n.tutorial.messageTrue": "is old enough to drink alcohol.",
+    "n8n.tutorial.messageFalse": "is not yet of legal age to drink alcohol.",
+    "n8n.fields.firstName": "firstName",
+    "n8n.fields.lastName": "lastName",
+    "n8n.fields.email": "email",
+    "n8n.fields.age": "age",
+    "n8n.fields.message": "message",
+    "n8n.sample.firstName": "Laura",
+    "n8n.sample.lastName": "Martinez",
+
+    "n8n.trace.title": "Read the execution like a trace",
+    "n8n.trace.p1":
+      "Run the workflow with Execute workflow. The value is not that it ends in green, but that you can rebuild the exact path of the data without adding a single log.",
+    "n8n.trace.canvasTitle": "The canvas shows the path",
+    "n8n.trace.canvas": "Each connection shows how many items went through. At age 21, only the Switch's true output shows 1 item; the false branch never runs.",
+    "n8n.trace.ioTitle": "Input and output per node",
+    "n8n.trace.io": "Open any node to compare Input and Output. That is how you confirm the age arrived as a number and which rule matched.",
+    "n8n.trace.executionsTitle": "History in Executions",
+    "n8n.trace.executions": "The Executions tab keeps every run with its status, date, and duration, and lets you open it to inspect its data later.",
+    "n8n.trace.experimentTitle": "Change the data and repeat",
+    "n8n.trace.experiment": "Edit the age to 16 in the JSON node and run again. Now the item leaves through false and you have two executions to compare.",
+    "n8n.trace.calloutTitle": "Check that manual executions are saved",
+    "n8n.trace.callout":
+      "In the workflow Settings, the Save manual executions option controls whether runs launched from the editor show up in the history. If you cannot see your execution, check that setting.",
+    "n8n.conclusion.title": "Traceability is part of the design",
+    "n8n.conclusion.p1":
+      "Name nodes and outputs after their intent, validate types before deciding, and keep every branch visible. A workflow that explains why it took a path is a workflow you can operate when real data looks nothing like the example.",
+
+    "n8n.sources.eyebrow": "Sources of truth",
+    "n8n.sources.title": "Go deeper with the official documentation",
+    "n8n.sources.description":
+      "These references go directly to the n8n documentation. Node and option names change between versions; validate there before taking a workflow to a real environment.",
+    "n8n.sources.docs": "n8n · Documentation",
+    "n8n.sources.manualTrigger": "Node · Manual Trigger",
+    "n8n.sources.editFields": "Node · Edit Fields (Set)",
+    "n8n.sources.switch": "Node · Switch",
+    "n8n.sources.expressions": "n8n · Expressions",
+    "n8n.sources.executions": "n8n · Executions",
+    "n8n.sources.docker": "n8n · Docker installation",
+    "n8n.sources.newTab": "opens in a new tab",
 
     "hero.blog.call.action": "Explore the blog",
 

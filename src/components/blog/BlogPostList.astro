@@ -1,9 +1,10 @@
 ---
-import { blogPosts } from '../../data/blog';
+import { getBlogPosts } from '../../data/blog';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const blogPosts = await getBlogPosts();
 const dateFormatter = new Intl.DateTimeFormat(lang === 'es' ? 'es-CO' : 'en-US', {
   day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC',
 });

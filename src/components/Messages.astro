@@ -1,60 +1,21 @@
 ---
-import men from "../../public/shared/resources/profile-photos/photo-dummy-men.jpg";
-import anthony from "../../public/shared/resources/profile-photos/anthony-photo.jpg";
-import david from "../../public/shared/resources/profile-photos/david-medina-photo.jpg";
-import ken from "../../public/shared/resources/profile-photos/ken-photo.png";
-import christian from "../../public/shared/resources/profile-photos/christian-photo.png";
-import camilo from "../../public/shared/resources/profile-photos/camilo-gonzalez-photo.jpg"
+import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const entries = await getCollection('messages');
 const messageBox = {
-  messages: [
-    { 
-        message: t('messages.items.0.message'), 
-        userName: "Kevin Daza Ramírez", 
-        position: t('messages.items.0.position'),
-        photo: men,
-        year: 2026
-    },
-    { 
-        message: t('messages.items.1.message'), 
-        userName: "Christian Pabon villanueva",
-        position: t('messages.items.1.position'), 
-        photo: christian,
-        year: 2026
-    },
-    { 
-        message: t('messages.items.2.message'), 
-        userName: "Ken Castro",
-        position: t('messages.items.2.position'),
-        photo: ken,
-        year: 2026
-    },
-    { 
-        message: t('messages.items.3.message'), 
-        userName: "Anthony Muñoz",
-        position: t('messages.items.3.position'),
-        photo: anthony,
-        year: 2026
-    },
-    { 
-        message: t('messages.items.4.message'), 
-        userName: "David Medina",
-        position: t('messages.items.4.position'),
-        photo: david,
-        year: "2026" 
-    },
-    { 
-        message: t('messages.items.5.message'), 
-        userName: "Camilo Gonzalez",
-        position: t('messages.items.5.position'),
-        photo: camilo,
-        year: "2026" 
-    }
-  ],
+  messages: entries
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(({ data }) => ({
+      message: t(data.messageKey),
+      userName: data.userName,
+      position: t(data.positionKey),
+      photo: data.photo,
+      year: data.year,
+    })),
 };
 
 const columns = [0, 1, 2].map((i) => messageBox.messages.filter((_, idx) => idx % 3 === i));

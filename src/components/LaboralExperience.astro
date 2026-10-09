@@ -1,48 +1,26 @@
 ---
+import { getCollection } from 'astro:content';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const companyLogos = {
-  bblabs: { name: 'BlackBird Labs', svg: '/shared/resources/images/bblabs-logo.svg', background: 'bg-black' },
-  riwi: { name: 'Riwi', svg: '/shared/resources/images/riwi-logo.webp', background: 'bg-[#FFF]' },
-};
-
-const staffingLogos = {
-  exito: { name: 'Grupo Éxito', svg: '/shared/resources/images/grupo-exito-logo.png', background: 'bg-[#f4e8d3]' },
-  arro: { name: 'Arro - NG', svg: '/shared/resources/images/arro-logo.svg', background: 'bg-[#FFF]' },
-};
-
-const experiences = [
-  {
-    role: t('experience.items.0.role'),
-    company: 'Blackbird Labs',
-    companyLogo: companyLogos.bblabs,
-    period: t('experience.items.0.period'),
-    description: t('experience.items.0.description'),
-    tag: t('experience.currentTag'),
-    subItems: [
-      {
-        label: t('experience.items.0.subItems.0.label'),
-        content: t('experience.items.0.subItems.0.content'),
-        subLogo: staffingLogos.exito,
-      },
-      {
-        label: t('experience.items.0.subItems.1.label'),
-        content: t('experience.items.0.subItems.1.content'),
-        subLogo: staffingLogos.arro,
-      },
-    ],
-  },
-  {
-    role: t('experience.items.1.role'),
-    company: 'Riwi',
-    companyLogo: companyLogos.riwi,
-    period: t('experience.items.1.period'),
-    description: t('experience.items.1.description'),
-  },
-];
+const entries = await getCollection('experiences');
+const experiences = entries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(({ data }) => ({
+    role: t(data.roleKey),
+    company: data.company,
+    companyLogo: data.companyLogo,
+    period: t(data.periodKey),
+    description: t(data.descriptionKey),
+    tag: data.tagKey && t(data.tagKey),
+    subItems: data.subItems?.map((sub) => ({
+      label: t(sub.labelKey),
+      content: t(sub.contentKey),
+      subLogo: sub.subLogo,
+    })),
+  }));
 ---
 
 <section id="experience" class="py-12 px-8">

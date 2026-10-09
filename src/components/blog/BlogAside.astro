@@ -1,11 +1,12 @@
 ---
 import FolderIcon from '../../../public/shared/resources/logos/folder-icon.svg';
 import PaperIcon from '../../../public/shared/resources/logos/paper-icon.svg';
-import { blogCategories, blogPosts } from '../../data/blog';
+import { blogCategories, getBlogPosts } from '../../data/blog';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const blogPosts = await getBlogPosts();
 const localizedHref = (href: string) => lang === 'es' ? href : `/en${href}`;
 ---
 

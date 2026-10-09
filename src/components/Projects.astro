@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import SkillsSection from './skills/SkillBsdge.astro';
+import { getCollection } from 'astro:content';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -10,90 +11,10 @@ const privateRepo = t('projects.visibility.private');
 const earlyProject = t('projects.early.project');
 const recentProject = t('projects.recent.project');
 
-const technologies = [
-  { name: 'Sass', svg: '/shared/resources/logos/technologies/sass.svg', color: 'bg-black text-white' },
-  { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
-  { name: 'Bootstrap', svg: '/shared/resources/logos/technologies/bootstrap.svg', color: 'bg-[#563D7C] text-[#73bcf6]' },
-  { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
-  { name: 'CSharp', svg: '/shared/resources/logos/technologies/csharp.svg', color: 'bg-[#68217A] text-white' },
-];
-
-const projects = [
-  {
-    title: 'Mercado Verde',
-    description: t('projects.items.0.description'),
-    repository: 'https://github.com/Axus00/MercadoVerde',
-    demo: t('projects.demo'),
-    demoUrl: 'https://mercado-verde.netlify.app/',
-    span: t('projects.repository'),
-    image: '/shared/resources/images/mercado-verde.webp',
-    technologies,
-    isPublic: true,
-    isReady: true,
-    isEarlyProject: true
-  },
-  {
-    title: 'La Misericordia',
-    description: t('projects.items.1.description'),
-    repository: 'https://github.com/Axus00/LaMisericordia',
-    demo: t('projects.demo'),
-    span: t('projects.repository'),
-    image: '/shared/resources/images/la-misericordia.webp',
-    technologies: [
-      { name: 'C#', svg: '/shared/resources/logos/technologies/csharp.svg', color: 'bg-[#68217A] text-white' },
-      { name: 'Css', svg: '/shared/resources/logos/technologies/css.svg', color: 'bg-[#1572B6] text-white' },
-      { name: 'JavaScript', svg: '/shared/resources/logos/technologies/javascript.svg', color: 'bg-[#F7DF1E] text-black' },
-    ],
-    isPublic: true,
-    isReady: true,
-    isEarlyProject: true
-  },
-  {
-    title: 'Gift App',
-    description: t('projects.items.2.description'),
-    repository: 'https://github.com/Axus00/gift-app',
-    demo: t('projects.demo'),
-    demoUrl: 'https://search-gift.netlify.app/',
-    span: t('projects.repository'),
-    image: '/shared/resources/images/gift-app.png',
-    technologies: [
-      { name: 'TypeScript', svg: '/shared/resources/logos/technologies/typescript.svg', color: 'bg-[#3178C6] text-white' },
-      { name: 'Vite', svg: '/shared/resources/logos/technologies/vite.svg', color: 'bg-[#370A7F] text-white' },
-    ],
-    isPublic: true,
-    isReady: true,
-    isEarlyProject: false
-  },
-  {
-    title: 'LLM Agent',
-    description: t('projects.items.3.description'),
-    demo: t('projects.demo'),
-    image: '/shared/resources/images/llm-agent-langchain.webp',
-    technologies: [
-      { name: 'Python', svg: '/shared/resources/logos/technologies/python.svg', color: 'bg-[#FFDF76] text-black' },
-      { name: 'LangChain', svg: '/shared/resources/logos/technologies/langchain.svg', color: 'bg-white text-black' },
-      { name: 'Pydantic Logfire', svg: '/shared/resources/logos/technologies/pydantic.svg', color: 'bg-white text-black' },
-    ],
-    isPublic: false,
-    isReady: true,
-    isEarlyProject: false
-  },
-  {
-    title: 'UrlShortener',
-    description: t('projects.items.4.description'),
-    demo: t('projects.demo'),
-    image: '/shared/resources/images/url-shortener.png',
-    technologies: [
-      { name: 'React', svg: '/shared/resources/logos/technologies/react.svg', color: 'bg-[#58C4DC] text-white' },
-      { name: 'TypeScript', svg: '/shared/resources/logos/technologies/typescript.svg', color: 'bg-[#7FA2C9] text-white' },
-      { name: 'Tailwind', svg: '/shared/resources/logos/technologies/tailwind.svg', color: 'bg-[#1E293B] text-white' },
-      { name: 'Convex', svg: '/shared/resources/logos/technologies/convex.png', color: 'bg-[#000000] text-white' },
-    ],
-    isPublic: false,
-    isReady: false,
-    isEarlyProject: false
-  },
-];
+const entries = await getCollection('projects');
+const projects = entries
+  .sort((a, b) => a.data.order - b.data.order)
+  .map(( { data } ) => ({ ...data, description: t(data.descriptionKey) }));
 ---
 
 <section id="projects" class="py-32 px-8 bg-surface-container-low/20">
@@ -106,7 +27,7 @@ const projects = [
 
     <div id="projects-carousel" class="projects-carousel grid grid-cols-1 gap-6 md:grid-cols-2 lg:flex lg:overflow-x-auto lg:scroll-smooth lg:snap-x lg:snap-mandatory lg:pb-2">
       {projects.map((project) => (
-        <article class="project-card group relative w-full overflow-hidden rounded-xl border border-white/5 bg-surface-container-low shadow-xl shadow-black/20 reveal lg:w-[48%] lg:shrink-0 lg:snap-start relative">
+        <article class="project-card group w-full overflow-hidden rounded-xl border border-white/5 bg-surface-container-low shadow-xl shadow-black/20 reveal lg:w-[48%] lg:shrink-0 lg:snap-start relative">
           {/* configuración para capa dependiendo del valor de isReady */}
 
           {!project.isReady && (
@@ -148,11 +69,11 @@ const projects = [
               <div class="flex items-center justify-between border-t border-white/5 pt-6">
                 {project.demoUrl ? (
                   <a class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                    {project.demo}
+                    {t('projects.demo')}
                   </a>
                 ) : null}
                 <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-white">
-                  {project.span}
+                  {t('projects.repository')}
                 </a>
               </div>
             )}

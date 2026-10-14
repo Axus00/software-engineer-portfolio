@@ -321,7 +321,6 @@ export const ui = {
     "projects.visibility.private": "Privado",
     "projects.early.project": "Inicial",
     "projects.recent.project": "Reciente",
-    "projects.comingSoon": "Proximamente",
     "projects.items.0.description":
       "Creado utilizando herramientas como JavaScript, Html, CSS y Sass. Es una página e-commerce dedicada a mejorar los ingresos de los campesinos, pero también ofreciendo productos frescos y de primera mano para los usuarios.",
     "projects.items.1.description":
@@ -332,6 +331,77 @@ export const ui = {
       "Asistente inteligente construido con LangGraph y LangChain para automatizar tareas DevOps y Scrum.",
     "projects.items.4.description":
       "Web especializada en acortar links y brindar estadísticas de uso, con un enfoque en la privacidad y seguridad de los usuarios.",
+
+    "newProjects.heading": "Nuevos proyectos / SaaS",
+    "newProjects.description":
+      "Productos propios que diseño, construyo y opero de punta a punta.",
+    "newProjects.visit": "Ver en vivo",
+    "newProjects.urlShortener.status": "En producción",
+    "newProjects.urlShortener.description":
+      "SaaS para acortar links con alias personalizado, actividad por país, origen y dispositivo, planes de pago y una API para desarrolladores.",
+
+    "urlShortenerDemo.path": "panel",
+    "urlShortenerDemo.tabs.pro": "Plan Pro",
+    "urlShortenerDemo.tabs.developer": "Plan Developer",
+    "urlShortenerDemo.play": "Reproducir",
+    "urlShortenerDemo.pause": "Pausar",
+    "urlShortenerDemo.captions.pro.0": "Pega la URL de destino",
+    "urlShortenerDemo.captions.pro.1": "Ponle tu propio alias",
+    "urlShortenerDemo.captions.pro.2": "Crea el link corto y cópialo",
+    "urlShortenerDemo.captions.pro.3":
+      "Abre cualquier link y mira su actividad de 90 días",
+    "urlShortenerDemo.captions.developer.0": "Llama a la API con tu clave",
+    "urlShortenerDemo.captions.developer.1": "Recibes el link corto al instante",
+    "urlShortenerDemo.captions.developer.2":
+      "Aparece en tu panel junto a los demás",
+    "urlShortenerDemo.captions.developer.3":
+      "Mira la actividad de cada link hasta un año atrás",
+    "urlShortenerDemo.captions.filter": "Filtra por país, origen o dispositivo",
+    "urlShortenerDemo.pro.planName": "Plan Pro",
+    "urlShortenerDemo.pro.greeting": "Hola,",
+    "urlShortenerDemo.pro.name": "Valentina",
+    "urlShortenerDemo.pro.benefits.alias": "Alias personalizado",
+    "urlShortenerDemo.pro.benefits.activity": "Actividad",
+    "urlShortenerDemo.pro.benefits.api": "Acceso por API",
+    "urlShortenerDemo.pro.quotaLabel": "Cuota del mes",
+    "urlShortenerDemo.pro.quotaOf": "de 100 links",
+    "urlShortenerDemo.pro.destinationPlaceholder": "Pega aquí la URL de destino…",
+    "urlShortenerDemo.pro.submit": "Crear link",
+    "urlShortenerDemo.pro.codeOption": "Código corto",
+    "urlShortenerDemo.pro.aliasOption": "Alias personalizado",
+    "urlShortenerDemo.pro.aliasPlaceholder": "mi-alias",
+    "urlShortenerDemo.pro.randomCode": "código",
+    "urlShortenerDemo.pro.preview": "Tu link corto será",
+    "urlShortenerDemo.pro.list.shortLink": "Link corto",
+    "urlShortenerDemo.pro.list.destination": "URL de destino",
+    "urlShortenerDemo.pro.list.clicks": "Clics",
+    "urlShortenerDemo.pro.list.created": "Creado",
+    "urlShortenerDemo.pro.list.alias": "Alias",
+    "urlShortenerDemo.developer.terminal": "Terminal",
+    "urlShortenerDemo.developer.response": "Respuesta",
+    "urlShortenerDemo.developer.panelTitle": "Tus links cortos",
+    "urlShortenerDemo.developer.viaApi": "vía API",
+    "urlShortenerDemo.developer.rate": "60 solicitudes por minuto",
+    "urlShortenerDemo.activity.heading": "Actividad",
+    "urlShortenerDemo.activity.totalClicks": "Clics totales",
+    "urlShortenerDemo.activity.inRange": "Clics en el periodo",
+    "urlShortenerDemo.activity.countries": "Países",
+    "urlShortenerDemo.activity.referrers": "Origen",
+    "urlShortenerDemo.activity.devices": "Dispositivos",
+    "urlShortenerDemo.activity.range.7": "7 días",
+    "urlShortenerDemo.activity.range.30": "30 días",
+    "urlShortenerDemo.activity.range.90": "90 días",
+    "urlShortenerDemo.activity.range.365": "1 año",
+    "urlShortenerDemo.activity.barSize.one":
+      "Cada barra es 1 día. Los días se cuentan en UTC.",
+    "urlShortenerDemo.activity.barSize.other":
+      "Cada barra suma {days} días. Los días se cuentan en UTC.",
+    "urlShortenerDemo.activity.axis": "Clics",
+    "urlShortenerDemo.activity.other": "Otros",
+    "urlShortenerDemo.activity.direct": "Directo",
+    "urlShortenerDemo.activity.device.mobile": "Móvil",
+    "urlShortenerDemo.activity.device.tablet": "Tablet",
+    "urlShortenerDemo.activity.device.desktop": "Escritorio",
 
     "presence.openSource.title": "Trabajo Open Source",
     "presence.openSource.description":
@@ -661,7 +731,6 @@ export const ui = {
     "projects.visibility.private": "Private",
     "projects.early.project": "Early",
     "projects.recent.project": "Latest",
-    "projects.comingSoon": "Coming Soon",
     "projects.items.0.description":
       "Built with tools such as JavaScript, HTML, CSS, and Sass. It is an e-commerce site focused on increasing farmers' income while offering fresh products directly to users.",
     "projects.items.1.description":
@@ -672,6 +741,79 @@ export const ui = {
       "Intelligent assistant built with LangGraph and LangChain to automate DevOps and Scrum tasks.",
     "projects.items.4.description":
       "A website specializing in shortening links and providing usage statistics, with a focus on user privacy and security.",
+
+    "newProjects.heading": "New projects / SaaS",
+    "newProjects.description":
+      "My own products, designed, built and operated end to end.",
+    "newProjects.visit": "View live",
+    "newProjects.urlShortener.status": "In production",
+    "newProjects.urlShortener.description":
+      "SaaS to shorten links with custom aliases, activity by country, source and device, paid plans and an API for developers.",
+
+    "urlShortenerDemo.path": "dashboard",
+    "urlShortenerDemo.tabs.pro": "Pro plan",
+    "urlShortenerDemo.tabs.developer": "Developer plan",
+    "urlShortenerDemo.play": "Play",
+    "urlShortenerDemo.pause": "Pause",
+    "urlShortenerDemo.captions.pro.0": "Paste the destination URL",
+    "urlShortenerDemo.captions.pro.1": "Give it your own alias",
+    "urlShortenerDemo.captions.pro.2": "Create the short link and copy it",
+    "urlShortenerDemo.captions.pro.3":
+      "Open any link and see 90 days of its activity",
+    "urlShortenerDemo.captions.developer.0": "Call the API with your key",
+    "urlShortenerDemo.captions.developer.1":
+      "You get the short link back instantly",
+    "urlShortenerDemo.captions.developer.2":
+      "It shows up in your dashboard with the rest",
+    "urlShortenerDemo.captions.developer.3":
+      "See each link's activity up to a year back",
+    "urlShortenerDemo.captions.filter": "Filter by country, source or device",
+    "urlShortenerDemo.pro.planName": "Pro Plan",
+    "urlShortenerDemo.pro.greeting": "Hi,",
+    "urlShortenerDemo.pro.name": "Valentina",
+    "urlShortenerDemo.pro.benefits.alias": "Custom alias",
+    "urlShortenerDemo.pro.benefits.activity": "Activity",
+    "urlShortenerDemo.pro.benefits.api": "API access",
+    "urlShortenerDemo.pro.quotaLabel": "Monthly quota",
+    "urlShortenerDemo.pro.quotaOf": "of 100 links",
+    "urlShortenerDemo.pro.destinationPlaceholder":
+      "Paste the destination URL here…",
+    "urlShortenerDemo.pro.submit": "Create link",
+    "urlShortenerDemo.pro.codeOption": "Short code",
+    "urlShortenerDemo.pro.aliasOption": "Custom alias",
+    "urlShortenerDemo.pro.aliasPlaceholder": "my-alias",
+    "urlShortenerDemo.pro.randomCode": "code",
+    "urlShortenerDemo.pro.preview": "Your short link will be",
+    "urlShortenerDemo.pro.list.shortLink": "Short link",
+    "urlShortenerDemo.pro.list.destination": "Destination URL",
+    "urlShortenerDemo.pro.list.clicks": "Clicks",
+    "urlShortenerDemo.pro.list.created": "Created",
+    "urlShortenerDemo.pro.list.alias": "Alias",
+    "urlShortenerDemo.developer.terminal": "Terminal",
+    "urlShortenerDemo.developer.response": "Response",
+    "urlShortenerDemo.developer.panelTitle": "Your short links",
+    "urlShortenerDemo.developer.viaApi": "via API",
+    "urlShortenerDemo.developer.rate": "60 requests per minute",
+    "urlShortenerDemo.activity.heading": "Activity",
+    "urlShortenerDemo.activity.totalClicks": "Total clicks",
+    "urlShortenerDemo.activity.inRange": "Clicks in this period",
+    "urlShortenerDemo.activity.countries": "Countries",
+    "urlShortenerDemo.activity.referrers": "Source",
+    "urlShortenerDemo.activity.devices": "Devices",
+    "urlShortenerDemo.activity.range.7": "7 days",
+    "urlShortenerDemo.activity.range.30": "30 days",
+    "urlShortenerDemo.activity.range.90": "90 days",
+    "urlShortenerDemo.activity.range.365": "1 year",
+    "urlShortenerDemo.activity.barSize.one":
+      "Each bar is 1 day. Days are counted in UTC.",
+    "urlShortenerDemo.activity.barSize.other":
+      "Each bar adds up {days} days. Days are counted in UTC.",
+    "urlShortenerDemo.activity.axis": "Clicks",
+    "urlShortenerDemo.activity.other": "Other",
+    "urlShortenerDemo.activity.direct": "Direct",
+    "urlShortenerDemo.activity.device.mobile": "Mobile",
+    "urlShortenerDemo.activity.device.tablet": "Tablet",
+    "urlShortenerDemo.activity.device.desktop": "Desktop",
 
     "presence.openSource.title": "Open Source Work",
     "presence.openSource.description":

@@ -14,6 +14,5 @@ technologies:
     svg: /shared/resources/logos/technologies/pydantic.svg
     color: bg-white text-black
 isPublic: false
-isReady: true
 isEarlyProject: false
 ---

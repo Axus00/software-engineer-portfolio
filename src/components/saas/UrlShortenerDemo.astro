@@ -1,0 +1,472 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import {
+  ACTIVITY_RANGES,
+  ALIAS,
+  API_CODE,
+  BREAKDOWNS,
+  INITIAL_RANGE,
+  OTHER,
+  PRO_URL,
+  RESPONSE,
+  SAMPLE_TODAY,
+  SCENES,
+  SHARE_ROWS,
+  clicksOf,
+  dayToDate,
+  daysPerBar,
+  demoPlans,
+  niceMax,
+  openedLink,
+  sampleLinks,
+  siteHost,
+  toBars,
+  toShares,
+  type ActivityRange,
+  type ActivityView,
+  type Share,
+} from '../../data/urlShortenerDemo';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const number = new Intl.NumberFormat(lang);
+const shortDate = new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'short', timeZone: 'UTC' });
+const regions = new Intl.DisplayNames(lang, { type: 'region' });
+
+const shareLabel = ({ breakdown, value }: Share): string => {
+  if (value === OTHER) return t('urlShortenerDemo.activity.other');
+  if (breakdown === 'countries') return regions.of(value) ?? value;
+  if (value === 'direct') return t('urlShortenerDemo.activity.direct');
+  if (value === 'mobile') return t('urlShortenerDemo.activity.device.mobile');
+  if (value === 'tablet') return t('urlShortenerDemo.activity.device.tablet');
+  if (value === 'desktop') return t('urlShortenerDemo.activity.device.desktop');
+  return value;
+};
+
+// The script filters the chart by the first country, as a visitor hovering it would.
+const toView = (range: ActivityRange): ActivityView => {
+  const bars = toBars(range);
+  const totals = bars.map((bar) => bar.clicks);
+  const top = niceMax(Math.max(...totals, 1));
+  const lists = BREAKDOWNS.map((breakdown) => toShares(bars, breakdown));
+  const focus = lists[0][0];
+  const focused = clicksOf(bars, focus);
+  const last = bars.length - 1;
+  const days = daysPerBar(range);
+  const sum = (values: number[]) => number.format(values.reduce((a, b) => a + b, 0));
+  const height = (value: number) => (value / top) * 100;
+
+  return {
+    range,
+    axis: [number.format(top), number.format(top / 2)],
+    heights: totals.map(height),
+    focusedHeights: focused.map(height),
+    clicks: sum(totals),
+    focusedClicks: sum(focused),
+    focusLabel: shareLabel(focus),
+    ticks: [0, Math.round(last / 3), Math.round((last * 2) / 3), last].map((index) =>
+      shortDate.format(dayToDate(bars[index].day)),
+    ),
+    barSize: t(
+      days === 1 ? 'urlShortenerDemo.activity.barSize.one' : 'urlShortenerDemo.activity.barSize.other',
+    ).replace('{days}', String(days)),
+    shares: lists.map((shares) => shares.map((share) => ({ label: shareLabel(share), percent: share.percent }))),
+  };
+};
+
+const ranges = [...new Set([INITIAL_RANGE, ...demoPlans.map((plan) => SCENES[plan].activityDays)])];
+const views = Object.fromEntries(ranges.map((range) => [range, toView(range)]));
+const maxBars = Math.max(...ranges.map((range) => Math.ceil(range / daysPerBar(range))));
+const minPlanRange = Math.min(...demoPlans.map((plan) => SCENES[plan].activityDays));
+
+const captions = {
+  pro: [
+    t('urlShortenerDemo.captions.pro.0'),
+    t('urlShortenerDemo.captions.pro.1'),
+    t('urlShortenerDemo.captions.pro.2'),
+    t('urlShortenerDemo.captions.pro.3'),
+    t('urlShortenerDemo.captions.filter'),
+  ],
+  developer: [
+    t('urlShortenerDemo.captions.developer.0'),
+    t('urlShortenerDemo.captions.developer.1'),
+    t('urlShortenerDemo.captions.developer.2'),
+    t('urlShortenerDemo.captions.developer.3'),
+    t('urlShortenerDemo.captions.filter'),
+  ],
+};
+
+const tabs = { pro: t('urlShortenerDemo.tabs.pro'), developer: t('urlShortenerDemo.tabs.developer') };
+
+const rangeLabels = {
+  7: t('urlShortenerDemo.activity.range.7'),
+  30: t('urlShortenerDemo.activity.range.30'),
+  90: t('urlShortenerDemo.activity.range.90'),
+  365: t('urlShortenerDemo.activity.range.365'),
+};
+
+const breakdownTitles = [
+  t('urlShortenerDemo.activity.countries'),
+  t('urlShortenerDemo.activity.referrers'),
+  t('urlShortenerDemo.activity.devices'),
+];
+
+const chips = [
+  { label: t('urlShortenerDemo.pro.benefits.alias'), included: true },
+  { label: t('urlShortenerDemo.pro.benefits.activity'), included: true },
+  { label: t('urlShortenerDemo.pro.benefits.api'), included: false },
+];
+
+const proLinks = [
+  { code: ALIAS, isAlias: true, destination: PRO_URL, clicks: 0, createdAt: SAMPLE_TODAY },
+  ...sampleLinks.slice(0, 3),
+];
+
+const developerLinks = [API_CODE, ALIAS, openedLink.code, 'bio'];
+
+const quotaRadius = 15;
+
+const eyebrow = 'text-[11px] font-medium tracking-wide text-white/45 uppercase';
+const toggle = 'rounded-full px-2.5 py-1 whitespace-nowrap text-[11px] font-medium transition text-white/60 data-active:bg-white data-active:text-black';
+const caret = 'ml-px inline-block h-[1.1em] w-px animate-pulse bg-white motion-reduce:animate-none align-text-bottom';
+const icon = { 'aria-hidden': 'true', fill: 'none', stroke: 'currentColor', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-width': '2', viewBox: '0 0 24 24' } as const;
+---
+
+<div
+  id="url-shortener-demo"
+  class="mx-auto w-full max-w-6xl text-center text-white"
+  data-captions={JSON.stringify(captions)}
+  data-views={JSON.stringify(views)}
+>
+  <div class="inline-flex rounded-full border border-white/15 bg-white/6 p-1 reveal">
+    {demoPlans.map((plan) => (
+      <button
+        type="button"
+        class="cursor-pointer rounded-full px-4 py-2 text-sm font-medium text-white/70 transition hover:text-white aria-pressed:bg-white aria-pressed:text-black sm:px-5"
+        data-demo="tab"
+        data-plan={plan}
+        aria-pressed={plan === demoPlans[0]}
+      >
+        {tabs[plan]}
+      </button>
+    ))}
+  </div>
+
+  <div class="relative mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-black/40 p-3 text-left reveal sm:p-8">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_50%_60%,rgba(37,99,235,0.5),transparent_70%)]"></div>
+
+    <div class="relative mx-auto max-w-4xl overflow-hidden rounded-2xl border border-white/15 bg-[#0a1226]/90 shadow-[0_0_90px_rgba(59,130,246,0.45)] backdrop-blur">
+      <div class="flex items-center gap-3 border-b border-white/10 px-4 py-3">
+        <span class="flex gap-1.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+        </span>
+        <span class="mx-auto min-w-0 truncate rounded-md bg-white/5 px-4 py-1 font-mono text-xs text-white/50">
+          {siteHost}/{t('urlShortenerDemo.path')}
+        </span>
+      </div>
+
+      <div class="relative min-h-125 overflow-hidden p-4 sm:p-6" aria-hidden="true" inert>
+        {/* Escena del Plan Pro: alias personalizado y actividad */}
+        <div data-demo="scene" data-plan="pro">
+          <div class="text-center">
+            <span class="inline-flex rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[11px] font-medium text-blue-100">
+              {t('urlShortenerDemo.pro.planName')}
+            </span>
+            <p class="mt-2.5 text-3xl leading-tight font-medium tracking-[-0.04em]">
+              {t('urlShortenerDemo.pro.greeting')}{' '}
+              <span class="font-light text-blue-200 italic">{t('urlShortenerDemo.pro.name')}</span>
+            </p>
+            <div class="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+              <div class="flex items-center gap-2 text-left">
+                <svg aria-hidden="true" class="h-9 w-9 -rotate-90" viewBox="0 0 36 36">
+                  <circle cx="18" cy="18" fill="none" r={quotaRadius} stroke="rgba(255,255,255,0.12)" stroke-width="4"></circle>
+                  <circle
+                    class="transition-all duration-700"
+                    cx="18"
+                    cy="18"
+                    fill="none"
+                    r={quotaRadius}
+                    stroke="#3b82f6"
+                    stroke-dasharray={2 * Math.PI * quotaRadius}
+                    stroke-linecap="round"
+                    stroke-width="4"
+                    data-demo="pro-quota-ring"
+                  ></circle>
+                </svg>
+                <div>
+                  <p class="text-[10px] text-white/55">{t('urlShortenerDemo.pro.quotaLabel')}</p>
+                  <p class="text-xs font-medium tabular-nums">
+                    <span data-demo="pro-quota-used"></span> {t('urlShortenerDemo.pro.quotaOf')}
+                  </p>
+                </div>
+              </div>
+              <span class="hidden h-6 w-px bg-white/15 sm:block"></span>
+              <div class="hidden flex-wrap gap-1.5 sm:flex">
+                {chips.map((chip) => (
+                  <span class={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${chip.included ? 'bg-emerald-400/15 text-emerald-300' : 'bg-white/10 text-white/50'}`}>
+                    <svg {...icon} class="h-3 w-3">
+                      {chip.included ? (
+                        <path d="m5 12.5 4.5 4.5L19 7.5" />
+                      ) : (
+                        <Fragment>
+                          <rect height="10" rx="2" width="16" x="4" y="10.5" />
+                          <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+                        </Fragment>
+                      )}
+                    </svg>
+                    {chip.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="mx-auto mt-4 max-w-xl">
+            <div class="rounded-2xl border border-white/25 bg-white/10 p-2 shadow-[0_12px_50px_rgba(37,99,235,0.35)] transition-colors data-active:border-blue-400/70" data-demo="pro-prompt">
+              <div class="flex h-9 min-w-0 items-center px-2 text-sm">
+                <span class="truncate text-white/50" data-demo="pro-placeholder" hidden>{t('urlShortenerDemo.pro.destinationPlaceholder')}</span>
+                <span class="truncate" data-demo="pro-url"></span>
+                <span class={caret} data-demo="pro-url-caret"></span>
+              </div>
+              <div class="mt-1 flex flex-col gap-2 text-[11px] sm:flex-row sm:items-center sm:justify-between">
+                <div class="flex min-w-0 flex-wrap items-center gap-1.5">
+                  <span class="flex gap-0.5 rounded-full border border-white/15 bg-white/6 p-0.5">
+                    <span class={toggle} data-demo="pro-code-option">{t('urlShortenerDemo.pro.codeOption')}</span>
+                    <span class={toggle} data-demo="pro-alias-option">{t('urlShortenerDemo.pro.aliasOption')}</span>
+                  </span>
+                  <span class="flex h-7 w-28 items-center rounded-full border border-blue-400 bg-black/30 px-2.5 font-mono" data-demo="pro-alias-input" hidden>
+                    <span data-demo="pro-alias"></span>
+                    <span class={caret}></span>
+                  </span>
+                </div>
+                <span class="flex h-9 shrink-0 items-center justify-center rounded-full bg-blue-500 px-4 text-xs font-medium transition-transform duration-150 data-active:scale-95 data-active:bg-blue-400" data-demo="pro-submit">
+                  {t('urlShortenerDemo.pro.submit')}
+                </span>
+              </div>
+            </div>
+            <p class="mt-2 truncate text-center text-[11px] text-white/50">
+              {t('urlShortenerDemo.pro.preview')}{' '}
+              <span class="font-mono text-blue-300">
+                {siteHost}/<span
+                  data-demo="pro-preview-code"
+                  data-code-placeholder={`‹${t('urlShortenerDemo.pro.randomCode')}›`}
+                  data-alias-placeholder={`‹${t('urlShortenerDemo.pro.aliasPlaceholder')}›`}
+                ></span>
+              </span>
+            </p>
+          </div>
+
+          <div class="mt-5 overflow-hidden rounded-2xl border border-white/10 bg-white/4 text-xs">
+            <div class="hidden grid-cols-[1.6fr_1.6fr_60px_70px_28px] gap-3 border-b border-white/10 bg-white/4 px-4 py-2 text-[10px] font-medium tracking-wide text-white/45 uppercase md:grid">
+              <span>{t('urlShortenerDemo.pro.list.shortLink')}</span>
+              <span>{t('urlShortenerDemo.pro.list.destination')}</span>
+              <span class="text-right">{t('urlShortenerDemo.pro.list.clicks')}</span>
+              <span>{t('urlShortenerDemo.pro.list.created')}</span>
+              <span></span>
+            </div>
+            {proLinks.map((link) => {
+              const isNew = link.code === ALIAS;
+              const isOpened = link.code === openedLink.code;
+              return (
+                <div
+                  class={`grid grid-cols-[1fr_auto] items-center gap-3 border-b border-white/10 px-4 py-2.5 transition-colors duration-500 last:border-b-0 md:grid-cols-[1.6fr_1.6fr_60px_70px_28px] ${isNew ? 'bg-emerald-400/10' : 'data-active:bg-blue-500/15'}`}
+                  data-demo={isNew ? 'pro-new-row' : isOpened ? 'opened-row' : undefined}
+                  hidden={isNew}
+                >
+                  <span class="flex min-w-0 items-center gap-2">
+                    <span class="truncate font-mono text-blue-300">/{link.code}</span>
+                    {link.isAlias && (
+                      <span class="rounded-full bg-indigo-400/20 px-1.5 py-0.5 text-[9px] font-semibold text-indigo-200 uppercase">
+                        {t('urlShortenerDemo.pro.list.alias')}
+                      </span>
+                    )}
+                  </span>
+                  <span class="hidden truncate text-white/55 md:block">{link.destination}</span>
+                  <span class="hidden text-right font-medium tabular-nums md:block">{number.format(link.clicks)}</span>
+                  <span class="hidden text-white/50 md:block">{shortDate.format(new Date(link.createdAt))}</span>
+                  <span class="flex justify-end text-white/50">
+                    <svg {...icon} class="h-4 w-4" data-demo={isNew ? 'pro-copy-icon' : undefined}>
+                      <rect height="12" rx="2" width="12" x="9" y="9" />
+                      <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+                    </svg>
+                    {isNew && (
+                      <svg {...icon} class="h-4 w-4 text-emerald-300" data-demo="pro-copied-icon">
+                        <path d="m5 12.5 4.5 4.5L19 7.5" />
+                      </svg>
+                    )}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Escena del Plan Developer: link corto creado por API */}
+        <div class="grid content-start gap-4 lg:grid-cols-[1.15fr_0.85fr]" data-demo="scene" data-plan="developer" hidden>
+          <div class="min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-black/50">
+            <p class="border-b border-white/10 px-4 py-2 text-xs text-white/50">{t('urlShortenerDemo.developer.terminal')}</p>
+            <pre class="min-h-31 p-4 font-mono text-xs leading-relaxed break-all whitespace-pre-wrap text-white/85 sm:text-[13px]"><span class="text-blue-300">$ </span><span data-demo="developer-command"></span><span class={caret} data-demo="developer-caret"></span></pre>
+            <div class="border-t border-white/10 opacity-0 transition-opacity duration-500 data-active:opacity-100" data-demo="developer-response">
+              <p class="flex items-center gap-2 px-4 pt-3 text-xs text-white/50">
+                {t('urlShortenerDemo.developer.response')}
+                <span class="rounded bg-emerald-400/15 px-1.5 py-0.5 font-mono text-emerald-300">201</span>
+              </p>
+              <pre class="p-4 font-mono text-xs leading-relaxed break-all whitespace-pre-wrap text-emerald-200 sm:text-[13px]">{RESPONSE}</pre>
+            </div>
+          </div>
+
+          <div class="rounded-2xl border border-white/10 bg-white/4 p-5">
+            <p class="font-medium">{t('urlShortenerDemo.developer.panelTitle')}</p>
+            <ul class="mt-3 divide-y divide-white/10 font-mono text-sm">
+              {developerLinks.map((code) =>
+                code === API_CODE ? (
+                  <li class="flex max-h-0 items-center justify-between gap-3 overflow-hidden py-0 opacity-0 transition-all duration-500 data-active:max-h-14 data-active:py-3 data-active:opacity-100" data-demo="developer-api-row">
+                    <span class="text-blue-300">/{code}</span>
+                    <span class="rounded-full bg-blue-500/20 px-2 py-0.5 font-sans text-xs text-blue-200">{t('urlShortenerDemo.developer.viaApi')}</span>
+                  </li>
+                ) : code === openedLink.code ? (
+                  <li class="-mx-5 px-5 py-3 text-white/70 transition-colors duration-500 data-active:bg-blue-500/15 data-active:text-blue-300" data-demo="opened-row">/{code}</li>
+                ) : (
+                  <li class="py-3 text-white/70">/{code}</li>
+                ),
+              )}
+            </ul>
+            <p class="mt-4 border-t border-white/10 pt-4 text-xs text-white/50">{t('urlShortenerDemo.developer.rate')}</p>
+          </div>
+        </div>
+
+        {/* Panel lateral de actividad, compartido por ambas escenas */}
+        <div class="absolute inset-0 bg-black/55 opacity-0 backdrop-blur-[3px] transition-opacity duration-500 data-active:opacity-100" data-demo="activity-backdrop"></div>
+        <aside
+          class="absolute inset-y-0 right-0 w-full max-w-md translate-x-full [zoom:0.8] overflow-hidden border-l border-white/15 bg-[#0b1430] text-left transition-transform duration-500 ease-out data-active:translate-x-0 data-active:shadow-[-30px_0_80px_rgba(0,0,0,0.6)]"
+          data-demo="activity-panel"
+        >
+          <div class="absolute inset-x-0 top-0 flex flex-col gap-6 p-6 transition-[top,transform] duration-1400 ease-in-out sm:p-8" data-demo="activity-scroll">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <p class={eyebrow}>{t('urlShortenerDemo.activity.heading')}</p>
+                <p class="truncate font-mono text-lg text-blue-300">{siteHost}/{openedLink.code}</p>
+                <p class="truncate text-sm text-white/50">{openedLink.destination}</p>
+              </div>
+              <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center text-white/50">
+                <svg {...icon} class="h-4 w-4"><path d="M6 6l12 12M18 6L6 18" /></svg>
+              </span>
+            </div>
+            <div class="rounded-2xl bg-white/6 p-5">
+              <p class={eyebrow}>{t('urlShortenerDemo.activity.totalClicks')}</p>
+              <p class="text-4xl font-medium tracking-[-0.03em] tabular-nums">{number.format(openedLink.clicks)}</p>
+            </div>
+
+            <div class="flex flex-col gap-6 transition-opacity duration-300 data-active:opacity-50" data-demo="activity-loading">
+              <div class="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-1.5 text-[11px] font-medium">
+                    <p class="tracking-wide text-white/45 uppercase">{t('urlShortenerDemo.activity.inRange')}</p>
+                    <span class="rounded-full bg-indigo-400/20 px-2 py-0.5 text-indigo-200 opacity-0 transition-opacity duration-200 data-active:opacity-100" data-demo="activity-focus">·</span>
+                  </div>
+                  <p class="text-3xl font-medium tracking-[-0.03em] text-white tabular-nums transition-colors duration-200 data-active:text-indigo-200" data-demo="activity-clicks">0</p>
+                </div>
+                <div class="ml-auto flex gap-0.5 rounded-full border border-white/15 bg-white/6 p-0.5">
+                  {ACTIVITY_RANGES.map((range) => (
+                    <span
+                      class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium text-white/65 transition data-active:bg-white data-active:text-black data-locked:text-white/35"
+                      data-demo="activity-range"
+                      data-range={range}
+                    >
+                      {range > minPlanRange && (
+                        <svg {...icon} class="h-3 w-3" data-demo="activity-lock">
+                          <rect height="10" rx="2" width="16" x="4" y="10.5" />
+                          <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+                        </svg>
+                      )}
+                      {rangeLabels[range]}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p class="mb-2 text-[10px] font-medium tracking-wide text-white/45 uppercase">{t('urlShortenerDemo.activity.axis')}</p>
+                <div class="flex gap-2">
+                  <div class="flex h-40 w-8 shrink-0 flex-col justify-between text-right text-[10px] leading-none text-white/45 tabular-nums">
+                    <span data-demo="activity-axis"></span>
+                    <span data-demo="activity-axis"></span>
+                    <span>0</span>
+                  </div>
+                  <div class="relative h-40 flex-1">
+                    {['top-0', 'top-1/2', 'top-full'].map((position) => (
+                      <span class={`absolute inset-x-0 border-t border-dashed border-white/10 ${position}`}></span>
+                    ))}
+                    <div class="absolute inset-0 flex items-end gap-[3px]">
+                      {Array.from({ length: maxBars }, () => (
+                        <div class="flex h-full flex-1 items-end" data-demo="activity-bar">
+                          <div class="min-h-px w-full rounded-t-[3px] bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.6)] transition-[height,background-color] duration-500 ease-out data-active:bg-indigo-400 data-active:shadow-[0_0_10px_rgba(129,140,248,0.6)]"></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-2 ml-10 flex justify-between text-[10px] text-white/45">
+                  {Array.from({ length: 4 }, () => <span data-demo="activity-tick"></span>)}
+                </div>
+                <p class="mt-2 ml-10 text-[10px] text-white/45" data-demo="activity-bar-size"></p>
+              </div>
+
+              <div class="grid grid-cols-1 gap-4" data-demo="activity-lists" hidden>
+                {breakdownTitles.map((title) => (
+                  <div>
+                    <p class={`mb-2 ${eyebrow}`}>{title}</p>
+                    <ul class="-mx-2 flex flex-col" data-demo="activity-list">
+                      {Array.from({ length: SHARE_ROWS + 1 }, () => (
+                        <li class="group rounded-lg px-2 py-1.5 text-sm text-white/85 transition duration-200 data-active:bg-white/10">
+                          <span class="mb-1 flex justify-between gap-3">
+                            <span class="truncate group-data-active:font-medium group-data-active:text-white"></span>
+                            <span class="font-medium tabular-nums"></span>
+                          </span>
+                          <span class="block h-1.5 rounded-full bg-white/10">
+                            <span class="block h-full rounded-full bg-blue-500 transition-colors duration-200 group-data-active:bg-indigo-400"></span>
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="relative mx-auto mt-5 flex max-w-4xl items-center gap-4">
+      <button
+        type="button"
+        class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-black transition hover:bg-white/85"
+        data-demo="toggle"
+        data-play-label={t('urlShortenerDemo.play')}
+        data-pause-label={t('urlShortenerDemo.pause')}
+        aria-label={t('urlShortenerDemo.pause')}
+      >
+        <span data-demo="play-icon" hidden>
+          <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24">
+            <path d="M7 4.5v15l13-7.5-13-7.5Z" fill="currentColor"></path>
+          </svg>
+        </span>
+        <span data-demo="pause-icon">
+          <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24">
+            <path d="M6 4.5h4v15H6zM14 4.5h4v15h-4z" fill="currentColor"></path>
+          </svg>
+        </span>
+      </button>
+      <div class="min-w-0 flex-1">
+        <p class="truncate text-sm font-medium" data-demo="caption">{captions.pro[0]}</p>
+        <div class="mt-2 h-1 overflow-hidden rounded-full bg-white/15">
+          <div class="h-full w-0 rounded-full bg-white" data-demo="progress"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

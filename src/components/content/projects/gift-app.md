@@ -13,6 +13,5 @@ technologies:
     svg: /shared/resources/logos/technologies/vite.svg
     color: bg-[#370A7F] text-white
 isPublic: true
-isReady: true
 isEarlyProject: false
 ---

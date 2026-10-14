@@ -2,6 +2,7 @@
 title: UrlShortener
 descriptionKey: projects.items.4.description
 order: 4
+demoUrl: https://url-shortener-web-nu.vercel.app
 image: /shared/resources/images/url-shortener.png
 technologies:
   - name: React
@@ -17,6 +18,5 @@ technologies:
     svg: /shared/resources/logos/technologies/convex.png
     color: bg-[#000000] text-white
 isPublic: false
-isReady: false
 isEarlyProject: false
 ---

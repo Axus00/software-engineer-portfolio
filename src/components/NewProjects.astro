@@ -1,0 +1,32 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { SITE_URL } from '../data/urlShortenerDemo';
+import UrlShortenerDemo from './saas/UrlShortenerDemo.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="new-projects" class="py-32 px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16">
+      <h2 class="font-headline text-4xl font-extrabold mb-4">{t('newProjects.heading')}</h2>
+      <p class="text-slate-500">{t('newProjects.description')}</p>
+    </div>
+
+    <div class="mb-10 flex flex-col gap-6 reveal md:flex-row md:items-end md:justify-between">
+      <div class="max-w-2xl">
+        <div class="mb-4 flex items-center gap-3">
+          <h3 class="font-headline text-2xl font-bold text-white">UrlShortener</h3>
+          <span class="px-3 py-1 rounded-full border border-emerald-500/20 font-light text-emerald-500 bg-emerald-500/10 text-sm tracking-wider">{t('newProjects.urlShortener.status')}</span>
+        </div>
+        <p class="leading-relaxed text-slate-400">{t('newProjects.urlShortener.description')}</p>
+      </div>
+      <a class="flex shrink-0 items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" href={`${SITE_URL}/${lang}`} target="_blank" rel="noopener noreferrer">
+        {t('newProjects.visit')}
+      </a>
+    </div>
+
+    <UrlShortenerDemo />
+  </div>
+</section>

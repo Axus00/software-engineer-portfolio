@@ -21,7 +21,6 @@ const projects = defineCollection({
         image: z.string(),
         technologies: z.array(z.object({ name: z.string(), svg: z.string(), color: z.string() })),
         isPublic: z.boolean().optional(),
-        isReady: z.boolean().optional(),
         isEarlyProject: z.boolean().optional(),
     })
 })

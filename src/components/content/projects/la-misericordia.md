@@ -15,6 +15,5 @@ technologies:
     svg: /shared/resources/logos/technologies/javascript.svg
     color: bg-[#F7DF1E] text-black
 isPublic: true
-isReady: true
 isEarlyProject: true
 ---

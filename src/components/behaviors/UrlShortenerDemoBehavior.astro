@@ -1,0 +1,204 @@
+<script>
+  import {
+    ALIAS,
+    CURL,
+    INITIAL_RANGE,
+    PRO_URL,
+    SCENES,
+    type ActivityView,
+    type DemoPlan,
+  } from '../../data/urlShortenerDemo';
+
+  const root = document.getElementById('url-shortener-demo');
+
+  if (root) {
+    const TICK = 50;
+    const captions: Record<DemoPlan, string[]> = JSON.parse(root.dataset.captions ?? '{}');
+    const views: Record<number, ActivityView> = JSON.parse(root.dataset.views ?? '{}');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let plan: DemoPlan = 'pro';
+    let elapsed = 0;
+    let inView = false;
+    // Until the visitor presses play or pause, reduced motion keeps the demo still.
+    let pausedByVisitor: boolean | null = null;
+    let timer: number | undefined;
+
+    const parts = (name: string) => Array.from(root.querySelectorAll<HTMLElement>(`[data-demo="${name}"]`));
+    const part = (name: string) => parts(name)[0];
+
+    const flag = (name: string, active: boolean) => {
+      for (const el of parts(name)) el.toggleAttribute('data-active', active);
+    };
+    const show = (name: string, visible: boolean) => {
+      for (const el of parts(name)) el.toggleAttribute('hidden', !visible);
+    };
+    const write = (el: Element | null | undefined, value: string) => {
+      if (el && el.textContent !== value) el.textContent = value;
+    };
+    const typed = (text: string, start: number, speed: number) =>
+      text.slice(0, Math.max(0, Math.floor((elapsed - start) / speed)));
+
+    const isPaused = () => pausedByVisitor ?? reducedMotion.matches;
+
+    const renderPro = () => {
+      const created = elapsed >= 4400;
+      const typing = elapsed < 2600;
+      const aliasMode = !typing && !created;
+      const alias = aliasMode ? typed(ALIAS, 2900, 90) : '';
+      const ring = part('pro-quota-ring');
+      const preview = part('pro-preview-code');
+      const used = created ? 38 : 37;
+
+      write(part('pro-url'), created ? '' : typed(PRO_URL, 300, 40));
+      show('pro-placeholder', created);
+      show('pro-url-caret', typing);
+      flag('pro-prompt', typing);
+      flag('pro-code-option', !aliasMode);
+      flag('pro-alias-option', aliasMode);
+      show('pro-alias-input', aliasMode);
+      write(part('pro-alias'), alias);
+      flag('pro-submit', elapsed >= 4100 && !created);
+      write(preview, alias || ((aliasMode ? preview?.dataset.aliasPlaceholder : preview?.dataset.codePlaceholder) ?? ''));
+      write(part('pro-quota-used'), String(used));
+      if (ring) ring.style.strokeDashoffset = String(Number(ring.getAttribute('stroke-dasharray')) * (1 - used / 100));
+      show('pro-new-row', created);
+      show('pro-copy-icon', elapsed < 5200);
+      show('pro-copied-icon', elapsed >= 5200);
+    };
+
+    const renderDeveloper = () => {
+      const responded = elapsed >= 3800;
+
+      write(part('developer-command'), typed(CURL, 300, 22));
+      show('developer-caret', !responded);
+      flag('developer-response', responded);
+      flag('developer-api-row', elapsed >= 5400);
+    };
+
+    // A script stands in for the visitor: once the panel is open it widens the range to all
+    // the plan allows, scrolls down to the breakdowns and filters the chart by the first country.
+    const renderActivity = () => {
+      const { activity, activityDays } = SCENES[plan];
+      const at = elapsed - activity;
+      const open = at >= 0;
+      const loaded = at >= 500;
+      const focused = at >= 4800 && at < 6300;
+      const view = views[at >= 2000 ? activityDays : INITIAL_RANGE];
+      const scroll = at >= 6800 ? 1 : at >= 3600 ? 0.33 : 0;
+      const panel = part('activity-scroll');
+      const heights = focused ? view.focusedHeights : view.heights;
+
+      flag('opened-row', open);
+      flag('activity-backdrop', open);
+      flag('activity-panel', open);
+      flag('activity-loading', !loaded);
+      flag('activity-focus', focused);
+      flag('activity-clicks', focused);
+      show('activity-lists', loaded);
+      if (focused) write(part('activity-focus'), view.focusLabel);
+      write(part('activity-clicks'), !loaded ? '0' : focused ? view.focusedClicks : view.clicks);
+      write(part('activity-bar-size'), view.barSize);
+
+      if (panel) {
+        panel.style.top = `${scroll * 100}%`;
+        panel.style.transform = `translateY(-${scroll * 100}%)`;
+      }
+
+      for (const option of parts('activity-range')) {
+        const range = Number(option.dataset.range);
+        const locked = range > activityDays;
+        option.toggleAttribute('data-active', range === view.range);
+        option.toggleAttribute('data-locked', locked);
+        option.querySelector('[data-demo="activity-lock"]')?.toggleAttribute('hidden', !locked);
+      }
+
+      parts('activity-axis').forEach((label, index) => write(label, view.axis[index]));
+      parts('activity-tick').forEach((tick, index) => write(tick, view.ticks[index]));
+
+      parts('activity-bar').forEach((bar, index) => {
+        const fill = bar.firstElementChild as HTMLElement;
+        const height = loaded ? (heights[index] ?? 0) : 0;
+        bar.hidden = index >= view.heights.length;
+        fill.style.height = `${height}%`;
+        fill.style.opacity = height === 0 ? '0.4' : '';
+        fill.toggleAttribute('data-active', focused);
+      });
+
+      parts('activity-list').forEach((list, listIndex) => {
+        Array.from(list.children).forEach((row, rowIndex) => {
+          const share = view.shares[listIndex]?.[rowIndex];
+          const [label, percent, fill] = Array.from(row.querySelectorAll<HTMLElement>('span > span'));
+          (row as HTMLElement).hidden = !share;
+          row.toggleAttribute('data-active', focused && listIndex === 0 && rowIndex === 0);
+          if (!share) return;
+          write(label, share.label);
+          write(percent, `${share.percent}%`);
+          fill.style.width = `${share.percent}%`;
+        });
+      });
+    };
+
+    const render = () => {
+      const { total, marks } = SCENES[plan];
+      const progress = part('progress');
+
+      for (const scene of parts('scene')) scene.hidden = scene.dataset.plan !== plan;
+      for (const tab of parts('tab')) tab.setAttribute('aria-pressed', String(tab.dataset.plan === plan));
+
+      if (plan === 'pro') renderPro();
+      else renderDeveloper();
+      renderActivity();
+
+      write(part('caption'), captions[plan]?.[marks.filter((mark) => elapsed >= mark).length] ?? '');
+      if (progress) progress.style.width = `${(elapsed / total) * 100}%`;
+    };
+
+    const renderControls = () => {
+      const toggle = part('toggle');
+      const paused = isPaused();
+
+      show('play-icon', paused);
+      show('pause-icon', !paused);
+      toggle?.setAttribute('aria-label', (paused ? toggle.dataset.playLabel : toggle.dataset.pauseLabel) ?? '');
+    };
+
+    const sync = () => {
+      window.clearInterval(timer);
+      timer = undefined;
+      renderControls();
+      if (!inView || isPaused()) return;
+
+      timer = window.setInterval(() => {
+        elapsed = (elapsed + TICK) % SCENES[plan].total;
+        render();
+      }, TICK);
+    };
+
+    for (const tab of parts('tab')) {
+      tab.addEventListener('click', () => {
+        plan = tab.dataset.plan as DemoPlan;
+        elapsed = 0;
+        render();
+      });
+    }
+
+    part('toggle')?.addEventListener('click', () => {
+      pausedByVisitor = !isPaused();
+      sync();
+    });
+
+    reducedMotion.addEventListener('change', sync);
+
+    new IntersectionObserver(
+      ([entry]) => {
+        inView = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0.3 },
+    ).observe(root);
+
+    render();
+    renderControls();
+  }
+</script>

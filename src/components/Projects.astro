@@ -27,17 +27,7 @@ const projects = entries
 
     <div id="projects-carousel" class="projects-carousel grid grid-cols-1 gap-6 md:grid-cols-2 lg:flex lg:overflow-x-auto lg:scroll-smooth lg:snap-x lg:snap-mandatory lg:pb-2">
       {projects.map((project) => (
-        <article class="project-card group w-full overflow-hidden rounded-xl border border-white/5 bg-surface-container-low shadow-xl shadow-black/20 reveal lg:w-[48%] lg:shrink-0 lg:snap-start relative">
-          {/* configuración para capa dependiendo del valor de isReady */}
-
-          {!project.isReady && (
-              <div class="absolute inset-0 z-10 flex items-center justify-center bg-black/60">
-                <span class="rounded-full bg-black/70 px-6 py-3 text-xl font-bold text-white uppercase">
-                    {t('projects.comingSoon')}
-                </span>
-              </div>
-          )}
-
+        <article class="project-card group w-full overflow-hidden rounded-xl border border-white/5 bg-surface-container-low shadow-xl shadow-black/20 reveal lg:w-[48%] lg:shrink-0 lg:snap-start">
           <div class="h-64 overflow-hidden">
             <img src={project.image} alt={project.title} class="project-image h-full w-full object-cover transition-transform duration-700" loading="lazy" referrerpolicy="no-referrer" />
           </div>
@@ -65,16 +55,18 @@ const projects = entries
               </ul>
             </div>
 
-            {project.repository && (
+            {(project.repository || project.demoUrl) && (
               <div class="flex items-center justify-between border-t border-white/5 pt-6">
                 {project.demoUrl ? (
                   <a class="flex items-center gap-2 text-sm font-semibold hover:text-primary-custom transition-colors text-white" href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                     {t('projects.demo')}
                   </a>
                 ) : null}
-                <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-white">
-                  {t('projects.repository')}
-                </a>
+                {project.repository ? (
+                  <a href={project.repository} class="flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-white">
+                    {t('projects.repository')}
+                  </a>
+                ) : null}
               </div>
             )}
           </div>

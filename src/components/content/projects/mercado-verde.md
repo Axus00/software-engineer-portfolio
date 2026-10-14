@@ -22,6 +22,5 @@ technologies:
     svg: /shared/resources/logos/technologies/csharp.svg
     color: bg-[#68217A] text-white
 isPublic: true
-isReady: true
 isEarlyProject: true
 ---
